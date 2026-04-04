@@ -1,0 +1,166 @@
+/* Thread Scout — inline badge styles */
+
+.ts-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 6px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.6;
+  cursor: pointer;
+  vertical-align: middle;
+  margin: 0 2px;
+  white-space: nowrap;
+  text-decoration: none;
+  border: 1px solid transparent;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  position: relative;
+}
+
+.ts-badge.ts-owned {
+  background: #dcfce7;
+  color: #15803d;
+  border-color: #86efac;
+}
+
+.ts-badge.ts-need {
+  background: #fef9c3;
+  color: #854d0e;
+  border-color: #fde047;
+}
+
+.ts-badge-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.ts-owned .ts-badge-dot {
+  background: #16a34a;
+}
+
+.ts-need .ts-badge-dot {
+  background: #ca8a04;
+}
+
+/* Tooltip popup on hover */
+.ts-tooltip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e293b;
+  color: #f8fafc;
+  border-radius: 8px;
+  padding: 10px 12px;
+  width: 220px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  z-index: 999999;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  pointer-events: none;
+}
+
+.ts-tooltip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #1e293b;
+}
+
+.ts-badge:hover .ts-tooltip {
+  display: block;
+}
+
+.ts-tooltip-color-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.ts-tooltip-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.2);
+  flex-shrink: 0;
+}
+
+.ts-tooltip-name {
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.ts-tooltip-divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  margin: 6px 0;
+}
+
+.ts-tooltip-equiv-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.ts-tooltip-equiv-row span:last-child {
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+/* Etsy quick-add banner */
+.ts-etsy-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: linear-gradient(135deg, #fef9c3 0%, #fef3c7 100%);
+  border: 1px solid #fde68a;
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin: 8px 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.ts-etsy-bar-text {
+  font-size: 13px;
+  color: #78350f;
+  font-weight: 500;
+}
+
+.ts-etsy-bar-text strong {
+  font-weight: 700;
+}
+
+.ts-etsy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: #f59e0b;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+
+.ts-etsy-btn:hover {
+  background: #d97706;
+}

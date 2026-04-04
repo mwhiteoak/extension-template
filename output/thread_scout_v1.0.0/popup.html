@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thread Scout</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-title">
+        <span class="header-icon">🧵</span>
+        <span>Thread Scout</span>
+      </div>
+      <div class="header-count" id="stashCount">0 threads</div>
+    </header>
+
+    <!-- Tabs -->
+    <nav class="tabs">
+      <button class="tab active" data-tab="stash">My Stash</button>
+      <button class="tab" data-tab="add">Add Thread</button>
+      <button class="tab" data-tab="import">Import CSV</button>
+    </nav>
+
+    <!-- Tab: My Stash -->
+    <section class="tab-panel active" id="tab-stash">
+      <div class="search-row">
+        <input
+          type="text"
+          id="searchInput"
+          class="input"
+          placeholder="Search DMC number or name…"
+          autocomplete="off"
+        />
+      </div>
+
+      <div id="stashEmpty" class="empty-state" style="display:none;">
+        <div class="empty-icon">🪡</div>
+        <p>Your stash is empty.</p>
+        <p class="empty-sub">Add threads manually or import a CSV.</p>
+      </div>
+
+      <ul class="thread-list" id="stashList"></ul>
+    </section>
+
+    <!-- Tab: Add Thread -->
+    <section class="tab-panel" id="tab-add">
+      <div class="form-group">
+        <label class="label" for="addInput">DMC Thread Number</label>
+        <input
+          type="text"
+          id="addInput"
+          class="input"
+          placeholder="e.g. 310, 321, White, Ecru"
+          autocomplete="off"
+        />
+        <div id="addSuggestions" class="suggestions"></div>
+      </div>
+
+      <div id="addPreview" class="color-preview" style="display:none;">
+        <div class="color-swatch" id="addSwatch"></div>
+        <div class="color-info">
+          <div class="color-code" id="addCode"></div>
+          <div class="color-name" id="addName"></div>
+          <div class="color-equivs" id="addEquivs"></div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button id="addBtn" class="btn btn-primary" disabled>Add to Stash</button>
+        <div id="addFeedback" class="feedback"></div>
+      </div>
+    </section>
+
+    <!-- Tab: Import CSV -->
+    <section class="tab-panel" id="tab-import">
+      <p class="import-description">
+        Upload a CSV file with DMC thread numbers (one per row, or comma-separated).
+        The extension will import all recognized codes.
+      </p>
+
+      <div class="import-format">
+        <strong>Accepted formats:</strong>
+        <ul>
+          <li>One DMC number per line: <code>310</code></li>
+          <li>Comma-separated: <code>310, 321, 666</code></li>
+          <li>With headers (ignored): <code>DMC,Color Name</code></li>
+        </ul>
+      </div>
+
+      <div class="file-drop-zone" id="dropZone">
+        <div class="drop-icon">📂</div>
+        <p>Drop CSV here or <label for="csvInput" class="file-link">browse</label></p>
+        <input type="file" id="csvInput" accept=".csv,.txt" style="display:none;" />
+      </div>
+
+      <div id="importPreview" class="import-preview" style="display:none;">
+        <div class="import-preview-header">
+          <span id="importFound">0 threads found</span>
+          <span id="importDupes" class="import-dupes"></span>
+        </div>
+        <ul class="import-list" id="importList"></ul>
+        <div class="form-actions">
+          <button id="importConfirmBtn" class="btn btn-primary">Import All</button>
+          <button id="importCancelBtn" class="btn btn-secondary">Cancel</button>
+        </div>
+      </div>
+
+      <div id="importFeedback" class="feedback"></div>
+    </section>
+
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

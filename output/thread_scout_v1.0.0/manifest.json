@@ -1,0 +1,57 @@
+{
+  "manifest_version": 3,
+  "name": "Thread Scout — DMC Cross-Stitch Stash Tracker",
+  "short_name": "Thread Scout",
+  "version": "1.0.0",
+  "description": "Track your DMC thread stash while shopping. See which colors you own vs. need, with Anchor & Madeira equivalents — on Etsy, DMC.com & 123stitch.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.etsy.com/*",
+    "https://www.dmc.com/*",
+    "https://www.123stitch.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.etsy.com/*",
+        "https://www.dmc.com/*",
+        "https://www.123stitch.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Thread Scout",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["data/dmc-colors.json", "data/equivalents.json"],
+      "matches": [
+        "https://www.etsy.com/*",
+        "https://www.dmc.com/*",
+        "https://www.123stitch.com/*"
+      ]
+    }
+  ]
+}
