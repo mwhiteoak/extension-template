@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrickLink Price History — Settings</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      background: #f0f4ff;
+      color: #1a1a2e;
+      min-height: 100vh;
+    }
+
+    .header {
+      background: #1a1a2e;
+      color: #fff;
+      padding: 16px 24px;
+    }
+    .header h1 { font-size: 18px; font-weight: 700; }
+    .header p { font-size: 12px; opacity: 0.65; margin-top: 3px; }
+
+    .container {
+      max-width: 600px;
+      margin: 28px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(26,26,46,0.1);
+      padding: 20px 22px;
+      margin-bottom: 16px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #eef0f8;
+      color: #1a1a2e;
+    }
+
+    .field-row {
+      margin-bottom: 12px;
+    }
+
+    .field-row label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #4a5568;
+      margin-bottom: 4px;
+    }
+
+    .field-row input[type="text"],
+    .field-row input[type="password"] {
+      width: 100%;
+      border: 1px solid #dde3f0;
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 13px;
+      color: #1a1a2e;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .field-row input:focus { border-color: #2563eb; }
+
+    .field-hint {
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 3px;
+    }
+
+    .field-hint a { color: #2563eb; }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 9px 0;
+      border-bottom: 1px solid #f0f4ff;
+      font-size: 13px;
+      color: #374151;
+    }
+    .toggle-row:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .toggle-switch {
+      position: relative;
+      width: 40px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider {
+      position: absolute;
+      inset: 0;
+      background: #d1d5db;
+      border-radius: 22px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border-radius: 50%;
+      top: 3px;
+      left: 3px;
+      transition: transform 0.2s;
+    }
+    .toggle-switch input:checked + .toggle-slider { background: #2563eb; }
+    .toggle-switch input:checked + .toggle-slider::before { transform: translateX(18px); }
+
+    .save-btn {
+      background: #1a1a2e;
+      color: #fff;
+      border: none;
+      border-radius: 7px;
+      padding: 11px 24px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.15s;
+    }
+    .save-btn:hover { background: #2d2d4e; }
+
+    .success-msg {
+      background: #d1fae5;
+      color: #065f46;
+      border: 1px solid #6ee7b7;
+      border-radius: 6px;
+      padding: 10px 14px;
+      font-size: 13px;
+      margin-top: 10px;
+      display: none;
+    }
+    .success-msg.show { display: block; }
+
+    .pro-banner {
+      background: linear-gradient(135deg, #1a1a2e 60%, #2563eb);
+      color: #fff;
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .pro-banner.hidden { display: none; }
+    .pro-banner h2 { font-size: 14px; margin-bottom: 3px; }
+    .pro-banner p { font-size: 11px; opacity: 0.82; }
+    .upgrade-btn {
+      background: #f59e0b;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .upgrade-btn:hover { background: #d97706; }
+
+    /* Alerts list */
+    .alerts-list { list-style: none; padding: 0; }
+    .alert-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid #f0f4ff;
+      font-size: 12px;
+      color: #374151;
+      gap: 8px;
+    }
+    .alert-item:last-child { border-bottom: none; }
+    .alert-name { flex: 1; font-weight: 600; }
+    .alert-target { color: #2563eb; }
+    .alert-triggered { color: #16a34a; font-size: 11px; }
+    .alert-delete {
+      background: none;
+      border: none;
+      color: #e63946;
+      cursor: pointer;
+      font-size: 13px;
+      padding: 2px 4px;
+    }
+    .no-alerts { font-size: 12px; color: #9ca3af; font-style: italic; }
+
+    .pro-gate {
+      font-size: 12px;
+      color: #9ca3af;
+      font-style: italic;
+      padding: 4px 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <h1>&#127981; BrickLink Price History &amp; Set Completion Tracker</h1>
+  <p>Settings — Connect your BrickLink account and configure features</p>
+</div>
+
+<div class="container">
+
+  <div class="pro-banner" id="proBanner">
+    <div>
+      <h2>Unlock Pro Features — $7/mo</h2>
+      <p>Multi-store optimizer · Price alerts · Set value tracker · Order analytics</p>
+    </div>
+    <button class="upgrade-btn" id="upgradeBtn">Upgrade</button>
+  </div>
+
+  <!-- BrickLink API Credentials -->
+  <div class="card">
+    <div class="card-title">BrickLink API Credentials</div>
+    <p style="font-size:12px;color:#6b7280;margin-bottom:12px;line-height:1.5;">
+      Register a BrickLink API consumer at
+      <a href="https://www.bricklink.com/v2/api/register_consumer.page" target="_blank" style="color:#2563eb;">bricklink.com/v2/api/register_consumer.page</a>
+      and enter your credentials below to enable price history and wanted list features.
+    </p>
+
+    <div class="field-row">
+      <label for="consumerKey">Consumer Key</label>
+      <input type="text" id="consumerKey" placeholder="Your BrickLink consumer key" autocomplete="off">
+    </div>
+    <div class="field-row">
+      <label for="consumerSecret">Consumer Secret</label>
+      <input type="password" id="consumerSecret" placeholder="Your BrickLink consumer secret" autocomplete="off">
+    </div>
+    <div class="field-row">
+      <label for="accessToken">Access Token</label>
+      <input type="text" id="accessToken" placeholder="Your BrickLink access token" autocomplete="off">
+    </div>
+    <div class="field-row">
+      <label for="accessTokenSecret">Access Token Secret</label>
+      <input type="password" id="accessTokenSecret" placeholder="Your BrickLink access token secret" autocomplete="off">
+    </div>
+    <div class="field-hint">
+      All credentials are stored locally in your browser. They are never sent to any third-party server.
+    </div>
+  </div>
+
+  <!-- Feature Toggles -->
+  <div class="card">
+    <div class="card-title">Free Features</div>
+    <div class="toggle-row">
+      <span>Price history sparkline on catalog pages</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="showSparkline" checked>
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <div class="toggle-row">
+      <span>Wanted list coverage bar on store pages</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="showCoverage" checked>
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <div class="toggle-row">
+      <span>Seller stats badge on store pages</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="showSellerStats" checked>
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <div class="toggle-row">
+      <span>Part color availability indicator</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="showColorAvailability" checked>
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+  </div>
+
+  <!-- Price Alerts (Pro) -->
+  <div class="card" id="alertsCard">
+    <div class="card-title">Price Alerts <span style="font-size:11px;background:#2563eb;color:#fff;padding:2px 6px;border-radius:4px;margin-left:6px;font-weight:700;">PRO</span></div>
+    <div id="alertsContent">
+      <div class="pro-gate">Upgrade to Pro to set price alerts for parts and sets.</div>
+    </div>
+  </div>
+
+  <button class="save-btn" id="saveBtn">Save Settings</button>
+  <div class="success-msg" id="successMsg">&#10003; Settings saved!</div>
+
+</div>
+
+<script src="options.js"></script>
+</body>
+</html>

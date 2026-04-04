@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "BrickLink Price History & Set Completion Tracker",
+    "description": "The name of the extension as displayed in the Chrome Web Store and browser UI"
+  },
+  "extensionDescription": {
+    "message": "See price history sparklines, wanted list coverage, and seller stats while browsing BrickLink. Pro: multi-store optimizer, price alerts, and set value tracking.",
+    "description": "Short description shown under the extension name"
+  }
+}

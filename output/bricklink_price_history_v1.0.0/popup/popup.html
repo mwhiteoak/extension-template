@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BrickLink Price History</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="header">
+    <div class="header-icon">&#127981;</div>
+    <div>
+      <div class="header-title">BrickLink Price History</div>
+      <div class="header-sub">Price tracking &amp; wanted list tools</div>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="status-section">
+      <div class="status-row">
+        <span class="status-label">BrickLink</span>
+        <span class="status-val" id="connectStatus">Not connected</span>
+      </div>
+      <div class="status-row">
+        <span class="status-label">Plan</span>
+        <span class="status-val" id="planVal">Free</span>
+      </div>
+      <div class="status-row">
+        <span class="status-label">Price Alerts</span>
+        <span class="status-val" id="alertCount">0 active</span>
+      </div>
+    </div>
+
+    <div class="features-note">
+      <strong>Active on:</strong> bricklink.com — catalog pages, store pages
+    </div>
+
+    <button class="settings-btn" id="settingsBtn">&#9881;&#65039; Settings &amp; Connect</button>
+
+    <div class="pro-bar" id="proBar">
+      <div class="pro-bar-text">
+        <strong>Pro</strong> — Multi-store optimizer, price alerts &amp; set value tracking
+      </div>
+      <button class="pro-btn" id="proBtn">$7/mo</button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

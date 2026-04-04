@@ -1,0 +1,94 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  background: #f0f4ff;
+  color: #1a1a2e;
+  width: 280px;
+  min-height: 180px;
+}
+
+.header {
+  background: #1a1a2e;
+  color: #fff;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-icon { font-size: 22px; }
+
+.header-title { font-size: 13px; font-weight: 700; }
+.header-sub { font-size: 11px; opacity: 0.65; margin-top: 1px; }
+
+.body { padding: 12px 14px; }
+
+.status-section { margin-bottom: 10px; }
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  border-bottom: 1px solid #e8eaf0;
+  font-size: 12px;
+}
+.status-row:last-child { border-bottom: none; }
+
+.status-label { color: #6b7280; }
+.status-val { font-weight: 600; color: #1a1a2e; }
+.status-val.connected { color: #16a34a; }
+.status-val.not-connected { color: #9ca3af; }
+
+.features-note {
+  font-size: 11px;
+  color: #6b7280;
+  background: #eef0f8;
+  border-radius: 5px;
+  padding: 6px 8px;
+  margin-bottom: 10px;
+}
+
+.settings-btn {
+  width: 100%;
+  background: #1a1a2e;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 9px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-bottom: 10px;
+}
+.settings-btn:hover { background: #2d2d4e; }
+
+.pro-bar {
+  background: linear-gradient(135deg, #1a1a2e 60%, #2563eb);
+  color: #fff;
+  border-radius: 7px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.pro-bar.hidden { display: none; }
+
+.pro-bar-text { font-size: 11px; line-height: 1.4; }
+
+.pro-btn {
+  background: #f59e0b;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.pro-btn:hover { background: #d97706; }
