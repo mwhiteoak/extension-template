@@ -65,7 +65,8 @@
       ],
       "js": ["content/coffee-detector.js", "content/coffee-badge.js"],
       "css": ["content/coffee-panel.css"],
-      "run_at": "document_idle"
+      "run_at": "document_idle",
+      "type": "module"
     }
   ],
   "options_page": "options/options.html",
