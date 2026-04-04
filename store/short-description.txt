@@ -1,1 +1,1 @@
-[Short description — max 132 characters. Shown in Chrome Web Store search results.]
+Auto-tracks time by client based on your active browser tab. No more forgotten timers. Sync to Toggl or Clockify.

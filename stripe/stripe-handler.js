@@ -1,34 +1,23 @@
-// stripe-handler.js - Stripe Checkout flow stub
-// Replace STRIPE_PUBLISHABLE_KEY with your actual key before use.
-// For production, initiate sessions server-side, not from the extension.
+// stripe-handler.js — Stripe Checkout stub for Auto-Context Time Tracker Pro
+//
+// MVP: clicking "Upgrade" opens the Stripe Checkout URL directly in a new tab.
+// For production, replace CHECKOUT_URL with your Stripe Payment Link URL.
+// A server-side session approach is recommended for subscriptions but is NOT
+// required for the Stripe Payment Links flow (no backend needed).
 
-const STRIPE_PUBLISHABLE_KEY = 'pk_live_REPLACE_ME';
+const CHECKOUT_URL = 'https://buy.stripe.com/REPLACE_WITH_YOUR_PAYMENT_LINK';
 
 /**
- * Opens a Stripe Checkout session for a one-time payment or subscription.
- * @param {object} options
- * @param {string} options.priceId - Stripe Price ID (from dashboard)
- * @param {string} options.successUrl - URL to redirect on success
- * @param {string} options.cancelUrl - URL to redirect on cancel
+ * Open the Stripe Checkout page for the Pro subscription ($7/mo).
+ * Call this from the upgrade button click handler.
  */
-async function openCheckout({ priceId, successUrl, cancelUrl }) {
-  // In a real extension, you'd call your backend to create a Checkout session
-  // and return the session URL. Direct Stripe.js usage from extensions is limited.
-  // Example backend call:
-  //
-  // const response = await fetch('https://your-backend.com/create-checkout-session', {
-  //   method: 'POST',
-  //   headers: { 'Content-Type': 'application/json' },
-  //   body: JSON.stringify({ priceId, successUrl, cancelUrl }),
-  // });
-  // const { url } = await response.json();
-  // chrome.tabs.create({ url });
-
-  console.warn('stripe-handler: implement backend session creation before use');
+function openCheckout() {
+  chrome.tabs.create({ url: CHECKOUT_URL });
 }
 
 /**
- * Check entitlement via chrome.storage (set by webhook / backend after payment).
+ * Check whether the user has a Pro entitlement stored locally.
+ * In production, verify via your backend after a Stripe webhook sets this flag.
  * @returns {Promise<boolean>}
  */
 async function isEntitled() {
@@ -40,10 +29,22 @@ async function isEntitled() {
 }
 
 /**
- * Grant entitlement locally (called after webhook confirmation).
+ * Grant Pro entitlement locally.
+ * Call this after your webhook confirms a successful payment.
+ * @returns {Promise<void>}
  */
 async function grantEntitlement() {
   return new Promise((resolve) => {
     chrome.storage.local.set({ stripe_entitled: true }, resolve);
+  });
+}
+
+/**
+ * Revoke Pro entitlement locally (e.g. subscription cancelled).
+ * @returns {Promise<void>}
+ */
+async function revokeEntitlement() {
+  return new Promise((resolve) => {
+    chrome.storage.local.remove('stripe_entitled', resolve);
   });
 }

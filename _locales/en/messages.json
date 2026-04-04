@@ -1,10 +1,10 @@
 {
   "extensionName": {
-    "message": "Extension Name",
+    "message": "Auto-Context Time Tracker",
     "description": "The name of the extension as displayed in the Chrome Web Store and browser UI"
   },
   "extensionDescription": {
-    "message": "Extension description",
+    "message": "Automatically tracks which client you're working for based on your active browser tab. No more forgotten timers.",
     "description": "Short description shown under the extension name"
   }
 }

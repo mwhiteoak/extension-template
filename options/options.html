@@ -3,46 +3,207 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Extension Options</title>
+  <title>Auto-Context Time Tracker — Settings</title>
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 0 20px;
+      font-size: 14px;
       color: #333;
+      background: #f5f5f5;
+      padding: 32px 20px;
     }
-    h1 { font-size: 24px; margin-bottom: 24px; }
-    .field { margin-bottom: 16px; }
-    label { display: block; font-weight: 500; margin-bottom: 4px; }
-    input[type="text"] {
+    .page { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+    h1 { font-size: 22px; font-weight: 700; }
+    h2 { font-size: 16px; font-weight: 600; margin-bottom: 12px; }
+
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,.08);
+    }
+
+    .field { margin-bottom: 14px; }
+    label { display: block; font-weight: 500; margin-bottom: 4px; font-size: 13px; }
+    .hint { color: #888; font-size: 11px; margin-top: 3px; }
+
+    input[type="text"], input[type="password"], input[type="time"], select {
       width: 100%;
-      padding: 8px 12px;
+      padding: 7px 10px;
       border: 1px solid #ccc;
       border-radius: 4px;
-      font-size: 14px;
+      font-size: 13px;
     }
+    input:focus, select:focus { outline: none; border-color: #1a73e8; }
+
+    .row { display: flex; gap: 8px; align-items: flex-end; }
+    .row input, .row select { flex: 1; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th { text-align: left; padding: 6px 8px; border-bottom: 2px solid #eee; color: #666; font-weight: 600; }
+    td { padding: 6px 8px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+    .color-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+
     button {
-      padding: 10px 20px;
-      background: #1a73e8;
-      color: white;
+      padding: 7px 14px;
       border: none;
       border-radius: 4px;
+      font-size: 13px;
+      font-weight: 500;
       cursor: pointer;
-      font-size: 14px;
     }
-    button:hover { background: #1557b0; }
-    #saved { color: green; margin-left: 12px; display: none; }
+    .btn-primary { background: #1a73e8; color: #fff; }
+    .btn-primary:hover { background: #1557b0; }
+    .btn-danger  { background: #f44336; color: #fff; font-size: 12px; padding: 4px 8px; }
+    .btn-danger:hover  { background: #c62828; }
+    .btn-sm  { font-size: 12px; padding: 4px 10px; }
+    .btn-outline { background: #fff; color: #1a73e8; border: 1px solid #1a73e8; }
+    .btn-outline:hover { background: #e8f0fe; }
+
+    #saved-msg { color: #4CAF50; font-size: 13px; display: none; }
+    .section-actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 8px; }
+
+    .free-limit-notice {
+      background: #fff8e1;
+      border: 1px solid #ffe082;
+      border-radius: 4px;
+      padding: 8px 12px;
+      font-size: 12px;
+      color: #5d4037;
+      margin-top: 8px;
+    }
+
+    #upgrade-section {
+      background: linear-gradient(135deg, #ff9800, #f57c00);
+      color: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+    }
+    #upgrade-section h2 { color: #fff; }
+    #upgrade-section p  { font-size: 13px; opacity: .9; margin: 8px 0 16px; }
+    .btn-upgrade { background: #fff; color: #e65100; font-weight: 700; font-size: 14px; padding: 10px 24px; border-radius: 6px; }
+    .btn-upgrade:hover { background: #fff3e0; }
   </style>
 </head>
 <body>
-  <h1>Options</h1>
-  <div class="field">
-    <label for="setting1">Setting 1</label>
-    <input type="text" id="setting1" placeholder="Enter value...">
+<div class="page">
+  <h1>Auto-Context Time Tracker Settings</h1>
+
+  <!-- ── Clients ───────────────────────────────────────────────── -->
+  <div class="card">
+    <h2>Clients</h2>
+    <table id="clients-table">
+      <thead><tr><th>Color</th><th>Name</th><th></th></tr></thead>
+      <tbody id="clients-body"></tbody>
+    </table>
+    <div class="row" style="margin-top:12px">
+      <input type="text" id="new-client-name" placeholder="Client name…">
+      <input type="color" id="new-client-color" value="#4A90D9" style="width:44px;padding:3px;height:34px;cursor:pointer">
+      <button class="btn-primary btn-sm" id="add-client-btn">Add</button>
+    </div>
   </div>
-  <button id="save-btn">Save</button>
-  <span id="saved">Saved!</span>
-  <script src="options.js"></script>
+
+  <!-- ── Projects ──────────────────────────────────────────────── -->
+  <div class="card">
+    <h2>Projects</h2>
+    <table id="projects-table">
+      <thead><tr><th>Client</th><th>Project</th><th></th></tr></thead>
+      <tbody id="projects-body"></tbody>
+    </table>
+    <div class="row" style="margin-top:12px">
+      <select id="new-project-client"></select>
+      <input type="text" id="new-project-name" placeholder="Project name…">
+      <button class="btn-primary btn-sm" id="add-project-btn">Add</button>
+    </div>
+  </div>
+
+  <!-- ── URL Mappings ───────────────────────────────────────────── -->
+  <div class="card">
+    <h2>URL Mappings <span id="mapping-count" style="font-weight:400;font-size:13px;color:#888"></span></h2>
+    <table id="mappings-table">
+      <thead><tr><th>Pattern</th><th>Client</th><th>Project</th><th></th></tr></thead>
+      <tbody id="mappings-body"></tbody>
+    </table>
+    <div id="free-limit-notice" class="free-limit-notice" style="display:none">
+      Free tier: 2 mappings max. <a href="#upgrade-section">Upgrade to Pro</a> for unlimited.
+    </div>
+    <div class="row" style="margin-top:12px" id="add-mapping-row">
+      <input type="text" id="new-mapping-pattern" placeholder="e.g. github.com/acme-corp*">
+      <select id="new-mapping-client"></select>
+      <select id="new-mapping-project"></select>
+      <button class="btn-primary btn-sm" id="add-mapping-btn">Add</button>
+    </div>
+  </div>
+
+  <!-- ── Sync ───────────────────────────────────────────────────── -->
+  <div class="card">
+    <h2>Sync Settings</h2>
+    <div class="field">
+      <label for="sync-target">Sync target</label>
+      <select id="sync-target">
+        <option value="none">None (manual export)</option>
+        <option value="toggl">Toggl Track</option>
+        <option value="clockify">Clockify</option>
+      </select>
+    </div>
+
+    <div id="toggl-fields" style="display:none">
+      <div class="field">
+        <label for="toggl-token">Toggl API Token</label>
+        <input type="password" id="toggl-token" placeholder="Paste your Toggl API token…">
+        <div class="hint">Found in your Toggl profile → API token</div>
+      </div>
+      <div class="field">
+        <label for="toggl-workspace">Toggl Workspace ID</label>
+        <input type="text" id="toggl-workspace" placeholder="e.g. 1234567">
+        <div class="hint">Found in Toggl → Workspace settings URL</div>
+      </div>
+    </div>
+
+    <div id="clockify-fields" style="display:none">
+      <div class="field">
+        <label for="clockify-key">Clockify API Key</label>
+        <input type="password" id="clockify-key" placeholder="Paste your Clockify API key…">
+        <div class="hint">Found in Clockify → Profile settings → API</div>
+      </div>
+      <div class="field">
+        <label for="clockify-workspace">Clockify Workspace ID</label>
+        <input type="text" id="clockify-workspace" placeholder="e.g. 60b1a2c3d4e5f6a7b8c9d0e1">
+        <div class="hint">Found in Clockify → Workspace settings URL</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── General ───────────────────────────────────────────────── -->
+  <div class="card">
+    <h2>General</h2>
+    <div class="field">
+      <label for="idle-threshold">Idle pause threshold (minutes)</label>
+      <input type="text" id="idle-threshold" placeholder="5">
+      <div class="hint">Timer auto-pauses after this many minutes of system idle</div>
+    </div>
+    <div class="field">
+      <label for="daily-review-time">Daily review reminder time</label>
+      <input type="time" id="daily-review-time" value="18:00">
+    </div>
+  </div>
+
+  <!-- ── Save ───────────────────────────────────────────────────── -->
+  <div style="display:flex; align-items:center; gap:16px">
+    <button class="btn-primary" id="save-btn">Save Settings</button>
+    <span id="saved-msg">&#10003; Saved!</span>
+  </div>
+
+  <!-- ── Upgrade ───────────────────────────────────────────────── -->
+  <div id="upgrade-section">
+    <h2>&#9733; Upgrade to Pro — $7/month</h2>
+    <p>Unlimited URL mappings · Toggl &amp; Clockify sync · Idle detection · Weekly reports</p>
+    <button class="btn-upgrade" id="upgrade-btn">Get Pro</button>
+  </div>
+</div>
+<script src="options.js"></script>
 </body>
 </html>
