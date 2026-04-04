@@ -1,0 +1,239 @@
+/* Vinyl Companion — Popup Styles */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  background: #1a1a2e;
+  color: #e0e0f0;
+  width: 280px;
+  min-height: 200px;
+}
+
+/* Header */
+.vc-popup-header {
+  background: linear-gradient(135deg, #16213e, #0f3460);
+  padding: 14px 14px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #2d2d4e;
+}
+
+.vc-popup-icon {
+  font-size: 28px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.vc-popup-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+}
+
+.vc-popup-subtitle {
+  font-size: 10px;
+  color: #6070a0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.vc-tier-badge {
+  margin-left: auto;
+  background: rgba(233, 69, 96, 0.2);
+  color: #e94560;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(233, 69, 96, 0.4);
+  flex-shrink: 0;
+}
+
+.vc-tier-badge.pro {
+  background: rgba(100, 60, 160, 0.3);
+  color: #c4a0f0;
+  border-color: rgba(100, 60, 160, 0.5);
+}
+
+/* Body */
+.vc-popup-body {
+  padding: 12px 14px;
+}
+
+.vc-section {
+  margin-bottom: 12px;
+}
+
+.vc-section-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #6060a0;
+  margin-bottom: 7px;
+  font-weight: 600;
+}
+
+/* Sites grid */
+.vc-sites-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+}
+
+.vc-site-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 5px 8px;
+  background: #0f1729;
+  border: 1px solid #2d2d4e;
+  border-radius: 5px;
+  font-size: 12px;
+  color: #a0a0c0;
+  transition: background 0.15s, border-color 0.15s;
+  user-select: none;
+}
+
+.vc-site-toggle:has(input:checked) {
+  background: #1e2a45;
+  border-color: #e94560;
+  color: #fff;
+}
+
+.vc-site-toggle input {
+  accent-color: #e94560;
+  cursor: pointer;
+}
+
+/* Select */
+.vc-select {
+  width: 100%;
+  padding: 7px 10px;
+  background: #0f1729;
+  border: 1px solid #2d2d4e;
+  border-radius: 5px;
+  color: #e0e0f0;
+  font-size: 12px;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%236060a0'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+}
+
+.vc-select:focus { outline: 1px solid #e94560; }
+
+/* Pro features */
+.vc-pro-features {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.vc-pro-feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 9px;
+  background: #0f1729;
+  border: 1px solid #2d2d4e;
+  border-radius: 6px;
+}
+
+.vc-feature-icon {
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.vc-feature-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #e0e0f0;
+  line-height: 1.2;
+}
+
+.vc-feature-desc {
+  font-size: 10px;
+  color: #6060a0;
+}
+
+.vc-feature-status {
+  margin-left: auto;
+  font-size: 10px;
+  color: #6060a0;
+  flex-shrink: 0;
+}
+
+.vc-feature-status.connected { color: #50d080; }
+
+/* Upgrade banner */
+.vc-upgrade-banner {
+  background: linear-gradient(135deg, #1e103a, #2d1b5a);
+  border: 1px solid #4a2c8a;
+  border-radius: 8px;
+  padding: 12px 12px 10px;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.vc-upgrade-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #c4a0f0;
+  margin-bottom: 4px;
+}
+
+.vc-upgrade-desc {
+  font-size: 11px;
+  color: #9080b0;
+  margin-bottom: 9px;
+  line-height: 1.4;
+}
+
+.vc-upgrade-btn {
+  background: linear-gradient(135deg, #4a2c8a, #764ba2);
+  color: #fff;
+  border: none;
+  padding: 7px 20px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: opacity 0.15s;
+}
+
+.vc-upgrade-btn:hover { opacity: 0.88; }
+
+/* Footer */
+.vc-popup-footer {
+  border-top: 1px solid #1e1e3e;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.vc-footer-link {
+  background: none;
+  border: none;
+  color: #6060a0;
+  font-size: 11px;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.vc-footer-link:hover { color: #a0a0c0; }
+
+.vc-footer-sep { color: #3a3a5a; font-size: 10px; }

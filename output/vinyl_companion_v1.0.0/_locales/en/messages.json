@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "Vinyl Companion — Discogs Everywhere",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "See Discogs vinyl prices, ratings, and wantlist on Spotify, YouTube, Pitchfork, and AllMusic.",
+    "description": "Extension description"
+  }
+}

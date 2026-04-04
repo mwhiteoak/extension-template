@@ -1,0 +1,325 @@
+/* Vinyl Companion — Floating Panel Styles */
+
+#vc-toggle-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2147483646;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #1a1a2e;
+  border: 2px solid #e94560;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  line-height: 1;
+}
+
+#vc-toggle-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.55);
+  background: #e94560;
+}
+
+#vc-toggle-btn.vc-active {
+  background: #e94560;
+}
+
+#vc-panel {
+  position: fixed;
+  bottom: 82px;
+  right: 24px;
+  z-index: 2147483646;
+  width: 300px;
+  background: #1a1a2e;
+  border: 1px solid #2d2d4e;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  color: #e0e0f0;
+  overflow: hidden;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+#vc-panel.vc-panel-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+}
+
+/* Header */
+.vc-header {
+  background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+  padding: 12px 14px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #2d2d4e;
+}
+
+.vc-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vc-vinyl-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.vc-header-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.3px;
+}
+
+.vc-site-badge {
+  display: inline-block;
+  background: rgba(233, 69, 96, 0.25);
+  color: #e94560;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  margin-left: 2px;
+}
+
+.vc-close-btn {
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 2px 4px;
+  line-height: 1;
+  border-radius: 3px;
+  transition: color 0.15s;
+}
+
+.vc-close-btn:hover { color: #fff; }
+
+/* Body */
+.vc-body {
+  padding: 12px 14px 14px;
+}
+
+/* Album info */
+.vc-album-info {
+  margin-bottom: 10px;
+}
+
+.vc-album-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.vc-artist-name {
+  font-size: 12px;
+  color: #a0a0c0;
+}
+
+/* Price + rating row */
+.vc-stats-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.vc-stat-card {
+  background: #0f1729;
+  border: 1px solid #2d2d4e;
+  border-radius: 8px;
+  padding: 9px 10px;
+}
+
+.vc-stat-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #6060a0;
+  margin-bottom: 4px;
+}
+
+.vc-stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #e94560;
+  line-height: 1;
+}
+
+.vc-stat-sub {
+  font-size: 10px;
+  color: #6060a0;
+  margin-top: 2px;
+}
+
+/* Rating stars */
+.vc-rating-stars {
+  color: #f0c040;
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+/* Action buttons */
+.vc-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.vc-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s, opacity 0.15s;
+  text-decoration: none;
+}
+
+.vc-btn-primary {
+  background: #e94560;
+  color: #fff;
+}
+
+.vc-btn-primary:hover { background: #c73550; }
+
+.vc-btn-secondary {
+  background: #1e2a45;
+  color: #a0a0c0;
+  border: 1px solid #2d2d4e;
+}
+
+.vc-btn-secondary:hover { background: #253355; color: #fff; }
+
+.vc-btn-pro {
+  background: linear-gradient(135deg, #4a2c8a, #764ba2);
+  color: #fff;
+}
+
+.vc-btn-pro:hover { opacity: 0.88; }
+
+.vc-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Pro upgrade banner */
+.vc-pro-banner {
+  background: linear-gradient(135deg, #1e103a, #2d1b5a);
+  border: 1px solid #4a2c8a;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.vc-pro-banner-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #c4a0f0;
+  margin-bottom: 3px;
+}
+
+.vc-pro-banner-desc {
+  font-size: 11px;
+  color: #9080b0;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+/* Loading / error states */
+.vc-loading {
+  text-align: center;
+  padding: 20px 0 10px;
+  color: #6060a0;
+}
+
+.vc-spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #2d2d4e;
+  border-top-color: #e94560;
+  border-radius: 50%;
+  animation: vc-spin 0.7s linear infinite;
+  margin: 0 auto 8px;
+}
+
+@keyframes vc-spin {
+  to { transform: rotate(360deg); }
+}
+
+.vc-error {
+  text-align: center;
+  padding: 14px 0;
+  color: #9060a0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.vc-error a {
+  color: #e94560;
+  text-decoration: none;
+}
+.vc-error a:hover { text-decoration: underline; }
+
+/* Footer */
+.vc-footer {
+  border-top: 1px solid #1e1e3e;
+  padding-top: 8px;
+  text-align: center;
+  font-size: 10px;
+  color: #4040 60;
+}
+
+.vc-footer a {
+  color: #6060a0;
+  text-decoration: none;
+}
+.vc-footer a:hover { color: #a0a0c0; }
+
+/* Confidence warning */
+.vc-low-confidence {
+  font-size: 10px;
+  color: #806030;
+  background: #1e1800;
+  border: 1px solid #403000;
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* Wantlist feedback */
+.vc-feedback {
+  text-align: center;
+  font-size: 11px;
+  padding: 4px 0;
+  border-radius: 4px;
+}
+.vc-feedback.success { color: #50d080; }
+.vc-feedback.error { color: #e94560; }

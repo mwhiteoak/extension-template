@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vinyl Companion</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+<div class="vc-popup-header">
+  <span class="vc-popup-icon">&#128192;</span>
+  <div>
+    <div class="vc-popup-title">Vinyl Companion</div>
+    <div class="vc-popup-subtitle">Discogs Everywhere</div>
+  </div>
+  <div class="vc-tier-badge" id="vc-tier-badge">Free</div>
+</div>
+
+<div class="vc-popup-body">
+
+  <div class="vc-section">
+    <div class="vc-section-label">Active Sites</div>
+    <div class="vc-sites-grid" id="vc-sites-grid">
+      <label class="vc-site-toggle"><input type="checkbox" value="spotify" id="site-spotify"> Spotify</label>
+      <label class="vc-site-toggle"><input type="checkbox" value="youtube" id="site-youtube"> YouTube</label>
+      <label class="vc-site-toggle"><input type="checkbox" value="pitchfork" id="site-pitchfork"> Pitchfork</label>
+      <label class="vc-site-toggle"><input type="checkbox" value="allmusic" id="site-allmusic"> AllMusic</label>
+    </div>
+  </div>
+
+  <div class="vc-section">
+    <div class="vc-section-label">Currency</div>
+    <select id="vc-currency" class="vc-select">
+      <option value="USD">USD — US Dollar</option>
+      <option value="EUR">EUR — Euro</option>
+      <option value="GBP">GBP — British Pound</option>
+      <option value="CAD">CAD — Canadian Dollar</option>
+      <option value="AUD">AUD — Australian Dollar</option>
+      <option value="JPY">JPY — Japanese Yen</option>
+    </select>
+  </div>
+
+  <div class="vc-pro-section" id="vc-pro-section" style="display:none">
+    <div class="vc-section-label">Pro Features</div>
+    <div class="vc-pro-features">
+      <div class="vc-pro-feature">
+        <span class="vc-feature-icon">&#10084;</span>
+        <div>
+          <div class="vc-feature-title">Wantlist Sync</div>
+          <div class="vc-feature-desc">Add releases from any page</div>
+        </div>
+        <span class="vc-feature-status connected" id="vc-discogs-status">—</span>
+      </div>
+      <div class="vc-pro-feature">
+        <span class="vc-feature-icon">&#128276;</span>
+        <div>
+          <div class="vc-feature-title">Price Alerts</div>
+          <div class="vc-feature-desc">Notify on price drops</div>
+        </div>
+        <span class="vc-feature-status" id="vc-alerts-count">0 active</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="vc-upgrade-banner" id="vc-upgrade-banner">
+    <div class="vc-upgrade-title">Upgrade to Pro — $5/mo</div>
+    <div class="vc-upgrade-desc">Wantlist sync, price alerts &amp; collection value tracker</div>
+    <button class="vc-upgrade-btn" id="vc-upgrade-btn">Upgrade to Pro</button>
+  </div>
+
+</div>
+
+<div class="vc-popup-footer">
+  <button class="vc-footer-link" id="vc-options-btn">Settings</button>
+  <span class="vc-footer-sep">·</span>
+  <a class="vc-footer-link" href="https://www.discogs.com" target="_blank" rel="noopener noreferrer">Discogs</a>
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>

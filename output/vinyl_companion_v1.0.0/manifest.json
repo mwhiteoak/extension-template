@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_extensionName__",
+  "version": "1.0.0",
+  "description": "__MSG_extensionDescription__",
+  "permissions": [
+    "storage",
+    "alarms",
+    "notifications",
+    "identity"
+  ],
+  "host_permissions": [
+    "https://open.spotify.com/*",
+    "https://www.youtube.com/*",
+    "https://pitchfork.com/*",
+    "https://www.allmusic.com/*",
+    "https://api.discogs.com/*"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "assets/icons/icon16.png",
+      "48": "assets/icons/icon48.png",
+      "128": "assets/icons/icon128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://open.spotify.com/*",
+        "https://www.youtube.com/*",
+        "https://pitchfork.com/*",
+        "https://www.allmusic.com/*"
+      ],
+      "js": ["content/album-detector.js", "content/vinyl-panel.js"],
+      "css": ["content/vinyl-panel.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_page": "options/options.html",
+  "icons": {
+    "16": "assets/icons/icon16.png",
+    "32": "assets/icons/icon32.png",
+    "48": "assets/icons/icon48.png",
+    "128": "assets/icons/icon128.png"
+  },
+  "default_locale": "en",
+  "web_accessible_resources": []
+}
