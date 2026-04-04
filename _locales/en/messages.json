@@ -1,10 +1,10 @@
 {
   "extensionName": {
-    "message": "Espresso Community Intelligence",
+    "message": "FIRE Portfolio Overlay",
     "description": "The name of the extension as displayed in the Chrome Web Store and browser UI"
   },
   "extensionDescription": {
-    "message": "See r/espresso community tier ratings and sentiment while shopping for espresso equipment on seattlecoffeegear.com, prima-coffee.com, and clivecoffee.com.",
+    "message": "See your FIRE progress — FI ratio, projected retirement date, and milestone tracker — overlaid on your Fidelity, Vanguard, or Schwab dashboard. All calculations happen locally in your browser.",
     "description": "Short description shown under the extension name"
   }
 }

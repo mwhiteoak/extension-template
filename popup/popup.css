@@ -1,15 +1,15 @@
-/* Espresso Community Intelligence — Popup styles */
+/* FIRE Portfolio Overlay — Popup styles */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-  width: 280px;
-  background: #faf8f5;
-  color: #2a1a0e;
+  width: 290px;
+  background: #f5f7f5;
+  color: #222;
 }
 
 .header {
-  background: #4a2c17;
+  background: #1a6b3a;
   color: #fff;
   padding: 12px 14px;
   display: flex;
@@ -18,15 +18,16 @@ body {
 }
 .header-icon { font-size: 22px; line-height: 1; }
 .header-title { font-size: 13px; font-weight: 700; }
-.header-sub { font-size: 10px; opacity: 0.65; margin-top: 1px; }
+.header-sub { font-size: 10px; opacity: 0.7; margin-top: 2px; }
 
 .body { padding: 12px 14px; }
 
 .status-section {
-  background: #f0e8de;
+  background: #e8f5ed;
   border-radius: 7px;
   padding: 10px 12px;
   margin-bottom: 12px;
+  border: 1px solid #c6e0d0;
 }
 
 .status-row {
@@ -36,24 +37,24 @@ body {
   padding: 3px 0;
   font-size: 12px;
 }
-.status-label { color: #7a5a3a; }
-.status-val { font-weight: 600; color: #2a1a0e; }
+.status-label { color: #3d7a55; }
+.status-val { font-weight: 700; color: #1a6b3a; }
 
 .sites-note {
   font-size: 11px;
-  color: #7a5a3a;
+  color: #555;
   line-height: 1.5;
   margin-bottom: 12px;
-  padding: 8px 10px;
-  background: #fff9f4;
-  border: 1px solid #e8d8c4;
+  padding: 7px 10px;
+  background: #fff;
+  border: 1px solid #d4e8da;
   border-radius: 6px;
 }
 
 .settings-btn {
   width: 100%;
-  padding: 8px;
-  background: #4a2c17;
+  padding: 9px;
+  background: #1a6b3a;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -63,19 +64,19 @@ body {
   margin-bottom: 10px;
   transition: background 0.15s;
 }
-.settings-btn:hover { background: #6b3f22; }
+.settings-btn:hover { background: #155430; }
 
 .pro-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  background: #fef3c7;
-  border: 1px solid #fcd34d;
+  background: #fff8e1;
+  border: 1px solid #ffe082;
   border-radius: 6px;
   padding: 7px 10px;
   font-size: 11px;
-  color: #92400e;
+  color: #7a5900;
 }
 
 .pro-btn {
@@ -83,7 +84,7 @@ body {
   color: #fff;
   border: none;
   border-radius: 4px;
-  padding: 4px 8px;
+  padding: 4px 9px;
   font-size: 11px;
   font-weight: 700;
   cursor: pointer;

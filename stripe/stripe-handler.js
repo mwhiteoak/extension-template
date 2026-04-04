@@ -1,12 +1,12 @@
-// stripe-handler.js — Stripe Checkout stub for Espresso Community Intelligence Pro
+// stripe-handler.js — Stripe Checkout stub for FIRE Portfolio Overlay Pro
 //
 // MVP: clicking "Upgrade" opens the Stripe Payment Link in a new tab.
 // For production, replace CHECKOUT_URL with your actual Stripe Payment Link.
 // A server-side webhook should POST back to set isPro: true in chrome.storage.sync.
 //
-// Billing code: EXT-004-PRO
+// Billing code: EXT-005-PRO
 
-const CHECKOUT_URL = 'https://buy.stripe.com/espresso_community_pro_placeholder';
+const CHECKOUT_URL = 'https://buy.stripe.com/fire_portfolio_overlay_pro_placeholder';
 
 /**
  * Opens the Stripe Checkout page in a new tab.

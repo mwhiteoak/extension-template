@@ -1,16 +1,33 @@
-// Espresso Community Intelligence — Popup JS
+// FIRE Portfolio Overlay — Popup JS
+
+function formatCurrency(n) {
+  if (n >= 1_000_000) return '$' + (n / 1_000_000).toFixed(2) + 'M';
+  if (n >= 1_000) return '$' + Math.round(n).toLocaleString();
+  return '$' + n.toFixed(0);
+}
 
 async function init() {
-  const opts = await chrome.storage.sync.get({
-    enabledSites: ['seattlecoffeegear.com', 'prima-coffee.com', 'clivecoffee.com'],
-    isPro: false,
-  });
+  const [local, sync] = await Promise.all([
+    chrome.storage.local.get(['fire_settings']),
+    chrome.storage.sync.get({ isPro: false, enabledBrokerages: ['fidelity', 'vanguard', 'schwab'] }),
+  ]);
 
-  document.getElementById('sitesVal').textContent = opts.enabledSites.length;
-  document.getElementById('planVal').textContent = opts.isPro ? 'Pro ✓' : 'Free';
+  const fire = local.fire_settings;
+  if (fire && fire.annualExpenses) {
+    const target = fire.annualExpenses * 25;
+    document.getElementById('fireTargetVal').textContent = formatCurrency(target);
+  }
 
-  if (opts.isPro) {
+  document.getElementById('planVal').textContent = sync.isPro ? 'Pro ✓' : 'Free';
+
+  if (sync.isPro) {
     document.getElementById('proBar').style.display = 'none';
+  }
+
+  if (!fire) {
+    document.getElementById('fiRatioVal').textContent = 'Setup needed';
+    document.getElementById('statusVal').textContent = 'Setup needed';
+    document.getElementById('statusVal').style.color = '#e67e22';
   }
 }
 

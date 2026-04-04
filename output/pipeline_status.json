@@ -40,6 +40,14 @@
       "builtAt": "2026-04-05",
       "billingCode": "EXT-007-PRO",
       "targetSites": ["dndbeyond.com"]
+    },
+    {
+      "id": "EXT-43",
+      "name": "FIRE Portfolio Overlay for Fidelity & Vanguard",
+      "status": "built",
+      "builtAt": "2026-04-05",
+      "billingCode": "EXT-005-PRO",
+      "targetSites": ["fidelity.com", "vanguard.com", "schwab.com"]
     }
   ]
 }
