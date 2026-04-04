@@ -80,6 +80,14 @@
       "builtAt": "2026-04-05",
       "billingCode": "EXT-012-PRO",
       "targetSites": ["www.tradecoffeeco.com", "www.bluebottlecoffee.com", "www.onyxcoffeelab.com", "www.counterculturecoffee.com", "www.intelligentsiacoffee.com", "www.stumptowncoffee.com", "www.atlascoffeeclub.com", "www.beanbox.com", "www.vervecoffee.com", "www.chromecoffee.com"]
+    },
+    {
+      "id": "EXT-70",
+      "name": "BGG Everywhere — BoardGameGeek Cross-Site Companion",
+      "status": "built",
+      "builtAt": "2026-04-05",
+      "billingCode": "EXT-013-PRO",
+      "targetSites": ["www.amazon.com", "www.target.com", "www.walmart.com", "www.miniaturemarket.com", "www.coolstuffinc.com", "www.gamenerdz.com", "www.funagain.com"]
     }
   ]
 }

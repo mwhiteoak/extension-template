@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BGG Everywhere</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+
+<div class="bgg-popup-header">
+  <span class="bgg-popup-icon">&#127922;</span>
+  <div>
+    <div class="bgg-popup-title">BGG Everywhere</div>
+    <div class="bgg-popup-subtitle">BoardGameGeek Companion</div>
+  </div>
+  <div class="bgg-tier-badge" id="bgg-tier-badge">Free</div>
+</div>
+
+<div class="bgg-popup-body">
+
+  <div class="bgg-section">
+    <div class="bgg-section-label">Active Sites</div>
+    <div class="bgg-sites-grid" id="bgg-sites-grid">
+      <label class="bgg-site-toggle"><input type="checkbox" value="amazon" id="site-amazon"> Amazon</label>
+      <label class="bgg-site-toggle"><input type="checkbox" value="target" id="site-target"> Target</label>
+      <label class="bgg-site-toggle"><input type="checkbox" value="walmart" id="site-walmart"> Walmart</label>
+      <label class="bgg-site-toggle"><input type="checkbox" value="miniaturemarket" id="site-miniaturemarket"> Min. Market</label>
+      <label class="bgg-site-toggle"><input type="checkbox" value="coolstuffinc" id="site-coolstuffinc"> Cool Stuff</label>
+      <label class="bgg-site-toggle"><input type="checkbox" value="gamenerdz" id="site-gamenerdz"> Game Nerdz</label>
+      <label class="bgg-site-toggle"><input type="checkbox" value="funagain" id="site-funagain"> Fun Again</label>
+    </div>
+  </div>
+
+  <div class="bgg-section">
+    <div class="bgg-section-label">Display Mode</div>
+    <select id="bgg-display" class="bgg-select">
+      <option value="expanded">Expanded</option>
+      <option value="compact">Compact</option>
+    </select>
+  </div>
+
+</div>
+
+<div class="bgg-popup-footer">
+  <button class="bgg-footer-link" id="bgg-options-btn">Settings</button>
+  <span class="bgg-footer-sep">&middot;</span>
+  <a class="bgg-footer-link" href="https://boardgamegeek.com" target="_blank" rel="noopener noreferrer">BGG</a>
+</div>
+
+<script src="popup.js"></script>
+</body>
+</html>

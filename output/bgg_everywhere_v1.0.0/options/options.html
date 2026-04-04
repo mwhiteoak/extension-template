@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BGG Everywhere — Settings</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  background: #080f1e;
+  color: #dde4f0;
+  min-height: 100vh;
+}
+
+.bgg-opts-container {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 36px 24px 60px;
+}
+
+/* Header */
+.bgg-opts-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.bgg-opts-icon { font-size: 36px; line-height: 1; }
+
+.bgg-opts-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.bgg-opts-sub {
+  font-size: 12px;
+  color: #3a5080;
+  margin-top: 2px;
+}
+
+.bgg-tier-pill {
+  margin-left: auto;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: rgba(45,98,180,0.2);
+  color: #7aabff;
+  border: 1px solid rgba(45,98,180,0.4);
+}
+
+.bgg-tier-pill.pro {
+  background: rgba(230,92,0,0.2);
+  color: #ff9a4a;
+  border-color: rgba(230,92,0,0.4);
+}
+
+/* Sections */
+.bgg-opts-section {
+  background: #0d1a30;
+  border: 1px solid #1e3560;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 18px;
+}
+
+.bgg-opts-section-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #3a5080;
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #1e3560;
+}
+
+/* Form rows */
+.bgg-field { margin-bottom: 14px; }
+.bgg-field:last-child { margin-bottom: 0; }
+
+.bgg-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #7a9acc;
+  margin-bottom: 6px;
+}
+
+.bgg-label-desc {
+  display: block;
+  font-size: 11px;
+  color: #3a5080;
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+.bgg-input, .bgg-select {
+  width: 100%;
+  padding: 8px 12px;
+  background: #06101e;
+  border: 1px solid #1e3560;
+  border-radius: 6px;
+  color: #dde4f0;
+  font-size: 13px;
+  transition: border-color 0.15s;
+}
+
+.bgg-input:focus, .bgg-select:focus {
+  outline: none;
+  border-color: #2d62b4;
+}
+
+.bgg-input::placeholder { color: #2a3a55; }
+
+.bgg-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%233a5080'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  padding-right: 28px;
+  cursor: pointer;
+}
+
+/* Checkboxes */
+.bgg-checkbox-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+
+.bgg-checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  background: #06101e;
+  border: 1px solid #1e3560;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  color: #7a9acc;
+  user-select: none;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.bgg-checkbox-item:has(input:checked) {
+  background: #0f2040;
+  border-color: #2d62b4;
+  color: #fff;
+}
+
+.bgg-checkbox-item input {
+  accent-color: #2d62b4;
+  cursor: pointer;
+  width: 14px;
+  height: 14px;
+}
+
+/* Buttons */
+.bgg-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background 0.15s, opacity 0.15s;
+}
+
+.bgg-btn-primary { background: #1b3a6e; color: #7aabff; border: 1px solid #2d62b4; }
+.bgg-btn-primary:hover { background: #2451a0; color: #fff; }
+
+.bgg-btn-secondary { background: #0f2040; color: #7a9acc; border: 1px solid #1e3560; }
+.bgg-btn-secondary:hover { background: #1a3060; color: #fff; }
+
+.bgg-btn-pro { background: linear-gradient(135deg, #8b3a00, #e65c00); color: #fff; }
+.bgg-btn-pro:hover { opacity: 0.88; }
+
+/* Status */
+#bgg-save-status {
+  font-size: 12px;
+  margin-left: 10px;
+  color: #5dbb5a;
+  display: none;
+}
+
+/* Pro upgrade */
+.bgg-upgrade-block {
+  background: linear-gradient(135deg, #1a0f00, #2e1800);
+  border: 1px solid #5c2a00;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.bgg-upgrade-block h3 {
+  font-size: 16px;
+  color: #ff9a4a;
+  margin-bottom: 6px;
+}
+
+.bgg-upgrade-block p {
+  font-size: 12px;
+  color: #8a6040;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.bgg-feature-list {
+  text-align: left;
+  list-style: none;
+  margin-bottom: 14px;
+}
+
+.bgg-feature-list li {
+  font-size: 13px;
+  color: #9a8070;
+  padding: 4px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bgg-feature-list li::before {
+  content: '✓';
+  color: #ff9a4a;
+  font-weight: 700;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #080f1e; }
+::-webkit-scrollbar-thumb { background: #1e3560; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<div class="bgg-opts-container">
+
+  <!-- Header -->
+  <div class="bgg-opts-header">
+    <span class="bgg-opts-icon">&#127922;</span>
+    <div>
+      <div class="bgg-opts-title">BGG Everywhere</div>
+      <div class="bgg-opts-sub">Settings &amp; Account</div>
+    </div>
+    <span class="bgg-tier-pill" id="bgg-tier-pill">Free</span>
+  </div>
+
+  <!-- General Settings -->
+  <div class="bgg-opts-section">
+    <div class="bgg-opts-section-title">General</div>
+
+    <div class="bgg-field">
+      <label class="bgg-label">Active Sites
+        <span class="bgg-label-desc">Show BGG data on these board game retail sites</span>
+      </label>
+      <div class="bgg-checkbox-grid">
+        <label class="bgg-checkbox-item"><input type="checkbox" id="opt-amazon" value="amazon"> Amazon</label>
+        <label class="bgg-checkbox-item"><input type="checkbox" id="opt-target" value="target"> Target</label>
+        <label class="bgg-checkbox-item"><input type="checkbox" id="opt-walmart" value="walmart"> Walmart</label>
+        <label class="bgg-checkbox-item"><input type="checkbox" id="opt-miniaturemarket" value="miniaturemarket"> Miniature Market</label>
+        <label class="bgg-checkbox-item"><input type="checkbox" id="opt-coolstuffinc" value="coolstuffinc"> Cool Stuff Inc.</label>
+        <label class="bgg-checkbox-item"><input type="checkbox" id="opt-gamenerdz" value="gamenerdz"> Game Nerdz</label>
+        <label class="bgg-checkbox-item"><input type="checkbox" id="opt-funagain" value="funagain"> Fun Again Games</label>
+      </div>
+    </div>
+
+    <div class="bgg-field">
+      <label class="bgg-label" for="opt-display">Panel Display Mode</label>
+      <select class="bgg-select" id="opt-display">
+        <option value="expanded">Expanded — show all stats</option>
+        <option value="compact">Compact — rating and rank only</option>
+      </select>
+    </div>
+
+    <button class="bgg-btn bgg-btn-primary" id="bgg-save-btn">Save Settings</button>
+    <span id="bgg-save-status">&#10003; Saved!</span>
+  </div>
+
+  <!-- BGG Account -->
+  <div class="bgg-opts-section">
+    <div class="bgg-opts-section-title">BGG Account (Pro)</div>
+
+    <div class="bgg-field">
+      <label class="bgg-label" for="opt-username">BGG Username
+        <span class="bgg-label-desc">Required for want-list quick-add and collection check (Pro)</span>
+      </label>
+      <input type="text" class="bgg-input" id="opt-username" placeholder="your_bgg_username">
+    </div>
+
+    <p style="font-size:11px;color:#3a5080;line-height:1.5;margin-top:4px">
+      Want-list writes require BGG credentials. Full OAuth integration coming in v1.1.
+      For now, clicking "Want to Buy" opens the BGG page directly.
+    </p>
+  </div>
+
+  <!-- Pro Upgrade -->
+  <div class="bgg-opts-section" id="bgg-upgrade-section">
+    <div class="bgg-opts-section-title">Upgrade to Pro</div>
+    <div class="bgg-upgrade-block">
+      <h3>BGG Everywhere Pro — $5/mo</h3>
+      <p>Everything in Free, plus power features for serious board gamers.</p>
+      <ul class="bgg-feature-list">
+        <li>Want to Buy / Want to Play quick-add buttons</li>
+        <li>Collection check — see if you already own a game</li>
+        <li>Price alert hooks (coming soon)</li>
+      </ul>
+      <button class="bgg-btn bgg-btn-pro" id="bgg-upgrade-btn">Upgrade to Pro</button>
+    </div>
+  </div>
+
+</div>
+
+<script src="options.js"></script>
+</body>
+</html>

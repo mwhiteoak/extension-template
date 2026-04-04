@@ -1,0 +1,316 @@
+/* BGG Everywhere — Panel Styles */
+
+#bgg-toggle-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 2147483646;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #1b3a6e;
+  border: 2px solid #2d62b4;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  padding: 0;
+}
+
+#bgg-toggle-btn:hover {
+  background: #2451a0;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  transform: scale(1.05);
+}
+
+#bgg-toggle-btn.bgg-active {
+  background: #e65c00;
+  border-color: #ff7c2a;
+}
+
+.bgg-toggle-icon {
+  font-size: 24px;
+  line-height: 1;
+}
+
+/* ── Panel ──────────────────────────────────────────────────────────────── */
+
+#bgg-panel {
+  position: fixed;
+  bottom: 86px;
+  right: 24px;
+  z-index: 2147483647;
+  width: 320px;
+  max-height: 560px;
+  overflow-y: auto;
+  background: #0f1e38;
+  border: 1px solid #2d62b4;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13px;
+  color: #dde4f0;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+#bgg-panel.bgg-panel-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(8px);
+}
+
+/* ── Header ───────────────────────────────────────────────────────────── */
+
+.bgg-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid #1e3560;
+  background: #0d1a30;
+  border-radius: 12px 12px 0 0;
+}
+
+.bgg-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bgg-header-icon { font-size: 20px; line-height: 1; }
+
+.bgg-header-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.2px;
+}
+
+.bgg-site-badge {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 2px 7px;
+  border-radius: 8px;
+  background: rgba(45,98,180,0.3);
+  color: #7aabff;
+  border: 1px solid rgba(45,98,180,0.5);
+}
+
+.bgg-close-btn {
+  background: none;
+  border: none;
+  color: #5070a0;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+  transition: color 0.15s;
+}
+.bgg-close-btn:hover { color: #dde4f0; }
+
+/* ── Body ────────────────────────────────────────────────────────────── */
+
+.bgg-body { padding: 14px; }
+
+/* ── Loading ─────────────────────────────────────────────────────────── */
+
+.bgg-loading {
+  text-align: center;
+  padding: 20px 0;
+  color: #5070a0;
+}
+
+.bgg-spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid #1e3560;
+  border-top-color: #2d62b4;
+  border-radius: 50%;
+  animation: bgg-spin 0.8s linear infinite;
+  margin: 0 auto 10px;
+}
+
+@keyframes bgg-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Game info ──────────────────────────────────────────────────────── */
+
+.bgg-game-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+
+.bgg-year {
+  font-size: 11px;
+  color: #5070a0;
+  margin-bottom: 12px;
+}
+
+/* ── Stats grid ─────────────────────────────────────────────────────── */
+
+.bgg-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.bgg-stat-card {
+  background: #0d1a30;
+  border: 1px solid #1e3560;
+  border-radius: 8px;
+  padding: 9px 10px;
+}
+
+.bgg-stat-full {
+  grid-column: 1 / -1;
+}
+
+.bgg-stat-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #5070a0;
+  margin-bottom: 4px;
+}
+
+.bgg-stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: #e8b840;
+  line-height: 1.1;
+  margin-bottom: 2px;
+}
+
+.bgg-stat-sub {
+  font-size: 10px;
+  color: #5070a0;
+}
+
+/* ── Complexity bar ─────────────────────────────────────────────────── */
+
+.bgg-complexity-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bgg-weight-bar-wrap {
+  flex: 1;
+  height: 6px;
+  background: #1e3560;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.bgg-weight-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #2d62b4, #e65c00);
+  border-radius: 3px;
+  transition: width 0.4s ease;
+  min-width: 2px;
+}
+
+/* ── Actions ────────────────────────────────────────────────────────── */
+
+.bgg-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.bgg-btn {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  transition: background 0.15s, opacity 0.15s;
+  white-space: nowrap;
+}
+
+.bgg-btn-primary {
+  background: #1b3a6e;
+  color: #7aabff;
+  border: 1px solid #2d62b4;
+}
+.bgg-btn-primary:hover { background: #2451a0; color: #fff; }
+
+.bgg-btn-secondary {
+  background: #1a2e18;
+  color: #5dbb5a;
+  border: 1px solid #2d6b2a;
+}
+.bgg-btn-secondary:hover { background: #25431f; color: #fff; }
+
+/* ── Feedback ──────────────────────────────────────────────────────── */
+
+.bgg-feedback {
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 5px;
+  background: #1a2e18;
+  color: #5dbb5a;
+  margin-bottom: 8px;
+}
+
+.bgg-feedback-error {
+  background: #2e1a1a;
+  color: #e05050;
+}
+
+.bgg-feedback-success {
+  background: #1a2e18;
+  color: #5dbb5a;
+}
+
+/* ── Error ──────────────────────────────────────────────────────────── */
+
+.bgg-error-block {
+  text-align: center;
+  padding: 16px 0;
+  color: #5070a0;
+  line-height: 1.6;
+}
+
+.bgg-error-block a {
+  color: #7aabff;
+  text-decoration: none;
+}
+.bgg-error-block a:hover { text-decoration: underline; }
+
+/* ── Footer ─────────────────────────────────────────────────────────── */
+
+.bgg-footer {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 10px;
+  color: #2d4060;
+}
+
+.bgg-footer a {
+  color: #2d4060;
+  text-decoration: none;
+}
+.bgg-footer a:hover { color: #5070a0; }
+
+/* ── Scrollbar ──────────────────────────────────────────────────────── */
+
+#bgg-panel::-webkit-scrollbar { width: 4px; }
+#bgg-panel::-webkit-scrollbar-track { background: transparent; }
+#bgg-panel::-webkit-scrollbar-thumb { background: #1e3560; border-radius: 2px; }

@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "BGG Everywhere — BoardGameGeek Companion",
+    "description": "Extension name"
+  },
+  "extensionDescription": {
+    "message": "See BGG ratings, rank, player count, and complexity on Amazon and board game store pages.",
+    "description": "Extension description"
+  }
+}
