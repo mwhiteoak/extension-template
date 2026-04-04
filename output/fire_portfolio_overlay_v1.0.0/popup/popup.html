@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIRE Portfolio Overlay</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="header">
+    <div class="header-icon">&#x1F525;</div>
+    <div>
+      <div class="header-title">FIRE Portfolio Overlay</div>
+      <div class="header-sub">Financial Independence Tracker</div>
+    </div>
+  </div>
+
+  <div class="body">
+    <div class="status-section">
+      <div class="status-row">
+        <span class="status-label">Status</span>
+        <span class="status-val" id="statusVal">Active</span>
+      </div>
+      <div class="status-row">
+        <span class="status-label">FIRE Target</span>
+        <span class="status-val" id="fireTargetVal">—</span>
+      </div>
+      <div class="status-row">
+        <span class="status-label">FI Ratio</span>
+        <span class="status-val" id="fiRatioVal">—</span>
+      </div>
+      <div class="status-row">
+        <span class="status-label">Plan</span>
+        <span class="status-val" id="planVal">Free</span>
+      </div>
+    </div>
+
+    <div class="sites-note">
+      <strong>Active on:</strong> fidelity.com &bull; vanguard.com &bull; schwab.com
+    </div>
+
+    <button class="settings-btn" id="settingsBtn">&#9881;&#65039; Settings &amp; FIRE Parameters</button>
+
+    <div class="pro-bar" id="proBar">
+      <span>Pro: Monte Carlo, Coast FIRE, multi-account</span>
+      <button class="pro-btn" id="proBtn">$9/mo</button>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

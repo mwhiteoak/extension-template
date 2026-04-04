@@ -1,0 +1,94 @@
+/* FIRE Portfolio Overlay — Popup styles */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  width: 290px;
+  background: #f5f7f5;
+  color: #222;
+}
+
+.header {
+  background: #1a6b3a;
+  color: #fff;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header-icon { font-size: 22px; line-height: 1; }
+.header-title { font-size: 13px; font-weight: 700; }
+.header-sub { font-size: 10px; opacity: 0.7; margin-top: 2px; }
+
+.body { padding: 12px 14px; }
+
+.status-section {
+  background: #e8f5ed;
+  border-radius: 7px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: 1px solid #c6e0d0;
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3px 0;
+  font-size: 12px;
+}
+.status-label { color: #3d7a55; }
+.status-val { font-weight: 700; color: #1a6b3a; }
+
+.sites-note {
+  font-size: 11px;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 12px;
+  padding: 7px 10px;
+  background: #fff;
+  border: 1px solid #d4e8da;
+  border-radius: 6px;
+}
+
+.settings-btn {
+  width: 100%;
+  padding: 9px;
+  background: #1a6b3a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 10px;
+  transition: background 0.15s;
+}
+.settings-btn:hover { background: #155430; }
+
+.pro-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: 6px;
+  padding: 7px 10px;
+  font-size: 11px;
+  color: #7a5900;
+}
+
+.pro-btn {
+  background: #f59e0b;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 9px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.pro-btn:hover { background: #d97706; }

@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Triathlon Pacing Planner</title>
+  <link rel="stylesheet" href="print.css" media="print">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brand:   #e84d2b;
+      --dark:    #1a1a2e;
+      --mid:     #444;
+      --light:   #f5f5f5;
+      --border:  #ddd;
+      --pro:     #f59e0b;
+      --success: #16a34a;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+      font-size: 13px;
+      color: var(--dark);
+      background: #fff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--dark);
+      color: #fff;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .header-title {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .header-sub {
+      font-size: 10px;
+      opacity: 0.65;
+      margin-top: 1px;
+    }
+    .close-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.7;
+      padding: 2px 4px;
+    }
+    .close-btn:hover { opacity: 1; }
+
+    /* ── Race badge ── */
+    .race-bar {
+      background: var(--light);
+      border-bottom: 1px solid var(--border);
+      padding: 7px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .race-label { font-size: 11px; color: var(--mid); }
+    .race-badge {
+      background: var(--brand);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+    .race-badge.undetected { background: #999; }
+    .race-select {
+      font-size: 11px;
+      padding: 2px 4px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: #fff;
+      cursor: pointer;
+      margin-left: auto;
+    }
+
+    /* ── Tabs ── */
+    .tabs {
+      display: flex;
+      border-bottom: 2px solid var(--border);
+      flex-shrink: 0;
+    }
+    .tab-btn {
+      flex: 1;
+      padding: 8px 4px;
+      background: none;
+      border: none;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--mid);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      transition: color 0.15s;
+    }
+    .tab-btn.active {
+      color: var(--brand);
+      border-bottom-color: var(--brand);
+    }
+    .tab-btn .pro-tag {
+      font-size: 9px;
+      background: var(--pro);
+      color: #fff;
+      padding: 1px 4px;
+      border-radius: 4px;
+      margin-left: 3px;
+      vertical-align: middle;
+    }
+
+    /* ── Panel content ── */
+    .panel-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 14px;
+    }
+
+    /* ── Tab panels ── */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* ── Form ── */
+    .form-section {
+      margin-bottom: 14px;
+    }
+    .form-section-title {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--mid);
+      margin-bottom: 6px;
+      padding-bottom: 4px;
+      border-bottom: 1px solid var(--border);
+    }
+    .form-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 7px;
+    }
+    .form-label {
+      font-size: 11px;
+      color: var(--mid);
+      min-width: 90px;
+      flex-shrink: 0;
+    }
+    .form-input {
+      flex: 1;
+      font-size: 12px;
+      padding: 5px 7px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .form-input:focus { border-color: var(--brand); }
+    .form-hint {
+      font-size: 10px;
+      color: #aaa;
+      flex-shrink: 0;
+    }
+    .unit-toggle {
+      display: flex;
+      gap: 0;
+      font-size: 10px;
+    }
+    .unit-toggle label {
+      padding: 3px 7px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      background: #fff;
+      color: var(--mid);
+    }
+    .unit-toggle label:first-child { border-radius: 4px 0 0 4px; }
+    .unit-toggle label:last-child { border-radius: 0 4px 4px 0; border-left: none; }
+    .unit-toggle input { display: none; }
+    .unit-toggle input:checked + label { background: var(--dark); color: #fff; border-color: var(--dark); }
+
+    .bike-mode-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .bike-mode-btn {
+      flex: 1;
+      padding: 4px;
+      font-size: 11px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: #fff;
+      cursor: pointer;
+      color: var(--mid);
+    }
+    .bike-mode-btn.active { background: var(--dark); color: #fff; border-color: var(--dark); }
+
+    /* ── Calculate button ── */
+    .calc-btn {
+      width: 100%;
+      padding: 9px;
+      background: var(--brand);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 4px;
+      transition: background 0.15s;
+    }
+    .calc-btn:hover { background: #c73d1e; }
+
+    /* ── Results ── */
+    .results-section { margin-top: 14px; }
+    .results-section.hidden { display: none; }
+
+    .result-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .result-label {
+      font-size: 12px;
+      color: var(--mid);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .result-icon { font-size: 14px; }
+    .result-value {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .result-row.total {
+      border-top: 2px solid var(--dark);
+      border-bottom: none;
+      margin-top: 4px;
+      padding-top: 8px;
+    }
+    .result-row.total .result-label { font-weight: 700; color: var(--dark); font-size: 13px; }
+    .result-row.total .result-value { font-size: 16px; color: var(--brand); }
+
+    .result-sub {
+      font-size: 10px;
+      color: #aaa;
+      margin-top: 1px;
+    }
+
+    /* ── Print button ── */
+    .print-btn {
+      width: 100%;
+      margin-top: 10px;
+      padding: 8px;
+      background: var(--success);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .print-btn:hover { background: #15803d; }
+    .print-btn.locked {
+      background: #aaa;
+      cursor: default;
+    }
+
+    /* ── Nutrition tab ── */
+    .nutrition-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .nutrition-card {
+      background: var(--light);
+      border-radius: 6px;
+      padding: 10px;
+      text-align: center;
+    }
+    .nutrition-card .n-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+    .nutrition-card .n-unit {
+      font-size: 10px;
+      color: var(--mid);
+    }
+    .nutrition-card .n-label {
+      font-size: 10px;
+      color: var(--mid);
+      margin-top: 2px;
+    }
+    .aid-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+    .aid-table th {
+      text-align: left;
+      padding: 4px 6px;
+      background: var(--light);
+      border-bottom: 1px solid var(--border);
+      font-weight: 700;
+      color: var(--mid);
+    }
+    .aid-table td {
+      padding: 5px 6px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── Pro gate ── */
+    .pro-gate {
+      background: linear-gradient(135deg, #fef3c7, #fde68a);
+      border: 1px solid var(--pro);
+      border-radius: 8px;
+      padding: 16px;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .pro-gate h3 { font-size: 14px; color: var(--dark); margin-bottom: 6px; }
+    .pro-gate p { font-size: 11px; color: var(--mid); margin-bottom: 12px; line-height: 1.5; }
+    .upgrade-btn {
+      background: var(--pro);
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 20px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .upgrade-btn:hover { background: #d97706; }
+
+    /* ── Upgrade tab ── */
+    .upgrade-feature {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .upgrade-feature .check { color: var(--success); font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+    .upgrade-feature .feat-text { font-size: 12px; }
+    .upgrade-feature .feat-text strong { display: block; }
+    .upgrade-feature .feat-text span { color: var(--mid); font-size: 11px; }
+
+    .price-box {
+      background: var(--dark);
+      color: #fff;
+      border-radius: 8px;
+      padding: 14px;
+      text-align: center;
+      margin: 14px 0;
+    }
+    .price-box .price { font-size: 28px; font-weight: 700; }
+    .price-box .price-sub { font-size: 11px; opacity: 0.7; margin-top: 2px; }
+
+    .no-results-hint {
+      font-size: 11px;
+      color: #aaa;
+      text-align: center;
+      padding: 12px 0 4px;
+    }
+
+    /* ── Save paces row ── */
+    .save-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--mid);
+    }
+    .save-check { cursor: pointer; }
+    .save-msg { font-size: 10px; color: var(--success); display: none; }
+    .save-msg.show { display: inline; }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<div class="header">
+  <div>
+    <div class="header-title">🏊 🚴 🏃 Race Day Planner</div>
+    <div class="header-sub">Triathlon Pacing Planner</div>
+  </div>
+  <button class="close-btn" id="closeBtn" aria-label="Close">&times;</button>
+</div>
+
+<!-- ── Race bar ── -->
+<div class="race-bar">
+  <span class="race-label">Race:</span>
+  <span class="race-badge undetected" id="raceBadge">Detecting…</span>
+  <select class="race-select" id="raceSelect">
+    <option value="">Override distance</option>
+    <option value="sprint">Sprint (750m/20km/5km)</option>
+    <option value="olympic">Olympic (1.5km/40km/10km)</option>
+    <option value="half">70.3 (1.9km/90km/21.1km)</option>
+    <option value="full">Full Ironman (3.8km/180km/42.2km)</option>
+  </select>
+</div>
+
+<!-- ── Tabs ── -->
+<div class="tabs">
+  <button class="tab-btn active" data-tab="planner">Planner</button>
+  <button class="tab-btn" data-tab="nutrition">Nutrition <span class="pro-tag">PRO</span></button>
+  <button class="tab-btn" data-tab="upgrade">Upgrade</button>
+</div>
+
+<!-- ── Panel body ── -->
+<div class="panel-body">
+
+  <!-- PLANNER TAB -->
+  <div class="tab-panel active" id="tab-planner">
+
+    <div class="form-section">
+      <div class="form-section-title">Units</div>
+      <div class="form-row">
+        <div class="unit-toggle">
+          <input type="radio" name="units" id="unitMetric" value="metric" checked>
+          <label for="unitMetric">Metric</label>
+          <input type="radio" name="units" id="unitImperial" value="imperial">
+          <label for="unitImperial">Imperial</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">🏊 Swim</div>
+      <div class="form-row">
+        <span class="form-label" id="swimLabel">Pace /100m</span>
+        <input class="form-input" type="text" id="swimPace" placeholder="1:45" maxlength="8">
+        <span class="form-hint">mm:ss</span>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">🚴 Bike</div>
+      <div class="bike-mode-row">
+        <button class="bike-mode-btn active" id="bikeModeSpeed">Speed</button>
+        <button class="bike-mode-btn" id="bikeModeWatts">FTP Watts</button>
+      </div>
+      <div class="form-row" id="bikeSpeedRow">
+        <span class="form-label" id="bikeSpeedLabel">Speed (kph)</span>
+        <input class="form-input" type="number" id="bikeSpeed" placeholder="30" min="10" max="60">
+        <span class="form-hint" id="bikeSpeedUnit">kph</span>
+      </div>
+      <div class="form-row hidden" id="bikeWattsRow">
+        <span class="form-label">FTP (watts)</span>
+        <input class="form-input" type="number" id="bikeWatts" placeholder="220" min="50" max="500">
+        <span class="form-hint">W</span>
+      </div>
+      <div class="form-row hidden" id="bikeWeightRow">
+        <span class="form-label" id="bikeWeightLabel">Weight (kg)</span>
+        <input class="form-input" type="number" id="bikeWeight" placeholder="70" min="40" max="150">
+        <span class="form-hint" id="bikeWeightUnit">kg</span>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">🏃 Run</div>
+      <div class="form-row">
+        <span class="form-label" id="runLabel">Pace /km</span>
+        <input class="form-input" type="text" id="runPace" placeholder="5:30" maxlength="8">
+        <span class="form-hint">mm:ss</span>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <div class="form-section-title">Transitions</div>
+      <div class="form-row">
+        <span class="form-label">T1 (Swim→Bike)</span>
+        <input class="form-input" type="number" id="t1Min" placeholder="3" min="0" max="30">
+        <span class="form-hint">min</span>
+      </div>
+      <div class="form-row">
+        <span class="form-label">T2 (Bike→Run)</span>
+        <input class="form-input" type="number" id="t2Min" placeholder="2" min="0" max="30">
+        <span class="form-hint">min</span>
+      </div>
+    </div>
+
+    <div class="save-row">
+      <input type="checkbox" id="saveCheck" class="save-check">
+      <label for="saveCheck">Save paces for next time</label>
+      <span class="save-msg" id="saveMsg">✓ Saved</span>
+    </div>
+
+    <button class="calc-btn" id="calcBtn">Calculate Splits</button>
+
+    <!-- Results -->
+    <div class="results-section hidden" id="resultsSection">
+      <div class="result-row">
+        <span class="result-label"><span class="result-icon">🏊</span> Swim</span>
+        <div style="text-align:right">
+          <div class="result-value" id="resSwim">—</div>
+          <div class="result-sub" id="resSwimDist"></div>
+        </div>
+      </div>
+      <div class="result-row">
+        <span class="result-label"><span class="result-icon">⏱</span> T1</span>
+        <div class="result-value" id="resT1">—</div>
+      </div>
+      <div class="result-row">
+        <span class="result-label"><span class="result-icon">🚴</span> Bike</span>
+        <div style="text-align:right">
+          <div class="result-value" id="resBike">—</div>
+          <div class="result-sub" id="resBikeSub"></div>
+        </div>
+      </div>
+      <div class="result-row">
+        <span class="result-label"><span class="result-icon">⏱</span> T2</span>
+        <div class="result-value" id="resT2">—</div>
+      </div>
+      <div class="result-row">
+        <span class="result-label"><span class="result-icon">🏃</span> Run</span>
+        <div style="text-align:right">
+          <div class="result-value" id="resRun">—</div>
+          <div class="result-sub" id="resRunDist"></div>
+        </div>
+      </div>
+      <div class="result-row total">
+        <span class="result-label">🏁 Finish Time</span>
+        <div class="result-value" id="resTotal">—</div>
+      </div>
+
+      <button class="print-btn locked" id="printBtn">🖨 Print Cheat Sheet (Pro)</button>
+    </div>
+
+  </div>
+
+  <!-- NUTRITION TAB -->
+  <div class="tab-panel" id="tab-nutrition">
+    <div id="nutritionContent">
+      <div class="pro-gate" id="nutritionProGate">
+        <h3>🥤 Nutrition Timing — Pro</h3>
+        <p>Unlock personalized calorie targets, carb-per-hour recommendations, and aid station reminders timed to your predicted splits.</p>
+        <button class="upgrade-btn" id="nutritionUpgradeBtn">Upgrade to Pro — $8/mo</button>
+      </div>
+      <div id="nutritionResults" style="display:none">
+        <div class="nutrition-grid" id="nutritionGrid"></div>
+        <div class="form-section-title" style="margin-bottom:8px">Aid Station Plan</div>
+        <table class="aid-table" id="aidTable">
+          <thead><tr><th>Time</th><th>Segment</th><th>Action</th></tr></thead>
+          <tbody id="aidBody"></tbody>
+        </table>
+      </div>
+    </div>
+    <div class="no-results-hint" id="nutritionHint">Calculate your splits first in the Planner tab.</div>
+  </div>
+
+  <!-- UPGRADE TAB -->
+  <div class="tab-panel" id="tab-upgrade">
+    <div class="upgrade-feature">
+      <span class="check">✓</span>
+      <div class="feat-text">
+        <strong>Nutrition Timing</strong>
+        <span>Calorie burn estimates, carb/hour targets, and aid station reminders by segment</span>
+      </div>
+    </div>
+    <div class="upgrade-feature">
+      <span class="check">✓</span>
+      <div class="feat-text">
+        <strong>Printable Cheat Sheet</strong>
+        <span>One-page race-day card: splits, nutrition, targets, bib reminder</span>
+      </div>
+    </div>
+    <div class="upgrade-feature">
+      <span class="check">✓</span>
+      <div class="feat-text">
+        <strong>Custom Race Distance</strong>
+        <span>Manual distance override for relay events or non-standard races</span>
+      </div>
+    </div>
+    <div class="upgrade-feature">
+      <span class="check">✓</span>
+      <div class="feat-text">
+        <strong>Strava Connect</strong>
+        <span>Auto-pull benchmark paces from your recent Strava activities</span>
+      </div>
+    </div>
+    <div class="price-box">
+      <div class="price">$8<span style="font-size:14px;opacity:.7">/mo</span></div>
+      <div class="price-sub">Cancel any time · Syncs across devices</div>
+    </div>
+    <button class="upgrade-btn" style="width:100%;padding:10px;font-size:14px" id="upgradeBtn">
+      Upgrade to Pro
+    </button>
+    <p style="font-size:10px;color:#aaa;text-align:center;margin-top:10px">
+      Billing code: EXT-003-PRO
+    </p>
+  </div>
+
+</div><!-- end panel-body -->
+
+<script src="overlay.js"></script>
+</body>
+</html>

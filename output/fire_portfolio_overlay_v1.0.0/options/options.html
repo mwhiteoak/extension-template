@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FIRE Portfolio Overlay — Settings</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 14px; color: #222; background: #f5f7f5; margin: 0; padding: 0;
+    }
+    .header {
+      background: #1a6b3a; color: #fff; padding: 18px 28px;
+    }
+    .header h1 { margin: 0; font-size: 18px; font-weight: 700; }
+    .header p { margin: 3px 0 0; font-size: 12px; opacity: .8; }
+    .container { max-width: 640px; margin: 28px auto; padding: 0 20px 40px; }
+
+    .card {
+      background: #fff; border-radius: 10px; padding: 22px;
+      box-shadow: 0 1px 6px rgba(0,0,0,.09); margin-bottom: 18px;
+    }
+    .card-title { font-size: 14px; font-weight: 700; color: #1a6b3a; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid #edf2ef; }
+
+    .field { margin-bottom: 14px; }
+    .field label { display: block; font-size: 11px; font-weight: 700; color: #555; margin-bottom: 5px; text-transform: uppercase; letter-spacing: .4px; }
+    .field input[type="number"] {
+      width: 100%; padding: 9px 12px; border: 1px solid #ccc; border-radius: 6px;
+      font-size: 14px; outline: none; transition: border-color .2s;
+    }
+    .field input:focus { border-color: #1a6b3a; }
+    .field .hint { font-size: 11px; color: #888; margin-top: 3px; }
+
+    .field-row { display: flex; gap: 14px; }
+    .field-row .field { flex: 1; }
+
+    .save-btn {
+      background: #1a6b3a; color: #fff; border: none; border-radius: 6px;
+      padding: 10px 22px; font-size: 14px; font-weight: 700; cursor: pointer;
+    }
+    .save-btn:hover { background: #155430; }
+    .success-msg { font-size: 12px; color: #1a6b3a; font-weight: 600; margin-left: 10px; opacity: 0; transition: opacity .3s; }
+    .success-msg.show { opacity: 1; }
+
+    .site-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid #edf2ef; font-size: 13px; }
+    .site-row:last-child { border-bottom: none; }
+    .site-row input[type="checkbox"] { width: 17px; height: 17px; accent-color: #1a6b3a; cursor: pointer; }
+
+    .pro-card {
+      background: linear-gradient(135deg, #1a6b3a 0%, #0f4024 100%);
+      color: #fff; border-radius: 10px; padding: 22px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.15); margin-bottom: 18px;
+    }
+    .pro-card h2 { margin: 0 0 6px; font-size: 15px; font-weight: 700; }
+    .pro-price { font-size: 26px; font-weight: 700; margin: 0 0 8px; }
+    .pro-price span { font-size: 14px; font-weight: 400; opacity: .7; }
+    .pro-card ul { margin: 0 0 16px; padding: 0 0 0 18px; font-size: 12px; opacity: .9; line-height: 1.8; }
+    .pro-btn {
+      background: #fff; color: #1a6b3a; border: none; border-radius: 6px;
+      padding: 10px 22px; font-size: 13px; font-weight: 700; cursor: pointer;
+    }
+    .pro-btn:hover { background: #edf7f1; }
+    .pro-badge { display: inline-block; background: #fff; color: #1a6b3a; font-size: 10px; font-weight: 700; border-radius: 20px; padding: 2px 9px; margin-left: 8px; vertical-align: middle; }
+
+    .privacy-note { background: #e8f5ed; border-left: 3px solid #1a6b3a; padding: 12px 14px; border-radius: 0 6px 6px 0; font-size: 12px; color: #333; line-height: 1.5; margin-top: 8px; }
+    .btn-danger {
+      background: #fff; color: #c0392b; border: 1.5px solid #c0392b;
+      border-radius: 6px; padding: 9px 18px; font-size: 13px; font-weight: 600; cursor: pointer;
+    }
+    .btn-danger:hover { background: #fef0ee; }
+    .clear-msg { font-size: 12px; color: #c0392b; font-weight: 600; margin-left: 10px; opacity: 0; transition: opacity .3s; }
+    .clear-msg.show { opacity: 1; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>&#x1F525; FIRE Portfolio Overlay</h1>
+    <p>Settings &amp; Preferences</p>
+  </div>
+  <div class="container">
+
+    <div class="card">
+      <div class="card-title">FIRE Parameters</div>
+      <div class="field-row">
+        <div class="field">
+          <label>Annual Expenses ($)</label>
+          <input type="number" id="annualExpenses" min="0" placeholder="e.g. 60000" />
+          <div class="hint">Estimated annual spending in retirement</div>
+        </div>
+        <div class="field">
+          <label>Monthly Contribution ($)</label>
+          <input type="number" id="monthlyContribution" min="0" placeholder="e.g. 3000" />
+          <div class="hint">How much you invest per month</div>
+        </div>
+      </div>
+      <div class="field" style="max-width:260px">
+        <label>Expected Annual Return (%)</label>
+        <input type="number" id="expectedReturn" min="0" max="30" placeholder="7" />
+        <div class="hint">Inflation-adjusted return assumption</div>
+      </div>
+      <button class="save-btn" id="save-fire">Save Parameters</button>
+      <span class="success-msg" id="fire-saved">Saved!</span>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Enabled Brokerages</div>
+      <div class="site-row">
+        <input type="checkbox" id="enable-fidelity" />
+        <label for="enable-fidelity">Fidelity (fidelity.com)</label>
+      </div>
+      <div class="site-row">
+        <input type="checkbox" id="enable-vanguard" />
+        <label for="enable-vanguard">Vanguard (vanguard.com)</label>
+      </div>
+      <div class="site-row">
+        <input type="checkbox" id="enable-schwab" />
+        <label for="enable-schwab">Schwab (schwab.com)</label>
+      </div>
+      <br />
+      <button class="save-btn" id="save-sites">Save Preferences</button>
+      <span class="success-msg" id="sites-saved">Saved!</span>
+    </div>
+
+    <div class="pro-card">
+      <h2>Pro Tier <span class="pro-badge" id="pro-badge" style="display:none">ACTIVE</span></h2>
+      <div class="pro-price">$9<span>/month</span></div>
+      <ul>
+        <li>Monte Carlo SWR analysis — probability of success at your withdrawal rate</li>
+        <li>Coast FIRE calculator — minimum contributions to coast to retirement</li>
+        <li>Multi-account aggregation across Fidelity, Vanguard &amp; Schwab</li>
+        <li>Withdrawal strategy comparison (Fixed SWR, Guyton-Klinger, Floor &amp; Upside)</li>
+        <li>Sequence of returns risk panel</li>
+      </ul>
+      <div id="pro-upgrade-section">
+        <button class="pro-btn" id="upgrade-btn">Upgrade to Pro</button>
+      </div>
+      <div id="pro-active-section" style="display:none">
+        <p style="font-size:12px;opacity:.85;margin-bottom:10px">Pro is active — unlock features visible in the sidebar on your brokerage pages.</p>
+        <button class="pro-btn" id="disable-pro-btn" style="background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.4)">Disable Pro (testing)</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Privacy &amp; Data</div>
+      <div class="privacy-note">
+        <strong>Zero data transmitted.</strong> All FIRE calculations run locally using Chrome storage. No account numbers, balances, or personal data ever leave your device.
+      </div>
+      <br />
+      <button class="btn-danger" id="clear-data">Clear All FIRE Data</button>
+      <span class="clear-msg" id="data-cleared">Cleared.</span>
+    </div>
+
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>
