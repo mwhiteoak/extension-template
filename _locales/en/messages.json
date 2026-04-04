@@ -1,10 +1,10 @@
 {
   "extensionName": {
-    "message": "Lightroom Web Keyboard Enhancer",
+    "message": "Proposal Template Manager",
     "description": "The name of the extension as displayed in the Chrome Web Store and browser UI"
   },
   "extensionDescription": {
-    "message": "Adds Lightroom Classic keyboard shortcuts (P/X/U flags, 1-5 stars, arrow navigation) to Lightroom Web. Speed up your photo culling workflow.",
+    "message": "Smart proposal templates with auto-fill variables for Upwork and Fiverr. Track win rates and optimize your proposals.",
     "description": "Short description shown under the extension name"
   }
 }

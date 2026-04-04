@@ -3,45 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lightroom Web Keyboard Enhancer</title>
+  <title>Proposal Template Manager</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
   <div id="app">
     <header>
-      <h1>LR Keyboard Shortcuts</h1>
+      <h1>Proposal Template Manager</h1>
       <a href="../options/options.html" target="_blank" id="settings-link" title="Settings">&#9881;</a>
     </header>
 
-    <!-- Enable/disable toggle -->
-    <div id="toggle-row">
-      <span id="toggle-label">Shortcuts active</span>
-      <label class="switch">
-        <input type="checkbox" id="enabled-toggle">
-        <span class="slider"></span>
-      </label>
+    <div id="stats-row">
+      <div class="stat-box">
+        <span class="stat-num" id="stat-templates">0</span>
+        <span class="stat-label">Templates</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num" id="stat-sent">0</span>
+        <span class="stat-label">Sent</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num" id="stat-hired">0</span>
+        <span class="stat-label">Hired</span>
+      </div>
     </div>
 
-    <!-- Shortcut cheat sheet -->
-    <table id="cheat-sheet">
-      <thead>
-        <tr><th>Key</th><th>Action</th><th>Status</th></tr>
-      </thead>
-      <tbody id="shortcut-rows">
-        <!-- Populated by popup.js -->
-      </tbody>
-    </table>
-
-    <!-- Auto-advance status -->
-    <div id="auto-advance-row" class="sub-row">
-      <span>Auto-advance after flag/rating</span>
-      <span id="auto-advance-status" class="status-chip"></span>
+    <div id="recent-section">
+      <div class="section-title">Recent Proposals</div>
+      <div id="recent-list">
+        <div class="empty-msg">No proposals logged yet.</div>
+      </div>
     </div>
 
-    <!-- Upgrade banner -->
-    <div id="upgrade-banner">
-      <span>&#9733; Upgrade to Pro for cloud backup &amp; team sharing</span>
-      <button id="upgrade-btn" class="btn-pro">$7/mo</button>
+    <div id="actions">
+      <a href="../options/options.html" target="_blank" class="action-btn">
+        &#43; Manage Templates
+      </a>
+      <a href="../options/options.html?tab=proposals" target="_blank" class="action-btn action-btn-outline">
+        &#128202; View Dashboard
+      </a>
+    </div>
+
+    <div id="upgrade-banner" style="display:none">
+      <span>&#9733; Upgrade to Pro — unlimited templates &amp; win-rate analytics</span>
+      <button id="upgrade-btn" class="btn-pro">$9/mo</button>
     </div>
   </div>
 

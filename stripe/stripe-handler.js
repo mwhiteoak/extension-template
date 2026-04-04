@@ -1,4 +1,4 @@
-// stripe-handler.js — Stripe Checkout stub for Lightroom Web Keyboard Enhancer Pro
+// stripe-handler.js — Stripe Checkout stub for Proposal Template Manager Pro
 //
 // MVP: clicking "Upgrade" opens the Stripe Checkout URL directly in a new tab.
 // For production, replace CHECKOUT_URL with your Stripe Payment Link URL.
@@ -8,7 +8,7 @@
 const CHECKOUT_URL = 'https://buy.stripe.com/REPLACE_WITH_YOUR_PAYMENT_LINK';
 
 /**
- * Open the Stripe Checkout page for the Pro subscription ($7/mo).
+ * Open the Stripe Checkout page for the Pro subscription ($9/mo).
  * Call this from the upgrade button click handler.
  */
 function openCheckout() {
@@ -22,8 +22,9 @@ function openCheckout() {
  */
 async function isEntitled() {
   return new Promise((resolve) => {
-    chrome.storage.local.get(['stripe_entitled'], (result) => {
-      resolve(result.stripe_entitled === true);
+    chrome.storage.local.get(['ptm_settings'], (result) => {
+      const settings = result.ptm_settings || {};
+      resolve(settings.isPro === true);
     });
   });
 }
@@ -35,7 +36,11 @@ async function isEntitled() {
  */
 async function grantEntitlement() {
   return new Promise((resolve) => {
-    chrome.storage.local.set({ stripe_entitled: true }, resolve);
+    chrome.storage.local.get(['ptm_settings'], (result) => {
+      const settings = Object.assign({ reminderEnabled: true, reminderHours: 48 }, result.ptm_settings || {});
+      settings.isPro = true;
+      chrome.storage.local.set({ ptm_settings: settings }, resolve);
+    });
   });
 }
 
@@ -45,6 +50,10 @@ async function grantEntitlement() {
  */
 async function revokeEntitlement() {
   return new Promise((resolve) => {
-    chrome.storage.local.remove('stripe_entitled', resolve);
+    chrome.storage.local.get(['ptm_settings'], (result) => {
+      const settings = Object.assign({}, result.ptm_settings || {});
+      settings.isPro = false;
+      chrome.storage.local.set({ ptm_settings: settings }, resolve);
+    });
   });
 }

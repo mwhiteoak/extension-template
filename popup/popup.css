@@ -1,4 +1,4 @@
-/* Lightroom Web Keyboard Enhancer — popup styles */
+/* Proposal Template Manager — Popup styles */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -6,14 +6,14 @@ body {
   font-size: 13px;
   width: 300px;
   background: #fff;
-  color: #333;
+  color: #1a1a1a;
 }
 
 #app {
   display: flex;
   flex-direction: column;
   padding: 12px 14px;
-  gap: 10px;
+  gap: 12px;
 }
 
 header {
@@ -32,98 +32,104 @@ h1 { font-size: 14px; font-weight: 700; color: #1a1a1a; }
 }
 #settings-link:hover { color: #333; }
 
-/* Enable toggle row */
-#toggle-row {
+/* Stats row */
+#stats-row {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: #f5f5f5;
+  gap: 8px;
+}
+.stat-box {
+  flex: 1;
+  background: #f7f9f7;
+  border: 1px solid #e0ebe0;
   border-radius: 6px;
-  padding: 7px 10px;
+  padding: 8px 6px;
+  text-align: center;
+}
+.stat-num {
+  display: block;
+  font-size: 20px;
+  font-weight: 700;
+  color: #14a800;
+  line-height: 1.2;
+}
+.stat-label {
+  display: block;
+  font-size: 10px;
+  color: #777;
+  margin-top: 2px;
 }
 
-#toggle-label { font-weight: 500; font-size: 12px; }
-
-/* Toggle switch */
-.switch { position: relative; display: inline-block; width: 34px; height: 18px; }
-.switch input { opacity: 0; width: 0; height: 0; }
-.slider {
-  position: absolute; cursor: pointer;
-  inset: 0; background: #ccc; border-radius: 18px;
-  transition: background .2s;
-}
-.slider::before {
-  content: '';
-  position: absolute;
-  width: 12px; height: 12px;
-  left: 3px; bottom: 3px;
-  background: #fff;
-  border-radius: 50%;
-  transition: transform .2s;
-}
-.switch input:checked + .slider { background: #1a73e8; }
-.switch input:checked + .slider::before { transform: translateX(16px); }
-
-/* Cheat sheet table */
-#cheat-sheet {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
-}
-
-#cheat-sheet th {
-  text-align: left;
-  padding: 4px 6px;
-  border-bottom: 1px solid #e0e0e0;
-  color: #888;
-  font-weight: 600;
+/* Recent proposals */
+.section-title {
   font-size: 11px;
+  font-weight: 700;
   text-transform: uppercase;
+  color: #888;
+  margin-bottom: 6px;
   letter-spacing: 0.4px;
 }
 
-#cheat-sheet td {
-  padding: 5px 6px;
-  border-bottom: 1px solid #f5f5f5;
-  vertical-align: middle;
-}
-
-#cheat-sheet tr:last-child td { border-bottom: none; }
-
-kbd {
-  display: inline-block;
-  background: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  padding: 1px 5px;
-  font-family: monospace;
-  font-size: 11px;
-  font-weight: 600;
-  min-width: 22px;
-  text-align: center;
-}
-
-.action-name { color: #333; }
-.action-disabled { color: #bbb; }
-
-.status-chip {
-  font-size: 10px;
-  border-radius: 3px;
-  padding: 1px 5px;
-  font-weight: 600;
-}
-.chip-on  { background: #e8f5e9; color: #2e7d32; }
-.chip-off { background: #fafafa; color: #bbb; border: 1px solid #e0e0e0; }
-
-/* Auto-advance row */
-.sub-row {
+.proposal-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 11px;
-  color: #666;
-  padding: 0 2px;
+  padding: 6px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 12px;
+  gap: 8px;
 }
+.proposal-row:last-child { border-bottom: none; }
+
+.proposal-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #333;
+}
+
+.outcome-chip {
+  font-size: 10px;
+  border-radius: 3px;
+  padding: 2px 6px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.outcome-hired    { background: #e8f5e9; color: #2e7d32; }
+.outcome-responded { background: #e3f2fd; color: #1565c0; }
+.outcome-interview { background: #f3e5f5; color: #6a1b9a; }
+.outcome-pending  { background: #f5f5f5; color: #999; }
+.outcome-viewed   { background: #fff3e0; color: #e65100; }
+.outcome-rejected { background: #fafafa; color: #bbb; border: 1px solid #e0e0e0; }
+
+.empty-msg { font-size: 12px; color: #aaa; text-align: center; padding: 8px 0; }
+
+/* Actions */
+#actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.action-btn {
+  display: block;
+  text-align: center;
+  padding: 8px 10px;
+  background: #14a800;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.action-btn:hover { background: #0d8600; }
+.action-btn-outline {
+  background: #fff;
+  color: #14a800;
+  border: 1.5px solid #14a800;
+}
+.action-btn-outline:hover { background: #f0faf0; }
 
 /* Upgrade banner */
 #upgrade-banner {

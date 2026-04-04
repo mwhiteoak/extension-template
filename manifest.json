@@ -4,10 +4,14 @@
   "version": "1.0.0",
   "description": "__MSG_extensionDescription__",
   "permissions": [
-    "storage"
+    "storage",
+    "alarms",
+    "notifications",
+    "clipboardWrite"
   ],
   "host_permissions": [
-    "https://lightroom.adobe.com/*"
+    "https://www.upwork.com/*",
+    "https://www.fiverr.com/*"
   ],
   "action": {
     "default_popup": "popup/popup.html",
@@ -22,8 +26,22 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://lightroom.adobe.com/*"],
-      "js": ["content/content.js"],
+      "matches": [
+        "https://www.upwork.com/jobs/*",
+        "https://www.upwork.com/ab/proposals/*",
+        "https://www.upwork.com/nx/jobs/*"
+      ],
+      "js": ["content/upwork-extractor.js", "content/panel-injector.js"],
+      "css": ["content/panel.css"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://www.fiverr.com/requests/*",
+        "https://www.fiverr.com/inbox/*"
+      ],
+      "js": ["content/fiverr-extractor.js", "content/panel-injector.js"],
+      "css": ["content/panel.css"],
       "run_at": "document_idle"
     }
   ],
@@ -34,5 +52,14 @@
     "48": "assets/icons/icon48.png",
     "128": "assets/icons/icon128.png"
   },
-  "default_locale": "en"
+  "default_locale": "en",
+  "web_accessible_resources": [
+    {
+      "resources": ["content/panel.html"],
+      "matches": [
+        "https://www.upwork.com/*",
+        "https://www.fiverr.com/*"
+      ]
+    }
+  ]
 }

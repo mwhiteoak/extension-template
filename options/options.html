@@ -3,174 +3,277 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lightroom Web Keyboard Enhancer — Settings</title>
+  <title>Proposal Template Manager — Settings</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       font-size: 14px;
-      color: #333;
-      background: #f5f5f5;
+      color: #1a1a1a;
+      background: #f5f7f5;
       padding: 32px 20px;
     }
-    .page { max-width: 640px; margin: 0 auto; display: flex; flex-direction: column; gap: 24px; }
+    .page { max-width: 720px; margin: 0 auto; }
+    .page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
     h1 { font-size: 22px; font-weight: 700; }
-    h2 { font-size: 16px; font-weight: 600; margin-bottom: 12px; }
-    .card {
-      background: #fff;
-      border-radius: 8px;
-      padding: 20px;
-      box-shadow: 0 1px 3px rgba(0,0,0,.08);
-    }
+    .pro-badge { background: #764ba2; color: #fff; font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px; vertical-align: middle; margin-left: 8px; display: none; }
 
-    /* Global toggles */
-    .toggle-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 6px 0;
-      border-bottom: 1px solid #f0f0f0;
+    /* Tabs */
+    .tabs { display: flex; gap: 0; border-bottom: 2px solid #e0e0e0; margin-bottom: 24px; }
+    .tab-btn {
+      padding: 10px 20px; background: none; border: none; cursor: pointer;
+      font-size: 14px; font-weight: 500; color: #666;
+      border-bottom: 2px solid transparent; margin-bottom: -2px;
     }
-    .toggle-row:last-child { border-bottom: none; }
-    .toggle-label { font-size: 13px; }
-    .toggle-hint  { color: #888; font-size: 11px; margin-top: 2px; }
+    .tab-btn.active { color: #14a800; border-bottom-color: #14a800; font-weight: 700; }
+
+    .tab-section { display: none; }
+    .tab-section.active { display: block; }
+
+    /* Cards */
+    .card { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 1px 3px rgba(0,0,0,.07); margin-bottom: 20px; }
+    h2 { font-size: 16px; font-weight: 700; margin-bottom: 14px; }
+    h3 { font-size: 14px; font-weight: 600; margin-bottom: 10px; }
+
+    /* Buttons */
+    button {
+      padding: 8px 16px; border: none; border-radius: 5px;
+      font-size: 13px; font-weight: 600; cursor: pointer;
+    }
+    .btn-primary { background: #14a800; color: #fff; }
+    .btn-primary:hover { background: #0d8600; }
+    .btn-outline { background: #fff; color: #14a800; border: 1.5px solid #14a800; }
+    .btn-outline:hover { background: #f0faf0; }
+    .btn-danger { background: #fff; color: #d00; border: 1px solid #d00; }
+    .btn-danger:hover { background: #ffeaea; }
+    .btn-sm { padding: 5px 10px; font-size: 12px; }
+    .btn-upgrade { background: linear-gradient(135deg, #667eea, #764ba2); color: #fff; border: none; padding: 10px 22px; font-size: 14px; border-radius: 6px; cursor: pointer; }
+
+    /* Form elements */
+    input[type="text"], textarea, select {
+      width: 100%; padding: 8px 10px;
+      border: 1px solid #d0d0d0; border-radius: 5px;
+      font-size: 13px; font-family: inherit;
+    }
+    input[type="text"]:focus, textarea:focus, select:focus {
+      outline: none; border-color: #14a800;
+    }
+    textarea { min-height: 120px; resize: vertical; line-height: 1.6; }
+    label { display: block; font-size: 12px; font-weight: 600; color: #555; margin-bottom: 4px; }
+    .field { margin-bottom: 12px; }
+    .hint { font-size: 11px; color: #888; margin-top: 3px; }
+
+    /* Templates list */
+    .template-item {
+      border: 1px solid #e5e5e5; border-radius: 6px; padding: 12px 14px;
+      margin-bottom: 10px; display: flex; align-items: flex-start; gap: 10px;
+    }
+    .template-item-body { flex: 1; min-width: 0; }
+    .template-item-name { font-weight: 700; font-size: 14px; margin-bottom: 3px; }
+    .template-item-preview { font-size: 12px; color: #888; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .template-item-actions { display: flex; gap: 6px; flex-shrink: 0; }
+
+    /* Proposals table */
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th { text-align: left; padding: 8px; border-bottom: 2px solid #eee; font-weight: 600; color: #555; font-size: 12px; }
+    td { padding: 8px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
+    tr:last-child td { border-bottom: none; }
+
+    .outcome-select { padding: 4px 8px; border: 1px solid #d0d0d0; border-radius: 4px; font-size: 12px; }
+
+    .outcome-chip {
+      font-size: 10px; border-radius: 3px; padding: 2px 6px;
+      font-weight: 600; display: inline-block;
+    }
+    .outcome-hired    { background: #e8f5e9; color: #2e7d32; }
+    .outcome-responded { background: #e3f2fd; color: #1565c0; }
+    .outcome-interview { background: #f3e5f5; color: #6a1b9a; }
+    .outcome-pending  { background: #f5f5f5; color: #999; }
+    .outcome-viewed   { background: #fff3e0; color: #e65100; }
+    .outcome-rejected { background: #fafafa; color: #bbb; border: 1px solid #e0e0e0; }
+
+    /* Dashboard */
+    .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+    .metric-box { background: #f7f9f7; border: 1px solid #e0ebe0; border-radius: 6px; padding: 14px; text-align: center; }
+    .metric-num { font-size: 28px; font-weight: 700; color: #14a800; }
+    .metric-label { font-size: 11px; color: #777; margin-top: 3px; }
+
+    .tmpl-bar { margin-bottom: 12px; }
+    .tmpl-bar-label { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px; }
+    .tmpl-bar-track { background: #eee; border-radius: 4px; height: 8px; overflow: hidden; }
+    .tmpl-bar-fill { height: 100%; background: #14a800; border-radius: 4px; transition: width 0.4s; }
 
     /* Toggle switch */
     .switch { position: relative; display: inline-block; width: 36px; height: 20px; flex-shrink: 0; }
     .switch input { opacity: 0; width: 0; height: 0; }
     .slider {
       position: absolute; cursor: pointer;
-      inset: 0; background: #ccc; border-radius: 20px;
-      transition: background .2s;
+      inset: 0; background: #ccc; border-radius: 20px; transition: background .2s;
     }
     .slider::before {
-      content: '';
-      position: absolute;
-      width: 14px; height: 14px;
-      left: 3px; bottom: 3px;
-      background: #fff;
-      border-radius: 50%;
-      transition: transform .2s;
+      content: ''; position: absolute; width: 14px; height: 14px;
+      left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: transform .2s;
     }
-    .switch input:checked + .slider { background: #1a73e8; }
+    .switch input:checked + .slider { background: #14a800; }
     .switch input:checked + .slider::before { transform: translateX(16px); }
+    .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f0f0f0; }
+    .toggle-row:last-child { border-bottom: none; }
 
-    /* Shortcuts table */
-    table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    th {
-      text-align: left; padding: 6px 8px;
-      border-bottom: 2px solid #eee;
-      color: #666; font-weight: 600; font-size: 12px;
+    #saved-msg { color: #14a800; font-size: 13px; display: none; margin-left: 10px; }
+    .empty-msg { color: #aaa; font-size: 13px; padding: 20px 0; text-align: center; }
+
+    /* Pro gate */
+    .pro-gate {
+      background: #f9f5ff; border: 1px dashed #b39ddb; border-radius: 8px;
+      padding: 20px; text-align: center; margin-bottom: 10px;
     }
-    td { padding: 8px; border-bottom: 1px solid #f0f0f0; vertical-align: middle; }
-    tr:last-child td { border-bottom: none; }
+    .pro-gate h3 { color: #764ba2; margin-bottom: 6px; }
+    .pro-gate p { font-size: 13px; color: #555; margin-bottom: 12px; }
 
-    input[type="text"].key-input {
-      width: 70px;
-      padding: 5px 8px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 12px;
-      font-family: monospace;
-      text-align: center;
-    }
-    input[type="text"].key-input:focus {
-      outline: none;
-      border-color: #1a73e8;
-      background: #e8f0fe;
-    }
-
-    button {
-      padding: 7px 16px;
-      border: none;
-      border-radius: 4px;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-    }
-    .btn-primary { background: #1a73e8; color: #fff; }
-    .btn-primary:hover { background: #1557b0; }
-    .btn-outline { background: #fff; color: #1a73e8; border: 1px solid #1a73e8; }
-    .btn-outline:hover { background: #e8f0fe; }
-
-    #saved-msg { color: #4CAF50; font-size: 13px; display: none; }
-
-    /* Upgrade section */
-    #upgrade-section {
-      background: linear-gradient(135deg, #ff9800, #f57c00);
-      color: #fff;
-      border-radius: 8px;
-      padding: 20px;
-      text-align: center;
-    }
-    #upgrade-section h2 { color: #fff; }
-    #upgrade-section p  { font-size: 13px; opacity: .9; margin: 8px 0 16px; }
-    .btn-upgrade { background: #fff; color: #e65100; font-weight: 700; font-size: 14px; padding: 10px 24px; border-radius: 6px; border: none; cursor: pointer; }
-    .btn-upgrade:hover { background: #fff3e0; }
-
-    .hint { color: #888; font-size: 11px; margin-top: 4px; }
+    /* Import/export */
+    .import-export-row { display: flex; gap: 10px; flex-wrap: wrap; }
   </style>
 </head>
 <body>
 <div class="page">
-  <h1>Lightroom Web Keyboard Enhancer</h1>
+  <div class="page-header">
+    <div>
+      <h1>Proposal Template Manager <span class="pro-badge" id="pro-badge">PRO</span></h1>
+    </div>
+  </div>
 
-  <!-- ── Global Settings ─────────────────────────────────────────────────── -->
-  <div class="card">
-    <h2>Global Settings</h2>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="templates">Templates</button>
+    <button class="tab-btn" data-tab="proposals">Proposals</button>
+    <button class="tab-btn" data-tab="dashboard">Dashboard</button>
+    <button class="tab-btn" data-tab="settings">Settings</button>
+  </div>
 
-    <div class="toggle-row">
-      <div>
-        <div class="toggle-label">Enable keyboard shortcuts</div>
-        <div class="toggle-hint">Master switch — disables all shortcuts when off</div>
+  <!-- ── Templates Tab ─────────────────────────────────────────────────────── -->
+  <div class="tab-section active" id="tab-templates">
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+        <h2 style="margin-bottom:0">My Templates</h2>
+        <button class="btn-primary btn-sm" id="new-template-btn">+ New Template</button>
       </div>
-      <label class="switch">
-        <input type="checkbox" id="enabled-toggle" checked>
-        <span class="slider"></span>
-      </label>
-    </div>
 
-    <div class="toggle-row">
-      <div>
-        <div class="toggle-label">Auto-advance after flag or rating</div>
-        <div class="toggle-hint">Automatically moves to the next photo after P/X/U/1-5</div>
+      <div id="template-limit-notice" style="display:none;background:#fff3e0;border:1px solid #ffe082;border-radius:5px;padding:8px 12px;font-size:12px;color:#5d4037;margin-bottom:12px">
+        Free plan: 5 templates max. <a href="#" id="limit-upgrade-link" style="color:#764ba2;font-weight:600">Upgrade to Pro</a> for unlimited templates.
       </div>
-      <label class="switch">
-        <input type="checkbox" id="auto-advance-toggle" checked>
-        <span class="slider"></span>
-      </label>
+
+      <div id="templates-list">
+        <div class="empty-msg">No templates yet. Click "New Template" to create one.</div>
+      </div>
+    </div>
+
+    <!-- Template editor (hidden by default) -->
+    <div class="card" id="template-editor" style="display:none">
+      <h2 id="editor-title">New Template</h2>
+      <input type="hidden" id="editor-id">
+      <div class="field">
+        <label for="editor-name">Template Name</label>
+        <input type="text" id="editor-name" placeholder="e.g. Developer — Short & Direct">
+      </div>
+      <div class="field">
+        <label for="editor-body">Template Body</label>
+        <textarea id="editor-body" style="min-height:200px" placeholder="Use {{client_name}}, {{job_title}}, {{budget}}, {{key_skill}}, {{deadline}} as variables…"></textarea>
+        <div class="hint">Available variables: {{client_name}}, {{job_title}}, {{budget}}, {{key_skill}}, {{deadline}}, {{platform}}</div>
+      </div>
+      <div style="display:flex;gap:10px">
+        <button class="btn-primary" id="save-template-btn">Save Template</button>
+        <button class="btn-outline" id="cancel-edit-btn">Cancel</button>
+        <span id="template-saved-msg" style="display:none;color:#14a800;font-size:13px;margin-left:4px">✓ Saved!</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Import / Export</h3>
+      <div class="import-export-row">
+        <button class="btn-outline btn-sm" id="export-btn">Export Templates (JSON)</button>
+        <button class="btn-outline btn-sm" id="import-btn">Import Templates (JSON)</button>
+        <input type="file" id="import-file" accept=".json" style="display:none">
+      </div>
     </div>
   </div>
 
-  <!-- ── Shortcut Key Mapping ────────────────────────────────────────────── -->
-  <div class="card">
-    <h2>Shortcut Key Mapping</h2>
-    <p class="hint" style="margin-bottom:12px">Click any key field and press a key to remap. Use "ArrowLeft" / "ArrowRight" for arrow keys.</p>
-    <table>
-      <thead>
-        <tr><th>Action</th><th>Key</th><th>Enabled</th></tr>
-      </thead>
-      <tbody id="shortcuts-body">
-        <!-- Populated by options.js -->
-      </tbody>
-    </table>
-    <div style="margin-top: 12px">
-      <button class="btn-outline" id="reset-btn">Reset to Defaults</button>
+  <!-- ── Proposals Tab ──────────────────────────────────────────────────────── -->
+  <div class="tab-section" id="tab-proposals">
+    <div class="card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+        <h2 style="margin-bottom:0">Sent Proposals</h2>
+        <button class="btn-outline btn-sm" id="export-proposals-btn">Export CSV</button>
+      </div>
+      <div id="proposals-container">
+        <div class="empty-msg">No proposals logged yet.</div>
+      </div>
     </div>
   </div>
 
-  <!-- ── Save ────────────────────────────────────────────────────────────── -->
-  <div style="display:flex; align-items:center; gap:16px">
-    <button class="btn-primary" id="save-btn">Save Settings</button>
-    <span id="saved-msg">&#10003; Saved!</span>
+  <!-- ── Dashboard Tab ──────────────────────────────────────────────────────── -->
+  <div class="tab-section" id="tab-dashboard">
+    <div id="dashboard-pro-gate" class="pro-gate" style="display:none">
+      <h3>Win-Rate Dashboard — Pro Feature</h3>
+      <p>Upgrade to Pro to see which templates convert best, your response rate, and time-to-response analytics.</p>
+      <button class="btn-upgrade" id="dashboard-upgrade-btn">Upgrade to Pro — $9/mo</button>
+    </div>
+
+    <div id="dashboard-content" style="display:none">
+      <div class="metric-grid">
+        <div class="metric-box">
+          <div class="metric-num" id="dash-sent">0</div>
+          <div class="metric-label">Proposals Sent</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-num" id="dash-response-rate">0%</div>
+          <div class="metric-label">Response Rate</div>
+        </div>
+        <div class="metric-box">
+          <div class="metric-num" id="dash-hire-rate">0%</div>
+          <div class="metric-label">Hire Rate</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Performance by Template</h3>
+        <div id="template-bars">
+          <div class="empty-msg">No data yet.</div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- ── Upgrade ─────────────────────────────────────────────────────────── -->
-  <div id="upgrade-section">
-    <h2>&#9733; Upgrade to Pro — $7/month</h2>
-    <p>Cloud backup of your shortcut config · Team config sharing · Priority support</p>
-    <button class="btn-upgrade" id="upgrade-btn">Get Pro</button>
+  <!-- ── Settings Tab ───────────────────────────────────────────────────────── -->
+  <div class="tab-section" id="tab-settings">
+    <div class="card">
+      <h2>Reminder Settings</h2>
+      <div class="toggle-row">
+        <div>
+          <div style="font-size:13px;font-weight:500">48-hour outcome reminder</div>
+          <div class="hint">Get a Chrome notification 48 hrs after logging a proposal</div>
+        </div>
+        <label class="switch">
+          <input type="checkbox" id="reminder-toggle" checked>
+          <span class="slider"></span>
+        </label>
+      </div>
+      <div class="field" style="margin-top:12px">
+        <label for="reminder-hours">Reminder delay (hours)</label>
+        <input type="text" id="reminder-hours" value="48" style="max-width:100px">
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center">
+      <button class="btn-primary" id="save-settings-btn">Save Settings</button>
+      <span id="saved-msg">✓ Saved!</span>
+    </div>
+
+    <div class="card" style="margin-top:20px">
+      <h2>Pro Upgrade</h2>
+      <p style="font-size:13px;color:#555;margin-bottom:14px">Unlock unlimited templates, win-rate analytics, outcome reminders, and CSV export.</p>
+      <button class="btn-upgrade" id="settings-upgrade-btn">Upgrade to Pro — $9/mo</button>
+    </div>
   </div>
+
 </div>
 <script src="options.js"></script>
 </body>

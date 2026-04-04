@@ -1,83 +1,69 @@
-// Lightroom Web Keyboard Enhancer — Popup JS
-
-const ACTION_LABELS = {
-  pick:   'Pick flag',
-  reject: 'Reject flag',
-  unflag: 'Unflag',
-  star1:  '1 Star',
-  star2:  '2 Stars',
-  star3:  '3 Stars',
-  star4:  '4 Stars',
-  star5:  '5 Stars',
-  prev:   'Previous photo',
-  next:   'Next photo',
-};
-
-function msg(type, payload = {}) {
-  return new Promise((resolve) => {
-    chrome.runtime.sendMessage({ type, ...payload }, resolve);
-  });
-}
-
-function formatKey(key) {
-  if (!key) return '—';
-  const map = { arrowleft: '←', arrowright: '→', arrowup: '↑', arrowdown: '↓' };
-  return map[key.toLowerCase()] || key.toUpperCase();
-}
-
-async function render() {
-  const resp = await msg('GET_CONFIG');
-  const config = resp.config;
-
-  // Enable toggle
-  const toggle = document.getElementById('enabled-toggle');
-  toggle.checked = config.enabled;
-
-  // Shortcut rows
-  const tbody = document.getElementById('shortcut-rows');
-  tbody.innerHTML = '';
-
-  for (const [action, sc] of Object.entries(config.shortcuts)) {
-    const label = ACTION_LABELS[action] || action;
-    const keyStr = formatKey(sc.key);
-    const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td><kbd>${escHtml(keyStr)}</kbd></td>
-      <td class="${sc.enabled ? 'action-name' : 'action-disabled'}">${escHtml(label)}</td>
-      <td>
-        <span class="status-chip ${sc.enabled ? 'chip-on' : 'chip-off'}">
-          ${sc.enabled ? 'ON' : 'OFF'}
-        </span>
-      </td>
-    `;
-    tbody.appendChild(tr);
-  }
-
-  // Auto-advance chip
-  const aaEl = document.getElementById('auto-advance-status');
-  aaEl.textContent = config.autoAdvance ? 'ON' : 'OFF';
-  aaEl.className = `status-chip ${config.autoAdvance ? 'chip-on' : 'chip-off'}`;
-}
-
-// Toggle enable/disable
-document.getElementById('enabled-toggle').addEventListener('change', async (e) => {
-  const resp = await msg('GET_CONFIG');
-  const config = resp.config;
-  config.enabled = e.target.checked;
-  await msg('SAVE_CONFIG', { config });
-});
-
-// Upgrade button
-document.getElementById('upgrade-btn').addEventListener('click', () => {
-  chrome.tabs.create({ url: 'https://buy.stripe.com/REPLACE_WITH_YOUR_PAYMENT_LINK' });
-});
+// Proposal Template Manager — Popup JS
 
 function escHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
+
+const OUTCOME_CLASSES = {
+  hired: 'outcome-hired',
+  responded: 'outcome-responded',
+  interview: 'outcome-interview',
+  pending: 'outcome-pending',
+  viewed: 'outcome-viewed',
+  rejected: 'outcome-rejected',
+};
+
+const OUTCOME_LABELS = {
+  hired: 'Hired',
+  responded: 'Responded',
+  interview: 'Interview',
+  pending: 'Pending',
+  viewed: 'Viewed',
+  rejected: 'Rejected',
+};
+
+async function render() {
+  const result = await new Promise(resolve =>
+    chrome.storage.local.get(['ptm_templates', 'ptm_proposals', 'ptm_settings'], resolve)
+  );
+
+  const templates = result.ptm_templates || [];
+  const proposals = result.ptm_proposals || [];
+  const settings = result.ptm_settings || {};
+  const isPro = settings.isPro || false;
+
+  // Stats
+  document.getElementById('stat-templates').textContent = templates.length;
+  document.getElementById('stat-sent').textContent = proposals.length;
+  document.getElementById('stat-hired').textContent = proposals.filter(p => p.outcome === 'hired').length;
+
+  // Recent proposals (last 5)
+  const recentList = document.getElementById('recent-list');
+  if (proposals.length === 0) {
+    recentList.innerHTML = '<div class="empty-msg">No proposals logged yet.</div>';
+  } else {
+    recentList.innerHTML = '';
+    proposals.slice(0, 5).forEach(p => {
+      const div = document.createElement('div');
+      div.className = 'proposal-row';
+      const cls = OUTCOME_CLASSES[p.outcome] || 'outcome-pending';
+      const label = OUTCOME_LABELS[p.outcome] || 'Pending';
+      div.innerHTML = `
+        <span class="proposal-title" title="${escHtml(p.jobTitle || '')}">${escHtml(p.jobTitle || 'Untitled')}</span>
+        <span class="outcome-chip ${cls}">${label}</span>
+      `;
+      recentList.appendChild(div);
+    });
+  }
+
+  // Upgrade banner for free users
+  if (!isPro) {
+    document.getElementById('upgrade-banner').style.display = 'flex';
+  }
+}
+
+document.getElementById('upgrade-btn') && document.getElementById('upgrade-btn').addEventListener('click', () => {
+  chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
+});
 
 document.addEventListener('DOMContentLoaded', render);

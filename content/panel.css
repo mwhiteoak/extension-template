@@ -1,0 +1,45 @@
+/* Proposal Template Manager — Sidebar Panel Styles */
+
+#ptm-panel-container {
+  position: fixed;
+  top: 60px;
+  right: 0;
+  width: 380px;
+  height: calc(100vh - 60px);
+  z-index: 2147483647;
+  box-shadow: -4px 0 16px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 14px;
+  background: #fff;
+  transition: transform 0.25s ease;
+}
+
+#ptm-panel-container.ptm-hidden {
+  transform: translateX(100%);
+}
+
+#ptm-toggle-btn {
+  position: fixed;
+  top: 120px;
+  right: 0;
+  z-index: 2147483646;
+  background: #14a800;
+  color: #fff;
+  border: none;
+  border-radius: 6px 0 0 6px;
+  padding: 10px 8px;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  box-shadow: -2px 2px 8px rgba(0,0,0,0.2);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+#ptm-toggle-btn:hover {
+  background: #0d8600;
+}
