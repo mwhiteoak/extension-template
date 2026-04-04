@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wedding Vendor Tracker</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="pu-header">
+    <span class="pu-icon">&#128141;</span>
+    <span class="pu-title">Wedding Vendor Tracker</span>
+  </header>
+
+  <div class="pu-body">
+    <div class="pu-status-row">
+      <span class="pu-status-label">Vendors tracked</span>
+      <span class="pu-status-value" id="pu-vendor-count">—</span>
+    </div>
+    <div class="pu-status-row">
+      <span class="pu-status-label">Plan</span>
+      <span class="pu-status-value" id="pu-plan">Free</span>
+    </div>
+    <div class="pu-status-row">
+      <span class="pu-status-label">Active sites</span>
+      <span class="pu-status-value">The Knot, WeddingWire</span>
+    </div>
+  </div>
+
+  <div class="pu-actions">
+    <button class="pu-btn pu-btn--primary" id="pu-open-panel-btn">Open Vendor Panel</button>
+    <button class="pu-btn" id="pu-settings-btn">Settings</button>
+  </div>
+
+  <div class="pu-pro-bar" id="pu-pro-bar">
+    <span>&#9733; Upgrade to Pro — $7/mo</span>
+    <button class="pu-pro-btn" id="pu-upgrade-btn">Upgrade</button>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
