@@ -1,46 +1,49 @@
-# Chrome Web Store Description — Proposal Template Manager
+# Chrome Web Store Description — Triathlon Race Day Pacing Planner
 
 ## Overview
 
-Proposal Template Manager helps freelancers on Upwork and Fiverr send better proposals faster. Build a library of reusable templates with smart auto-fill variables — the extension reads job details directly from the page and fills them in for you automatically.
+Stop juggling 5+ calculator tabs before race day. **Triathlon Race Day Pacing Planner** is an overlay that lives directly on triathlon event pages — it auto-detects your race distance and instantly calculates target splits, estimated finish time, and transition buffers based on your benchmark paces.
+
+Works on **ironman.com**, **challenge-family.com**, and **trisignup.com**.
+
+---
 
 ## Features
 
-- **Template library** — Create and organize reusable proposal templates (up to 5 on Free, unlimited on Pro).
-- **Auto-fill variables** — Use `{{client_name}}`, `{{job_title}}`, `{{key_skill}}`, `{{budget}}`, and `{{deadline}}` — the extension extracts these from the job page and fills them instantly.
-- **One-click insert** — Open the side panel on any Upwork or Fiverr job listing and insert a filled template with a single click.
-- **Proposal tracker** — Log every proposal you send and track outcomes: Hired, Interview, Responded, Viewed, Pending, or Rejected.
-- **Win-rate dashboard** — See your submission count, hire rate, and recent proposals at a glance from the popup.
-- **Follow-up reminders** — Set automatic reminders (default 48 hours) so no proposal goes cold without a follow-up.
-- **Options page** — Manage your template library, review full proposal history, configure reminder timing, and upgrade to Pro.
+### Free
+- **Auto-detect race distance** — Sprint, Olympic, 70.3, or Full Ironman detected from the event page
+- **Instant split calculator** — Enter your swim pace, bike speed (or FTP), and run pace
+- **Finish time estimate** — Accurate to within ±30 seconds on 70.3 distances
+- **Transition buffers** — Customizable T1 and T2 times
+- **Saved paces** — Your benchmarks sync across devices and auto-load every session
+- **Metric & Imperial** — Full support for both unit systems
 
-## Why You Need This
+### Pro — $8/month
+- **Nutrition timing** — Estimated calorie burn, carb-per-hour targets, fluid recommendations
+- **Aid station plan** — Timed aid station reminders generated from your splits
+- **Printable cheat sheet** — One-page race-day card with splits, nutrition targets, and bib reminder
+- **Custom distance** — Manual override for relay events or non-standard races
+- **Strava connect** — Auto-pull benchmark paces from recent Strava activities
 
-Top-rated freelancers don't write every proposal from scratch — they use battle-tested templates they've refined over hundreds of submissions. Proposal Template Manager brings that discipline to your workflow: write a great template once, auto-fill the relevant details, track what converts, and iterate.
+---
 
 ## How to Use
 
-1. Install the extension and open any Upwork job listing or Fiverr request.
-2. Click the floating panel button injected by the extension.
-3. Choose a template — variables are auto-filled from the page.
-4. Review, tweak, and copy to the proposal form.
-5. Log the proposal outcome when you hear back.
-6. Open the Options page (⚙) to manage templates and review your win-rate stats.
+1. Install the extension
+2. Go to any event page on ironman.com, challenge-family.com, or trisignup.com
+3. Click the **TRI PLAN** button on the right edge of the page
+4. Enter your benchmark paces (or load saved ones from Settings)
+5. Hit **Calculate Splits** — your race plan is ready in seconds
 
-## Supported Platforms
-
-- **Upwork** — Job listings, proposal pages, and job search results.
-- **Fiverr** — Buyer request pages and inbox messages.
-
-## Pricing
-
-- **Free** — Up to 5 templates, full auto-fill, proposal tracking, win-rate dashboard.
-- **Pro ($7/mo)** — Unlimited templates, advanced dashboard analytics, priority support.
+---
 
 ## Privacy
 
-All template and proposal data is stored locally using `chrome.storage.local` — it never leaves your browser. No analytics, no telemetry, no external server.
+All data is stored locally in Chrome's synced storage. No personal data is sent to external servers. No tracking. No telemetry.
 
-## Support
+---
 
-For help or bug reports, open the Options page and click the Support link.
+## Pricing
+
+- **Free tier**: Install, no account required
+- **Pro**: $8/month via Stripe · Cancel any time · Syncs across all your Chrome devices

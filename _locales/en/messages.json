@@ -1,10 +1,10 @@
 {
   "extensionName": {
-    "message": "Proposal Template Manager",
+    "message": "Triathlon Race Day Pacing Planner",
     "description": "The name of the extension as displayed in the Chrome Web Store and browser UI"
   },
   "extensionDescription": {
-    "message": "Smart proposal templates with auto-fill variables for Upwork and Fiverr. Track win rates and optimize your proposals.",
+    "message": "Race day pacing overlay for triathletes. Auto-detects race distance and calculates target splits, finish time, and nutrition timing on ironman.com, challenge-family.com, and trisignup.com.",
     "description": "Short description shown under the extension name"
   }
 }

@@ -1,0 +1,30 @@
+{
+  "extensions": [
+    {
+      "id": "EXT-7",
+      "name": "Auto-Context Time Tracker",
+      "status": "built",
+      "builtAt": "2026-04-03"
+    },
+    {
+      "id": "EXT-8",
+      "name": "Proposal Template Manager",
+      "status": "built",
+      "builtAt": "2026-04-03"
+    },
+    {
+      "id": "EXT-14",
+      "name": "Lightroom Web Keyboard Enhancer",
+      "status": "built",
+      "builtAt": "2026-04-03"
+    },
+    {
+      "id": "EXT-22",
+      "name": "Triathlon Race Day Pacing Planner",
+      "status": "built",
+      "builtAt": "2026-04-04",
+      "billingCode": "EXT-003-PRO",
+      "targetSites": ["ironman.com", "challenge-family.com", "trisignup.com"]
+    }
+  ]
+}

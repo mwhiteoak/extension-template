@@ -3,50 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Proposal Template Manager</title>
+  <title>Triathlon Pacing Planner</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-  <div id="app">
-    <header>
-      <h1>Proposal Template Manager</h1>
-      <a href="../options/options.html" target="_blank" id="settings-link" title="Settings">&#9881;</a>
-    </header>
+  <div class="header">
+    <div class="header-icon">🏊 🚴 🏃</div>
+    <div>
+      <div class="header-title">Race Day Planner</div>
+      <div class="header-sub">Triathlon Pacing Planner</div>
+    </div>
+  </div>
 
-    <div id="stats-row">
-      <div class="stat-box">
-        <span class="stat-num" id="stat-templates">0</span>
-        <span class="stat-label">Templates</span>
+  <div class="body">
+    <div class="status-section" id="statusSection">
+      <div class="status-row">
+        <span class="status-label">Paces saved</span>
+        <span class="status-val" id="pacesSaved">No</span>
       </div>
-      <div class="stat-box">
-        <span class="stat-num" id="stat-sent">0</span>
-        <span class="stat-label">Sent</span>
+      <div class="status-row">
+        <span class="status-label">Units</span>
+        <span class="status-val" id="unitsVal">Metric</span>
       </div>
-      <div class="stat-box">
-        <span class="stat-num" id="stat-hired">0</span>
-        <span class="stat-label">Hired</span>
+      <div class="status-row" id="swimRow" style="display:none">
+        <span class="status-label">🏊 Swim pace</span>
+        <span class="status-val" id="swimVal">—</span>
+      </div>
+      <div class="status-row" id="bikeRow" style="display:none">
+        <span class="status-label">🚴 Bike</span>
+        <span class="status-val" id="bikeVal">—</span>
+      </div>
+      <div class="status-row" id="runRow" style="display:none">
+        <span class="status-label">🏃 Run pace</span>
+        <span class="status-val" id="runVal">—</span>
       </div>
     </div>
 
-    <div id="recent-section">
-      <div class="section-title">Recent Proposals</div>
-      <div id="recent-list">
-        <div class="empty-msg">No proposals logged yet.</div>
-      </div>
+    <div class="sites-note">
+      <strong>Open on:</strong> ironman.com, challenge-family.com, or trisignup.com to use the overlay planner.
     </div>
 
-    <div id="actions">
-      <a href="../options/options.html" target="_blank" class="action-btn">
-        &#43; Manage Templates
-      </a>
-      <a href="../options/options.html?tab=proposals" target="_blank" class="action-btn action-btn-outline">
-        &#128202; View Dashboard
-      </a>
-    </div>
+    <button class="settings-btn" id="settingsBtn">⚙️ Settings &amp; Saved Paces</button>
 
-    <div id="upgrade-banner" style="display:none">
-      <span>&#9733; Upgrade to Pro — unlimited templates &amp; win-rate analytics</span>
-      <button id="upgrade-btn" class="btn-pro">$9/mo</button>
+    <div class="pro-bar" id="proBar">
+      <span>Upgrade to Pro for nutrition timing &amp; cheat sheets</span>
+      <button class="pro-btn" id="proBtn">$8/mo</button>
     </div>
   </div>
 

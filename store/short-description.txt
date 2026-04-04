@@ -1,1 +1,1 @@
-Reusable proposal templates with auto-fill variables for Upwork & Fiverr. Track win rates and send winning proposals faster.
+Race day pacing overlay for triathletes. Auto-detects race distance, calculates splits and finish time on ironman.com & more.

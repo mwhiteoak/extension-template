@@ -4,14 +4,12 @@
   "version": "1.0.0",
   "description": "__MSG_extensionDescription__",
   "permissions": [
-    "storage",
-    "alarms",
-    "notifications",
-    "clipboardWrite"
+    "storage"
   ],
   "host_permissions": [
-    "https://www.upwork.com/*",
-    "https://www.fiverr.com/*"
+    "https://www.ironman.com/*",
+    "https://www.challenge-family.com/*",
+    "https://www.trisignup.com/*"
   ],
   "action": {
     "default_popup": "popup/popup.html",
@@ -27,21 +25,12 @@
   "content_scripts": [
     {
       "matches": [
-        "https://www.upwork.com/jobs/*",
-        "https://www.upwork.com/ab/proposals/*",
-        "https://www.upwork.com/nx/jobs/*"
+        "https://www.ironman.com/*",
+        "https://www.challenge-family.com/*",
+        "https://www.trisignup.com/*"
       ],
-      "js": ["content/upwork-extractor.js", "content/panel-injector.js"],
-      "css": ["content/panel.css"],
-      "run_at": "document_idle"
-    },
-    {
-      "matches": [
-        "https://www.fiverr.com/requests/*",
-        "https://www.fiverr.com/inbox/*"
-      ],
-      "js": ["content/fiverr-extractor.js", "content/panel-injector.js"],
-      "css": ["content/panel.css"],
+      "js": ["content/race-detector.js", "content/overlay-injector.js"],
+      "css": ["content/overlay.css"],
       "run_at": "document_idle"
     }
   ],
@@ -55,10 +44,11 @@
   "default_locale": "en",
   "web_accessible_resources": [
     {
-      "resources": ["content/panel.html"],
+      "resources": ["content/overlay.html", "content/overlay.js", "content/print.css"],
       "matches": [
-        "https://www.upwork.com/*",
-        "https://www.fiverr.com/*"
+        "https://www.ironman.com/*",
+        "https://www.challenge-family.com/*",
+        "https://www.trisignup.com/*"
       ]
     }
   ]

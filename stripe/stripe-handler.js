@@ -1,59 +1,51 @@
-// stripe-handler.js — Stripe Checkout stub for Proposal Template Manager Pro
+// stripe-handler.js — Stripe Checkout stub for Triathlon Race Day Pacing Planner Pro
 //
-// MVP: clicking "Upgrade" opens the Stripe Checkout URL directly in a new tab.
-// For production, replace CHECKOUT_URL with your Stripe Payment Link URL.
-// A server-side session approach is recommended for subscriptions but is NOT
-// required for the Stripe Payment Links flow (no backend needed).
+// MVP: clicking "Upgrade" opens the Stripe Payment Link in a new tab.
+// For production, replace CHECKOUT_URL with your actual Stripe Payment Link.
+// A server-side webhook should POST back to set isPro: true in the user's storage.
+//
+// Billing code: EXT-003-PRO
 
-const CHECKOUT_URL = 'https://buy.stripe.com/REPLACE_WITH_YOUR_PAYMENT_LINK';
+const CHECKOUT_URL = 'https://buy.stripe.com/tri_pacing_pro_placeholder';
 
 /**
- * Open the Stripe Checkout page for the Pro subscription ($9/mo).
- * Call this from the upgrade button click handler.
+ * Opens the Stripe Checkout page in a new tab.
+ * Called by background service worker on OPEN_STRIPE_CHECKOUT message.
  */
 function openCheckout() {
   chrome.tabs.create({ url: CHECKOUT_URL });
 }
 
 /**
- * Check whether the user has a Pro entitlement stored locally.
- * In production, verify via your backend after a Stripe webhook sets this flag.
+ * Returns true if the user has an active Pro entitlement.
  * @returns {Promise<boolean>}
  */
 async function isEntitled() {
-  return new Promise((resolve) => {
-    chrome.storage.local.get(['ptm_settings'], (result) => {
-      const settings = result.ptm_settings || {};
-      resolve(settings.isPro === true);
-    });
-  });
+  const result = await chrome.storage.sync.get('tri_settings');
+  return !!(result.tri_settings?.isPro);
 }
 
 /**
- * Grant Pro entitlement locally.
- * Call this after your webhook confirms a successful payment.
+ * Grants Pro entitlement (call this after a successful Stripe webhook).
  * @returns {Promise<void>}
  */
 async function grantEntitlement() {
-  return new Promise((resolve) => {
-    chrome.storage.local.get(['ptm_settings'], (result) => {
-      const settings = Object.assign({ reminderEnabled: true, reminderHours: 48 }, result.ptm_settings || {});
-      settings.isPro = true;
-      chrome.storage.local.set({ ptm_settings: settings }, resolve);
-    });
-  });
+  const result = await chrome.storage.sync.get('tri_settings');
+  const settings = Object.assign({}, result.tri_settings || {}, { isPro: true });
+  await chrome.storage.sync.set({ tri_settings: settings });
 }
 
 /**
- * Revoke Pro entitlement locally (e.g. subscription cancelled).
+ * Revokes Pro entitlement (call this on subscription cancellation webhook).
  * @returns {Promise<void>}
  */
 async function revokeEntitlement() {
-  return new Promise((resolve) => {
-    chrome.storage.local.get(['ptm_settings'], (result) => {
-      const settings = Object.assign({}, result.ptm_settings || {});
-      settings.isPro = false;
-      chrome.storage.local.set({ ptm_settings: settings }, resolve);
-    });
-  });
+  const result = await chrome.storage.sync.get('tri_settings');
+  const settings = Object.assign({}, result.tri_settings || {}, { isPro: false });
+  await chrome.storage.sync.set({ tri_settings: settings });
+}
+
+// Export for use in service worker (if bundled) or testing
+if (typeof module !== 'undefined') {
+  module.exports = { openCheckout, isEntitled, grantEntitlement, revokeEntitlement };
 }
