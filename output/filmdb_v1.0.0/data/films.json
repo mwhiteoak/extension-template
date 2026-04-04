@@ -1,0 +1,479 @@
+[
+  {
+    "id": "kodak-portra-400",
+    "name": "Kodak Portra 400",
+    "brand": "Kodak",
+    "aliases": ["Portra 400", "Portra400"],
+    "iso": 400,
+    "process": "C-41",
+    "grain": "fine",
+    "latitude": { "over": 5, "under": 2 },
+    "colourProfile": "warm",
+    "filmdevRecipes": 342,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/portra400-1.jpg", "url": "https://analog.cafe/r/kodak-portra-400" },
+      { "thumb": "https://analog.cafe/images/portra400-2.jpg", "url": "https://analog.cafe/r/kodak-portra-400" },
+      { "thumb": "https://analog.cafe/images/portra400-3.jpg", "url": "https://analog.cafe/r/kodak-portra-400" }
+    ],
+    "description": "The industry standard portrait film. Exceptional latitude, fine grain, and natural skin tones."
+  },
+  {
+    "id": "kodak-portra-160",
+    "name": "Kodak Portra 160",
+    "brand": "Kodak",
+    "aliases": ["Portra 160", "Portra160"],
+    "iso": 160,
+    "process": "C-41",
+    "grain": "fine",
+    "latitude": { "over": 4, "under": 2 },
+    "colourProfile": "warm",
+    "filmdevRecipes": 187,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/portra160-1.jpg", "url": "https://analog.cafe/r/kodak-portra-160" },
+      { "thumb": "https://analog.cafe/images/portra160-2.jpg", "url": "https://analog.cafe/r/kodak-portra-160" },
+      { "thumb": "https://analog.cafe/images/portra160-3.jpg", "url": "https://analog.cafe/r/kodak-portra-160" }
+    ],
+    "description": "Ultra-fine grain, beautiful in bright light. The portrait film for daylight shooters."
+  },
+  {
+    "id": "kodak-portra-800",
+    "name": "Kodak Portra 800",
+    "brand": "Kodak",
+    "aliases": ["Portra 800", "Portra800"],
+    "iso": 800,
+    "process": "C-41",
+    "grain": "medium",
+    "latitude": { "over": 4, "under": 2 },
+    "colourProfile": "warm",
+    "filmdevRecipes": 124,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/portra800-1.jpg", "url": "https://analog.cafe/r/kodak-portra-800" },
+      { "thumb": "https://analog.cafe/images/portra800-2.jpg", "url": "https://analog.cafe/r/kodak-portra-800" },
+      { "thumb": "https://analog.cafe/images/portra800-3.jpg", "url": "https://analog.cafe/r/kodak-portra-800" }
+    ],
+    "description": "Fast and forgiving. Pushed further it becomes a portrait powerhouse in low light."
+  },
+  {
+    "id": "kodak-gold-200",
+    "name": "Kodak Gold 200",
+    "brand": "Kodak",
+    "aliases": ["Gold 200", "Gold200", "Kodak Gold"],
+    "iso": 200,
+    "process": "C-41",
+    "grain": "medium",
+    "latitude": { "over": 3, "under": 1 },
+    "colourProfile": "warm",
+    "filmdevRecipes": 89,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/gold200-1.jpg", "url": "https://analog.cafe/r/kodak-gold-200" },
+      { "thumb": "https://analog.cafe/images/gold200-2.jpg", "url": "https://analog.cafe/r/kodak-gold-200" },
+      { "thumb": "https://analog.cafe/images/gold200-3.jpg", "url": "https://analog.cafe/r/kodak-gold-200" }
+    ],
+    "description": "Budget-friendly consumer film with a warm, golden character. Iconic for summer shots."
+  },
+  {
+    "id": "kodak-ultramax-400",
+    "name": "Kodak UltraMax 400",
+    "brand": "Kodak",
+    "aliases": ["UltraMax 400", "UltraMax400", "Ultra Max 400"],
+    "iso": 400,
+    "process": "C-41",
+    "grain": "medium",
+    "latitude": { "over": 3, "under": 2 },
+    "colourProfile": "warm",
+    "filmdevRecipes": 67,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/ultramax400-1.jpg", "url": "https://analog.cafe/r/kodak-ultramax-400" },
+      { "thumb": "https://analog.cafe/images/ultramax400-2.jpg", "url": "https://analog.cafe/r/kodak-ultramax-400" },
+      { "thumb": "https://analog.cafe/images/ultramax400-3.jpg", "url": "https://analog.cafe/r/kodak-ultramax-400" }
+    ],
+    "description": "Versatile consumer film. Great latitude for an all-rounder at ISO 400."
+  },
+  {
+    "id": "kodak-ektar-100",
+    "name": "Kodak Ektar 100",
+    "brand": "Kodak",
+    "aliases": ["Ektar 100", "Ektar100", "Ektar"],
+    "iso": 100,
+    "process": "C-41",
+    "grain": "fine",
+    "latitude": { "over": 3, "under": 1 },
+    "colourProfile": "cool",
+    "filmdevRecipes": 156,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/ektar100-1.jpg", "url": "https://analog.cafe/r/kodak-ektar-100" },
+      { "thumb": "https://analog.cafe/images/ektar100-2.jpg", "url": "https://analog.cafe/r/kodak-ektar-100" },
+      { "thumb": "https://analog.cafe/images/ektar100-3.jpg", "url": "https://analog.cafe/r/kodak-ektar-100" }
+    ],
+    "description": "World's finest grain colour negative film. Ultra-saturated and razor sharp — stunning for landscapes."
+  },
+  {
+    "id": "kodak-colorplus-200",
+    "name": "Kodak ColorPlus 200",
+    "brand": "Kodak",
+    "aliases": ["ColorPlus 200", "ColorPlus200", "Color Plus 200"],
+    "iso": 200,
+    "process": "C-41",
+    "grain": "medium",
+    "latitude": { "over": 2, "under": 1 },
+    "colourProfile": "warm",
+    "filmdevRecipes": 43,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/colorplus200-1.jpg", "url": "https://analog.cafe/r/kodak-colorplus-200" },
+      { "thumb": "https://analog.cafe/images/colorplus200-2.jpg", "url": "https://analog.cafe/r/kodak-colorplus-200" }
+    ],
+    "description": "Entry-level budget film. Warm, slightly saturated look. Great for sunny day shooting."
+  },
+  {
+    "id": "ilford-hp5-plus",
+    "name": "Ilford HP5 Plus",
+    "brand": "Ilford",
+    "aliases": ["HP5 Plus", "HP5+", "HP5", "HP5Plus"],
+    "iso": 400,
+    "process": "B&W",
+    "grain": "medium",
+    "latitude": { "over": 5, "under": 3 },
+    "colourProfile": "neutral",
+    "filmdevRecipes": 521,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/hp5-1.jpg", "url": "https://analog.cafe/r/ilford-hp5-plus" },
+      { "thumb": "https://analog.cafe/images/hp5-2.jpg", "url": "https://analog.cafe/r/ilford-hp5-plus" },
+      { "thumb": "https://analog.cafe/images/hp5-3.jpg", "url": "https://analog.cafe/r/ilford-hp5-plus" }
+    ],
+    "description": "The workhorse B&W film. Incredible latitude — push to 3200 with confidence. Nearly impossible to ruin."
+  },
+  {
+    "id": "ilford-fp4-plus",
+    "name": "Ilford FP4 Plus",
+    "brand": "Ilford",
+    "aliases": ["FP4 Plus", "FP4+", "FP4", "FP4Plus"],
+    "iso": 125,
+    "process": "B&W",
+    "grain": "fine",
+    "latitude": { "over": 4, "under": 2 },
+    "colourProfile": "neutral",
+    "filmdevRecipes": 389,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/fp4-1.jpg", "url": "https://analog.cafe/r/ilford-fp4-plus" },
+      { "thumb": "https://analog.cafe/images/fp4-2.jpg", "url": "https://analog.cafe/r/ilford-fp4-plus" },
+      { "thumb": "https://analog.cafe/images/fp4-3.jpg", "url": "https://analog.cafe/r/ilford-fp4-plus" }
+    ],
+    "description": "Classic medium-speed B&W. Fine grain, excellent tonality, predictable in almost any developer."
+  },
+  {
+    "id": "ilford-delta-3200",
+    "name": "Ilford Delta 3200",
+    "brand": "Ilford",
+    "aliases": ["Delta 3200", "Delta3200", "DELTA 3200"],
+    "iso": 3200,
+    "process": "B&W",
+    "grain": "coarse",
+    "latitude": { "over": 3, "under": 2 },
+    "colourProfile": "neutral",
+    "filmdevRecipes": 198,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/delta3200-1.jpg", "url": "https://analog.cafe/r/ilford-delta-3200" },
+      { "thumb": "https://analog.cafe/images/delta3200-2.jpg", "url": "https://analog.cafe/r/ilford-delta-3200" },
+      { "thumb": "https://analog.cafe/images/delta3200-3.jpg", "url": "https://analog.cafe/r/ilford-delta-3200" }
+    ],
+    "description": "Ultra-fast for extreme low light. Gritty, expressive grain — a deliberate aesthetic choice."
+  },
+  {
+    "id": "ilford-delta-100",
+    "name": "Ilford Delta 100",
+    "brand": "Ilford",
+    "aliases": ["Delta 100", "Delta100", "DELTA 100"],
+    "iso": 100,
+    "process": "B&W",
+    "grain": "fine",
+    "latitude": { "over": 3, "under": 2 },
+    "colourProfile": "neutral",
+    "filmdevRecipes": 276,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/delta100-1.jpg", "url": "https://analog.cafe/r/ilford-delta-100" },
+      { "thumb": "https://analog.cafe/images/delta100-2.jpg", "url": "https://analog.cafe/r/ilford-delta-100" },
+      { "thumb": "https://analog.cafe/images/delta100-3.jpg", "url": "https://analog.cafe/r/ilford-delta-100" }
+    ],
+    "description": "Core-shell crystal technology for ultra-fine grain. Exceptional sharpness for studio and landscape work."
+  },
+  {
+    "id": "ilford-xp2-super",
+    "name": "Ilford XP2 Super",
+    "brand": "Ilford",
+    "aliases": ["XP2 Super", "XP2", "XP2Super"],
+    "iso": 400,
+    "process": "C-41",
+    "grain": "fine",
+    "latitude": { "over": 5, "under": 2 },
+    "colourProfile": "neutral",
+    "filmdevRecipes": 34,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/xp2-1.jpg", "url": "https://analog.cafe/r/ilford-xp2-super" },
+      { "thumb": "https://analog.cafe/images/xp2-2.jpg", "url": "https://analog.cafe/r/ilford-xp2-super" }
+    ],
+    "description": "B&W film developed in C-41. Fine grain at 400 ISO, wildly forgiving of exposure errors."
+  },
+  {
+    "id": "ilford-ortho-plus",
+    "name": "Ilford Ortho Plus",
+    "brand": "Ilford",
+    "aliases": ["Ortho Plus", "Ortho+", "Ortho"],
+    "iso": 80,
+    "process": "B&W",
+    "grain": "fine",
+    "latitude": { "over": 2, "under": 1 },
+    "colourProfile": "neutral",
+    "filmdevRecipes": 112,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/orthoplus-1.jpg", "url": "https://analog.cafe/r/ilford-ortho-plus" },
+      { "thumb": "https://analog.cafe/images/orthoplus-2.jpg", "url": "https://analog.cafe/r/ilford-ortho-plus" }
+    ],
+    "description": "Orthochromatic — insensitive to red. Dramatic sky rendition, unique tonal character, sharp as a razor."
+  },
+  {
+    "id": "fuji-provia-100f",
+    "name": "Fujifilm Provia 100F",
+    "brand": "Fujifilm",
+    "aliases": ["Provia 100F", "Provia100F", "Provia", "RDPIII"],
+    "iso": 100,
+    "process": "E-6",
+    "grain": "fine",
+    "latitude": { "over": 1, "under": 1 },
+    "colourProfile": "neutral",
+    "filmdevRecipes": 88,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/provia100f-1.jpg", "url": "https://analog.cafe/r/fujifilm-provia-100f" },
+      { "thumb": "https://analog.cafe/images/provia100f-2.jpg", "url": "https://analog.cafe/r/fujifilm-provia-100f" },
+      { "thumb": "https://analog.cafe/images/provia100f-3.jpg", "url": "https://analog.cafe/r/fujifilm-provia-100f" }
+    ],
+    "description": "Professional slide film. Neutral colour balance, ultra-fine grain, true-to-life reproduction."
+  },
+  {
+    "id": "fuji-velvia-50",
+    "name": "Fujifilm Velvia 50",
+    "brand": "Fujifilm",
+    "aliases": ["Velvia 50", "Velvia50", "RVP50"],
+    "iso": 50,
+    "process": "E-6",
+    "grain": "fine",
+    "latitude": { "over": 1, "under": 1 },
+    "colourProfile": "cool",
+    "filmdevRecipes": 72,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/velvia50-1.jpg", "url": "https://analog.cafe/r/fujifilm-velvia-50" },
+      { "thumb": "https://analog.cafe/images/velvia50-2.jpg", "url": "https://analog.cafe/r/fujifilm-velvia-50" },
+      { "thumb": "https://analog.cafe/images/velvia50-3.jpg", "url": "https://analog.cafe/r/fujifilm-velvia-50" }
+    ],
+    "description": "The landscape photographer's slide film. Hyper-saturated, punchy greens, vivid blues. Low latitude — meter carefully."
+  },
+  {
+    "id": "fuji-velvia-100",
+    "name": "Fujifilm Velvia 100",
+    "brand": "Fujifilm",
+    "aliases": ["Velvia 100", "Velvia100", "RVP100"],
+    "iso": 100,
+    "process": "E-6",
+    "grain": "fine",
+    "latitude": { "over": 1, "under": 1 },
+    "colourProfile": "cool",
+    "filmdevRecipes": 58,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/velvia100-1.jpg", "url": "https://analog.cafe/r/fujifilm-velvia-100" },
+      { "thumb": "https://analog.cafe/images/velvia100-2.jpg", "url": "https://analog.cafe/r/fujifilm-velvia-100" }
+    ],
+    "description": "The more forgiving Velvia. Same vivid palette with an extra stop of latitude over V50."
+  },
+  {
+    "id": "fuji-superia-400",
+    "name": "Fujifilm Superia 400",
+    "brand": "Fujifilm",
+    "aliases": ["Superia 400", "Superia400", "Superia X-TRA 400", "Superia XTRA"],
+    "iso": 400,
+    "process": "C-41",
+    "grain": "medium",
+    "latitude": { "over": 3, "under": 2 },
+    "colourProfile": "cool",
+    "filmdevRecipes": 78,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/superia400-1.jpg", "url": "https://analog.cafe/r/fujifilm-superia-400" },
+      { "thumb": "https://analog.cafe/images/superia400-2.jpg", "url": "https://analog.cafe/r/fujifilm-superia-400" }
+    ],
+    "description": "Consumer-tier workhorse. Cool/green bias, sharp, available nearly everywhere."
+  },
+  {
+    "id": "fuji-pro-400h",
+    "name": "Fujifilm Pro 400H",
+    "brand": "Fujifilm",
+    "aliases": ["Pro 400H", "Pro400H", "400H"],
+    "iso": 400,
+    "process": "C-41",
+    "grain": "fine",
+    "latitude": { "over": 4, "under": 2 },
+    "colourProfile": "cool",
+    "filmdevRecipes": 134,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/pro400h-1.jpg", "url": "https://analog.cafe/r/fujifilm-pro-400h" },
+      { "thumb": "https://analog.cafe/images/pro400h-2.jpg", "url": "https://analog.cafe/r/fujifilm-pro-400h" },
+      { "thumb": "https://analog.cafe/images/pro400h-3.jpg", "url": "https://analog.cafe/r/fujifilm-pro-400h" }
+    ],
+    "description": "Discontinued but beloved. Cool, pastel tones with beautiful skin rendition — the wedding photographer's choice. Stock is expiring — prices rising."
+  },
+  {
+    "id": "cinestill-800t",
+    "name": "CineStill 800T",
+    "brand": "CineStill",
+    "aliases": ["CineStill 800", "800T", "CineStill800T", "Cinestill 800"],
+    "iso": 800,
+    "process": "C-41",
+    "grain": "medium",
+    "latitude": { "over": 3, "under": 2 },
+    "colourProfile": "cool",
+    "filmdevRecipes": 167,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/cinestill800t-1.jpg", "url": "https://analog.cafe/r/cinestill-800t" },
+      { "thumb": "https://analog.cafe/images/cinestill800t-2.jpg", "url": "https://analog.cafe/r/cinestill-800t" },
+      { "thumb": "https://analog.cafe/images/cinestill800t-3.jpg", "url": "https://analog.cafe/r/cinestill-800t" }
+    ],
+    "description": "Motion picture film adapted for C-41. Tungsten-balanced with iconic halation in highlights. The night city shooter's film."
+  },
+  {
+    "id": "cinestill-50d",
+    "name": "CineStill 50D",
+    "brand": "CineStill",
+    "aliases": ["CineStill 50", "50D", "CineStill50D", "Cinestill 50"],
+    "iso": 50,
+    "process": "C-41",
+    "grain": "fine",
+    "latitude": { "over": 3, "under": 2 },
+    "colourProfile": "neutral",
+    "filmdevRecipes": 89,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/cinestill50d-1.jpg", "url": "https://analog.cafe/r/cinestill-50d" },
+      { "thumb": "https://analog.cafe/images/cinestill50d-2.jpg", "url": "https://analog.cafe/r/cinestill-50d" },
+      { "thumb": "https://analog.cafe/images/cinestill50d-3.jpg", "url": "https://analog.cafe/r/cinestill-50d" }
+    ],
+    "description": "Daylight-balanced motion picture film. Creamy skin, fine grain, cinema look in a still camera."
+  },
+  {
+    "id": "lomography-400",
+    "name": "Lomography Color Negative 400",
+    "brand": "Lomography",
+    "aliases": ["Lomo 400", "Lomography 400", "Lomo Color 400", "CN400"],
+    "iso": 400,
+    "process": "C-41",
+    "grain": "coarse",
+    "latitude": { "over": 3, "under": 2 },
+    "colourProfile": "warm",
+    "filmdevRecipes": 45,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/lomo400-1.jpg", "url": "https://analog.cafe/r/lomography-color-negative-400" },
+      { "thumb": "https://analog.cafe/images/lomo400-2.jpg", "url": "https://analog.cafe/r/lomography-color-negative-400" }
+    ],
+    "description": "Fun, vibrant, and forgiving. Saturated with nice grain structure — great for casual shooting."
+  },
+  {
+    "id": "kodak-tri-x-400",
+    "name": "Kodak Tri-X 400",
+    "brand": "Kodak",
+    "aliases": ["Tri-X 400", "TriX 400", "Tri-X", "TriX", "TX400"],
+    "iso": 400,
+    "process": "B&W",
+    "grain": "medium",
+    "latitude": { "over": 4, "under": 2 },
+    "colourProfile": "neutral",
+    "filmdevRecipes": 634,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/trix400-1.jpg", "url": "https://analog.cafe/r/kodak-tri-x-400" },
+      { "thumb": "https://analog.cafe/images/trix400-2.jpg", "url": "https://analog.cafe/r/kodak-tri-x-400" },
+      { "thumb": "https://analog.cafe/images/trix400-3.jpg", "url": "https://analog.cafe/r/kodak-tri-x-400" }
+    ],
+    "description": "Legendary street photography film. Gritty grain, high contrast, punchy blacks. The DNA of documentary photography."
+  },
+  {
+    "id": "kodak-tmax-400",
+    "name": "Kodak T-MAX 400",
+    "brand": "Kodak",
+    "aliases": ["T-MAX 400", "TMAX 400", "TMax 400", "TMY"],
+    "iso": 400,
+    "process": "B&W",
+    "grain": "fine",
+    "latitude": { "over": 4, "under": 2 },
+    "colourProfile": "neutral",
+    "filmdevRecipes": 423,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/tmax400-1.jpg", "url": "https://analog.cafe/r/kodak-tmax-400" },
+      { "thumb": "https://analog.cafe/images/tmax400-2.jpg", "url": "https://analog.cafe/r/kodak-tmax-400" },
+      { "thumb": "https://analog.cafe/images/tmax400-3.jpg", "url": "https://analog.cafe/r/kodak-tmax-400" }
+    ],
+    "description": "Modern tabular-grain technology. Fine grain for 400 ISO, great for medium and large format."
+  },
+  {
+    "id": "kodak-tmax-100",
+    "name": "Kodak T-MAX 100",
+    "brand": "Kodak",
+    "aliases": ["T-MAX 100", "TMAX 100", "TMax 100", "TMX"],
+    "iso": 100,
+    "process": "B&W",
+    "grain": "fine",
+    "latitude": { "over": 3, "under": 2 },
+    "colourProfile": "neutral",
+    "filmdevRecipes": 312,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/tmax100-1.jpg", "url": "https://analog.cafe/r/kodak-tmax-100" },
+      { "thumb": "https://analog.cafe/images/tmax100-2.jpg", "url": "https://analog.cafe/r/kodak-tmax-100" },
+      { "thumb": "https://analog.cafe/images/tmax100-3.jpg", "url": "https://analog.cafe/r/kodak-tmax-100" }
+    ],
+    "description": "Exceptionally sharp and fine-grained. The benchmark slow B&W film for technical quality."
+  },
+  {
+    "id": "foma-fomapan-400",
+    "name": "Foma Fomapan 400",
+    "brand": "Foma",
+    "aliases": ["Fomapan 400", "Fomapan400", "Foma 400"],
+    "iso": 400,
+    "process": "B&W",
+    "grain": "coarse",
+    "latitude": { "over": 3, "under": 1 },
+    "colourProfile": "neutral",
+    "filmdevRecipes": 189,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/fomapan400-1.jpg", "url": "https://analog.cafe/r/foma-fomapan-400" },
+      { "thumb": "https://analog.cafe/images/fomapan400-2.jpg", "url": "https://analog.cafe/r/foma-fomapan-400" }
+    ],
+    "description": "Czech film. Budget-friendly, pronounced grain, old-school character. Popular for lo-fi aesthetic."
+  },
+  {
+    "id": "rollei-superpan-200",
+    "name": "Rollei Superpan 200",
+    "brand": "Rollei",
+    "aliases": ["Superpan 200", "Superpan200"],
+    "iso": 200,
+    "process": "B&W",
+    "grain": "fine",
+    "latitude": { "over": 3, "under": 2 },
+    "colourProfile": "neutral",
+    "filmdevRecipes": 76,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/superpan200-1.jpg", "url": "https://analog.cafe/r/rollei-superpan-200" },
+      { "thumb": "https://analog.cafe/images/superpan200-2.jpg", "url": "https://analog.cafe/r/rollei-superpan-200" }
+    ],
+    "description": "Panchromatic aerial/surveillance film heritage. Extremely sharp with extended red sensitivity."
+  },
+  {
+    "id": "kosmo-foto-100",
+    "name": "Kosmo Foto Mono 100",
+    "brand": "Kosmo Foto",
+    "aliases": ["Kosmo Foto", "Kosmo Foto 100", "Kosmo Mono"],
+    "iso": 100,
+    "process": "B&W",
+    "grain": "fine",
+    "latitude": { "over": 3, "under": 2 },
+    "colourProfile": "neutral",
+    "filmdevRecipes": 54,
+    "analogCafeSamples": [
+      { "thumb": "https://analog.cafe/images/kosmofoto-1.jpg", "url": "https://analog.cafe/r/kosmo-foto-100" },
+      { "thumb": "https://analog.cafe/images/kosmofoto-2.jpg", "url": "https://analog.cafe/r/kosmo-foto-100" }
+    ],
+    "description": "Eastern European heritage, fine grain B&W. Gorgeous tonality with a classic film feel."
+  }
+]

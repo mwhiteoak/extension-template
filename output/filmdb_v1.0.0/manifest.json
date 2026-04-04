@@ -1,0 +1,61 @@
+{
+  "manifest_version": 3,
+  "name": "FilmDB — Film Stock Companion for B&H, Adorama & eBay",
+  "short_name": "FilmDB",
+  "version": "1.0.0",
+  "description": "See grain, latitude & sample scans for any film stock while you shop. Expired film? Get real sold-price benchmarks from eBay.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.bhphotovideo.com/*",
+    "*://*.adorama.com/*",
+    "*://*.filmphotographystore.com/*",
+    "*://*.ebay.com/*",
+    "*://*.ebay.co.uk/*",
+    "*://*.ebay.de/*",
+    "*://*.ebay.com.au/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.bhphotovideo.com/*",
+        "*://*.adorama.com/*",
+        "*://*.filmphotographystore.com/*",
+        "*://*.ebay.com/*",
+        "*://*.ebay.co.uk/*",
+        "*://*.ebay.de/*",
+        "*://*.ebay.com.au/*"
+      ],
+      "js": ["src/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["data/films.json"],
+      "matches": [
+        "*://*.bhphotovideo.com/*",
+        "*://*.adorama.com/*",
+        "*://*.filmphotographystore.com/*",
+        "*://*.ebay.com/*",
+        "*://*.ebay.co.uk/*",
+        "*://*.ebay.de/*",
+        "*://*.ebay.com.au/*"
+      ]
+    }
+  ]
+}

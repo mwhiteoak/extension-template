@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FilmDB Settings</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0f172a;
+      color: #f1f5f9;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      padding: 40px 20px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 36px;
+      border-bottom: 1px solid #1e293b;
+      padding-bottom: 20px;
+    }
+
+    header .logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: #60a5fa;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    header .subtitle {
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    section {
+      margin-bottom: 32px;
+    }
+
+    h2 {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: #94a3b8;
+      margin-bottom: 12px;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #e2e8f0;
+      margin-bottom: 6px;
+    }
+
+    .hint {
+      font-size: 12px;
+      color: #64748b;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .hint a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+
+    .hint a:hover {
+      text-decoration: underline;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 8px 12px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      color: #f1f5f9;
+      font-size: 13px;
+      font-family: 'Courier New', monospace;
+      outline: none;
+      transition: border-color .15s;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: #60a5fa;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: background .15s;
+    }
+
+    button.primary {
+      background: #2563eb;
+      color: #fff;
+    }
+
+    button.primary:hover {
+      background: #1d4ed8;
+    }
+
+    button.secondary {
+      background: #1e293b;
+      color: #94a3b8;
+      border: 1px solid #334155;
+    }
+
+    button.secondary:hover {
+      background: #273449;
+    }
+
+    .status {
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 5px;
+      display: none;
+      margin-top: 12px;
+    }
+
+    .status.success {
+      background: #14532d;
+      color: #86efac;
+      border: 1px solid #166534;
+    }
+
+    .status.error {
+      background: #7f1d1d;
+      color: #fca5a5;
+      border: 1px solid #991b1b;
+    }
+
+    .callout {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-left: 3px solid #60a5fa;
+      border-radius: 0 6px 6px 0;
+      padding: 12px 14px;
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+
+    .callout a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+
+    .callout a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <div class="logo">FilmDB</div>
+      <div class="subtitle">Film Stock Companion — Settings</div>
+    </div>
+  </header>
+
+  <section>
+    <h2>eBay Price Benchmarks</h2>
+
+    <div class="callout" style="margin-bottom:16px;">
+      FilmDB can show median sold prices for expired film on eBay listings.
+      This requires a free eBay Developer App ID (OAuth Application Token).<br><br>
+      <strong>How to get one:</strong>
+      <ol style="margin-top:6px;margin-left:16px;line-height:2;">
+        <li>Register at <a href="https://developer.ebay.com" target="_blank" rel="noopener">developer.ebay.com</a></li>
+        <li>Create a new application (Production keyset)</li>
+        <li>Generate a Client Credentials OAuth token</li>
+        <li>Paste the token below</li>
+      </ol>
+    </div>
+
+    <div class="field">
+      <label for="ebay-app-id">eBay OAuth Application Token</label>
+      <div class="hint">
+        This token is stored locally in your browser and never sent anywhere except to the eBay API.
+      </div>
+      <input type="password" id="ebay-app-id" placeholder="v^1.1#i^1#p^3#f^0#r^..." autocomplete="off" spellcheck="false">
+    </div>
+
+    <div class="actions">
+      <button class="primary" id="save-btn">Save settings</button>
+      <button class="secondary" id="clear-btn">Clear token</button>
+    </div>
+
+    <div class="status" id="status-msg"></div>
+  </section>
+
+  <section>
+    <h2>About</h2>
+    <div class="callout">
+      FilmDB overlays film stock data on B&H Photo, Adorama, Film Photography Store, and eBay.<br><br>
+      Film metadata is bundled locally — no tracking, no account required.<br>
+      Sample scans link to <a href="https://analog.cafe" target="_blank" rel="noopener">Analog.cafe</a>.
+      Development recipes link to <a href="https://filmdev.org" target="_blank" rel="noopener">FilmDev.org</a>.
+    </div>
+  </section>
+
+  <script src="options.js"></script>
+</body>
+</html>
