@@ -4,11 +4,10 @@
   "version": "1.0.0",
   "description": "__MSG_extensionDescription__",
   "permissions": [
-    "tabs",
-    "storage",
-    "notifications",
-    "alarms",
-    "idle"
+    "storage"
+  ],
+  "host_permissions": [
+    "https://lightroom.adobe.com/*"
   ],
   "action": {
     "default_popup": "popup/popup.html",
@@ -16,12 +15,18 @@
       "16": "assets/icons/icon16.png",
       "48": "assets/icons/icon48.png",
       "128": "assets/icons/icon128.png"
-    },
-    "default_badge_text": ""
+    }
   },
   "background": {
     "service_worker": "background/service-worker.js"
   },
+  "content_scripts": [
+    {
+      "matches": ["https://lightroom.adobe.com/*"],
+      "js": ["content/content.js"],
+      "run_at": "document_idle"
+    }
+  ],
   "options_page": "options/options.html",
   "icons": {
     "16": "assets/icons/icon16.png",

@@ -1,4 +1,4 @@
-// stripe-handler.js — Stripe Checkout stub for Auto-Context Time Tracker Pro
+// stripe-handler.js — Stripe Checkout stub for Lightroom Web Keyboard Enhancer Pro
 //
 // MVP: clicking "Upgrade" opens the Stripe Checkout URL directly in a new tab.
 // For production, replace CHECKOUT_URL with your Stripe Payment Link URL.

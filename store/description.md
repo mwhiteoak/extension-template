@@ -1,36 +1,41 @@
-# Chrome Web Store Description — Auto-Context Time Tracker
+# Chrome Web Store Description — Lightroom Web Keyboard Enhancer
 
 ## Overview
 
-Auto-Context Time Tracker is the only time tracker that knows which client you're working for without you having to tell it. Map browser URLs to clients, and the timer starts and stops automatically as you switch tabs. Never lose a billable hour to a forgotten timer again.
+Lightroom Web Keyboard Enhancer brings the keyboard shortcuts Lightroom Classic photographers rely on directly to Lightroom Web (lightroom.adobe.com). Stop reaching for your mouse on every photo — cull your entire shoot with your keyboard exactly like you do in Lightroom Classic.
 
 ## Features
 
-- **Automatic time tracking** — Timer starts when you open a client URL, pauses when you leave it. Zero manual effort.
-- **URL-to-client mapping** — Map patterns like `github.com/acme-corp*` or `notion.so/my-workspace` to any client and project.
-- **Daily review panel** — Review, edit, approve, or delete auto-tracked segments before any data leaves your device.
-- **Toggl & Clockify sync (Pro)** — One-click sync of approved entries to your existing time tracker.
-- **Idle detection (Pro)** — Timer auto-pauses after configured minutes of system idle. Resumes when you return.
-- **Fully local & private** — All data stored in your browser. No account, no telemetry, no servers.
-- **Visual badge** — Extension icon shows active client abbreviation and color-coded status at a glance.
+- **Flag shortcuts** — Press `P` to pick, `X` to reject, `U` to unflag. Instant, no mouse required.
+- **Star ratings** — Press `1`–`5` to set star ratings on the current photo.
+- **Arrow key navigation** — `←` / `→` to move between photos in your grid or filmstrip.
+- **Auto-advance** — Automatically moves to the next photo after you apply a flag or rating, so you stay in the zone.
+- **Options page** — Toggle individual shortcuts on or off. Remap any key to your preference.
+- **Popup cheat sheet** — Click the extension icon for an instant shortcut reference card.
+- **Chrome Storage Sync** — Your shortcut config follows you across all Chrome devices automatically.
+
+## Why You Need This
+
+Adobe Lightroom Web lacks the keyboard shortcuts that Classic users depend on for photo culling. Adobe has acknowledged this as the #1 user request. Until Adobe ships native support, this extension fills the gap — letting you rate and flag hundreds of photos per minute without touching your mouse.
 
 ## How to Use
 
-1. Open the extension and click the Settings (⚙) icon to open Options.
-2. Add your clients and projects.
-3. Add URL mapping rules — e.g. `github.com/acme-corp` → Acme Corp → Website Redesign.
-4. Browse normally. The badge turns green when a client timer is running.
-5. At the end of the day, click **Daily Review** to approve sessions, then sync to Toggl or Clockify.
+1. Open Lightroom Web (lightroom.adobe.com) and navigate to a photo in detail view.
+2. Press `P` to pick, `X` to reject, `U` to unflag.
+3. Press `1`–`5` to assign star ratings.
+4. Use `←` / `→` to move between photos.
+5. Click the extension icon to see your full shortcut map.
+6. Click ⚙ in the popup or go to Options to customize keys and toggle auto-advance.
 
 ## Pricing
 
-- **Free** — Up to 2 URL mappings, local tracking, manual copy-paste to your time tracker.
-- **Pro ($7/mo)** — Unlimited mappings, Toggl/Clockify sync, idle detection, weekly reports.
+- **Free** — All shortcuts, full remapping, auto-advance. No limitations.
+- **Pro ($7/mo)** — Cloud backup of your config, team sharing, priority support.
 
 ## Privacy
 
-All tracking data is stored exclusively in your browser using `chrome.storage.local`. No data is transmitted anywhere without your explicit approval in the Daily Review. No analytics, no telemetry, no external accounts required on the Free tier.
+All configuration is stored using `chrome.storage.sync` — synced across your Chrome devices but never sent to any external server. No analytics, no telemetry, no account required on the Free tier.
 
 ## Support
 
-For help or bug reports, visit: https://github.com/your-repo/auto-context-time-tracker/issues
+For help or bug reports, visit: https://github.com/your-repo/lightroom-web-keyboard-enhancer/issues

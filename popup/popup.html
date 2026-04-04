@@ -3,66 +3,46 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Auto-Context Time Tracker</title>
+  <title>Lightroom Web Keyboard Enhancer</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
   <div id="app">
     <header>
-      <h1>Time Tracker</h1>
+      <h1>LR Keyboard Shortcuts</h1>
       <a href="../options/options.html" target="_blank" id="settings-link" title="Settings">&#9881;</a>
     </header>
 
-    <!-- Current timer status -->
-    <div id="timer-card">
-      <div id="client-indicator">
-        <span id="client-dot" class="dot dot-idle"></span>
-        <span id="client-name">Not tracking</span>
-      </div>
-      <div id="project-name" class="sub-text"></div>
-      <div id="elapsed-time" class="elapsed">--:--:--</div>
-      <div id="timer-state-label" class="state-label">Idle</div>
+    <!-- Enable/disable toggle -->
+    <div id="toggle-row">
+      <span id="toggle-label">Shortcuts active</span>
+      <label class="switch">
+        <input type="checkbox" id="enabled-toggle">
+        <span class="slider"></span>
+      </label>
     </div>
 
-    <!-- Manual override controls -->
-    <div id="manual-controls">
-      <div id="manual-start-row">
-        <select id="client-select">
-          <option value="">Select client…</option>
-        </select>
-        <select id="project-select">
-          <option value="">Select project…</option>
-        </select>
-        <button id="start-btn" class="btn btn-green" disabled>Start</button>
-      </div>
-      <button id="stop-btn" class="btn btn-red" style="display:none">Stop Timer</button>
+    <!-- Shortcut cheat sheet -->
+    <table id="cheat-sheet">
+      <thead>
+        <tr><th>Key</th><th>Action</th><th>Status</th></tr>
+      </thead>
+      <tbody id="shortcut-rows">
+        <!-- Populated by popup.js -->
+      </tbody>
+    </table>
+
+    <!-- Auto-advance status -->
+    <div id="auto-advance-row" class="sub-row">
+      <span>Auto-advance after flag/rating</span>
+      <span id="auto-advance-status" class="status-chip"></span>
     </div>
 
-    <!-- Footer actions -->
-    <div id="footer-actions">
-      <button id="review-btn" class="btn btn-outline">Daily Review</button>
-      <span id="pending-badge" class="badge" style="display:none">0</span>
+    <!-- Upgrade banner -->
+    <div id="upgrade-banner">
+      <span>&#9733; Upgrade to Pro for cloud backup &amp; team sharing</span>
+      <button id="upgrade-btn" class="btn-pro">$7/mo</button>
     </div>
-  </div>
-
-  <!-- Daily Review Panel (hidden by default) -->
-  <div id="review-panel" style="display:none">
-    <header>
-      <button id="review-back-btn" class="btn-icon">&larr;</button>
-      <h1>Daily Review</h1>
-    </header>
-    <div id="review-list"></div>
-    <div id="review-footer">
-      <button id="approve-all-btn" class="btn btn-green">Approve All</button>
-      <button id="sync-btn" class="btn btn-blue">Sync</button>
-      <span id="sync-status" class="sub-text"></span>
-    </div>
-  </div>
-
-  <!-- Pro upgrade banner -->
-  <div id="upgrade-banner" style="display:none">
-    <span>&#9733; Upgrade to Pro for unlimited mappings &amp; sync</span>
-    <button id="upgrade-btn" class="btn btn-pro">Upgrade $7/mo</button>
   </div>
 
   <script src="popup.js"></script>

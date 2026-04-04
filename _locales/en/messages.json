@@ -1,10 +1,10 @@
 {
   "extensionName": {
-    "message": "Auto-Context Time Tracker",
+    "message": "Lightroom Web Keyboard Enhancer",
     "description": "The name of the extension as displayed in the Chrome Web Store and browser UI"
   },
   "extensionDescription": {
-    "message": "Automatically tracks which client you're working for based on your active browser tab. No more forgotten timers.",
+    "message": "Adds Lightroom Classic keyboard shortcuts (P/X/U flags, 1-5 stars, arrow navigation) to Lightroom Web. Speed up your photo culling workflow.",
     "description": "Short description shown under the extension name"
   }
 }

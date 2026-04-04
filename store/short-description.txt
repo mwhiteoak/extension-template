@@ -1,1 +1,1 @@
-Auto-tracks time by client based on your active browser tab. No more forgotten timers. Sync to Toggl or Clockify.
+Adds Lightroom Classic keyboard shortcuts (P/X flags, 1-5 stars, arrow navigation) to Lightroom Web. Cull photos faster without touching your mouse.
