@@ -1,0 +1,67 @@
+{
+  "manifest_version": 3,
+  "name": "Ink Scout — Fountain Pen Ink Swatches",
+  "version": "1.0.0",
+  "description": "See real ink swatches, water-resistance ratings, and shading info on Goulet Pens, JetPens, and more — before you buy.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "*://*.gouletpens.com/*",
+    "*://*.jetpens.com/*",
+    "*://*.vannesspens.com/*",
+    "*://*.andersonpens.com/*",
+    "*://*.inkswatches.com/*",
+    "*://www.fountainpennetwork.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background/service-worker.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.gouletpens.com/products/*",
+        "*://*.gouletpens.com/collections/*/products/*"
+      ],
+      "js": ["src/content/goulet.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://*.jetpens.com/*/pd/*",
+        "*://*.jetpens.com/product/*"
+      ],
+      "js": ["src/content/jetpens.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://*.vannesspens.com/products/*"
+      ],
+      "js": ["src/content/vanness.js"],
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "*://*.andersonpens.com/products/*",
+        "*://*.andersonpens.com/collections/*/products/*"
+      ],
+      "js": ["src/content/anderson.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Ink Scout",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png"
+    }
+  }
+}
