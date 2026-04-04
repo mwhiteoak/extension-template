@@ -1,5 +1,5 @@
-// FIRE Portfolio Overlay — Service Worker
-// Handles messaging from content scripts and Stripe stub.
+// Homebrew Recipe Sidekick — Service Worker
+// Handles messaging from content scripts, options, and Stripe stub.
 
 chrome.runtime.onInstalled.addListener(async ({ reason }) => {
   if (reason === 'install') {
@@ -12,7 +12,11 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
     switch (msg.type) {
 
       case 'GET_OPTIONS': {
-        const opts = await chrome.storage.sync.get({ isPro: false, enabledBrokerages: ['fidelity', 'vanguard', 'schwab'] });
+        const opts = await chrome.storage.sync.get({
+          isPro: false,
+          units: 'imperial',
+          defaultBatchSize: 5
+        });
         sendResponse(opts);
         break;
       }
@@ -24,8 +28,8 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
       }
 
       case 'OPEN_STRIPE_CHECKOUT': {
-        // Stripe stub — replace billingCode link with real Stripe Payment Link before launch
-        chrome.tabs.create({ url: 'https://buy.stripe.com/fire_portfolio_overlay_pro_placeholder' });
+        // Stripe stub — replace with real Stripe Payment Link before launch
+        chrome.tabs.create({ url: 'https://buy.stripe.com/homebrew_recipe_sidekick_pro_placeholder' });
         sendResponse({ ok: true });
         break;
       }
@@ -42,35 +46,41 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
         break;
       }
 
-      case 'STORE_BROKERAGE_BALANCE': {
-        // Multi-account aggregation stub (Pro feature)
-        // Each brokerage tab writes its balance; background aggregates
-        const { brokerage, balance } = msg;
-        if (brokerage && balance !== null) {
-          const key = 'balance_' + brokerage;
-          await chrome.storage.local.set({ [key]: { balance, updatedAt: Date.now() } });
+      case 'SAVE_RECIPE': {
+        // Pro: save up to 20 recipes to chrome.storage.sync
+        const { recipe } = msg;
+        if (!recipe || !recipe.name) {
+          sendResponse({ ok: false, error: 'Recipe must have a name.' });
+          break;
         }
-        sendResponse({ ok: true });
+        const stored = await chrome.storage.sync.get({ savedRecipes: [] });
+        const recipes = stored.savedRecipes;
+        const existingIdx = recipes.findIndex(r => r.name === recipe.name);
+        if (existingIdx >= 0) {
+          recipes[existingIdx] = recipe;
+        } else {
+          if (recipes.length >= 20) {
+            sendResponse({ ok: false, error: 'Max 20 saved recipes reached.' });
+            break;
+          }
+          recipes.push(recipe);
+        }
+        await chrome.storage.sync.set({ savedRecipes: recipes });
+        sendResponse({ ok: true, count: recipes.length });
         break;
       }
 
-      case 'GET_AGGREGATE_BALANCE': {
-        // Pro: sum balances from all registered brokerages
-        const opts = await chrome.storage.sync.get({ isPro: false });
-        if (!opts.isPro) { sendResponse({ aggregate: null }); break; }
-        const keys = ['balance_fidelity', 'balance_vanguard', 'balance_schwab'];
-        const stored = await chrome.storage.local.get(keys);
-        const maxAgeMs = 24 * 60 * 60 * 1000;
-        let total = 0;
-        let count = 0;
-        for (const k of keys) {
-          const entry = stored[k];
-          if (entry && Date.now() - entry.updatedAt < maxAgeMs) {
-            total += entry.balance;
-            count++;
-          }
-        }
-        sendResponse({ aggregate: count > 0 ? total : null, count });
+      case 'GET_RECIPES': {
+        const stored = await chrome.storage.sync.get({ savedRecipes: [] });
+        sendResponse({ recipes: stored.savedRecipes });
+        break;
+      }
+
+      case 'DELETE_RECIPE': {
+        const stored = await chrome.storage.sync.get({ savedRecipes: [] });
+        const filtered = stored.savedRecipes.filter(r => r.name !== msg.name);
+        await chrome.storage.sync.set({ savedRecipes: filtered });
+        sendResponse({ ok: true, count: filtered.length });
         break;
       }
 

@@ -1,10 +1,10 @@
 {
   "extensionName": {
-    "message": "FIRE Portfolio Overlay",
+    "message": "Homebrew Recipe Sidekick",
     "description": "The name of the extension as displayed in the Chrome Web Store and browser UI"
   },
   "extensionDescription": {
-    "message": "See your FIRE progress — FI ratio, projected retirement date, and milestone tracker — overlaid on your Fidelity, Vanguard, or Schwab dashboard. All calculations happen locally in your browser.",
+    "message": "Hop substitution lookup, IBU/ABV/SRM calculators, water chemistry, and yeast attenuation tools — inline on homebrewtalk.com and brewersfriend.com. No tab switching required.",
     "description": "Short description shown under the extension name"
   }
 }

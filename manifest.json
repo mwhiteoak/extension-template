@@ -4,15 +4,14 @@
   "version": "1.0.0",
   "description": "__MSG_extensionDescription__",
   "permissions": [
-    "storage"
+    "storage",
+    "tabs"
   ],
   "host_permissions": [
-    "https://*.fidelity.com/*",
-    "https://fidelity.com/*",
-    "https://*.vanguard.com/*",
-    "https://vanguard.com/*",
-    "https://*.schwab.com/*",
-    "https://schwab.com/*"
+    "https://www.homebrewtalk.com/*",
+    "https://homebrewtalk.com/*",
+    "https://www.brewersfriend.com/*",
+    "https://brewersfriend.com/*"
   ],
   "action": {
     "default_popup": "popup/popup.html",
@@ -28,11 +27,13 @@
   "content_scripts": [
     {
       "matches": [
-        "https://*.fidelity.com/*",
-        "https://*.vanguard.com/*",
-        "https://*.schwab.com/*"
+        "https://www.homebrewtalk.com/*",
+        "https://homebrewtalk.com/*",
+        "https://www.brewersfriend.com/*",
+        "https://brewersfriend.com/*"
       ],
-      "js": ["content/balance-detector.js", "content/fire-sidebar.js"],
+      "js": ["content/recipe-detector.js", "content/brew-sidebar.js"],
+      "css": ["content/brew-sidebar.css"],
       "run_at": "document_idle"
     }
   ],
@@ -44,5 +45,15 @@
     "128": "assets/icons/icon128.png"
   },
   "default_locale": "en",
-  "web_accessible_resources": []
+  "web_accessible_resources": [
+    {
+      "resources": ["data/hops.json"],
+      "matches": [
+        "https://www.homebrewtalk.com/*",
+        "https://homebrewtalk.com/*",
+        "https://www.brewersfriend.com/*",
+        "https://brewersfriend.com/*"
+      ]
+    }
+  ]
 }

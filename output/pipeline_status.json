@@ -56,6 +56,14 @@
       "builtAt": "2026-04-05",
       "billingCode": "EXT-009-PRO",
       "targetSites": ["open.spotify.com", "www.youtube.com", "pitchfork.com", "www.allmusic.com"]
+    },
+    {
+      "id": "EXT-53",
+      "name": "Homebrew Recipe Sidekick",
+      "status": "built",
+      "builtAt": "2026-04-05",
+      "billingCode": "EXT-010-PRO",
+      "targetSites": ["www.homebrewtalk.com", "www.brewersfriend.com"]
     }
   ]
 }

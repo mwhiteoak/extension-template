@@ -1,33 +1,24 @@
-// FIRE Portfolio Overlay — Popup JS
-
-function formatCurrency(n) {
-  if (n >= 1_000_000) return '$' + (n / 1_000_000).toFixed(2) + 'M';
-  if (n >= 1_000) return '$' + Math.round(n).toLocaleString();
-  return '$' + n.toFixed(0);
-}
+// Homebrew Recipe Sidekick — Popup JS
 
 async function init() {
-  const [local, sync] = await Promise.all([
-    chrome.storage.local.get(['fire_settings']),
-    chrome.storage.sync.get({ isPro: false, enabledBrokerages: ['fidelity', 'vanguard', 'schwab'] }),
-  ]);
-
-  const fire = local.fire_settings;
-  if (fire && fire.annualExpenses) {
-    const target = fire.annualExpenses * 25;
-    document.getElementById('fireTargetVal').textContent = formatCurrency(target);
-  }
+  const sync = await chrome.storage.sync.get({
+    isPro: false,
+    units: 'imperial',
+    defaultBatchSize: 5,
+  });
 
   document.getElementById('planVal').textContent = sync.isPro ? 'Pro ✓' : 'Free';
+  document.getElementById('unitsVal').textContent =
+    sync.units === 'metric' ? 'Metric' : 'Imperial';
+
+  const batchUnit = sync.units === 'metric' ? 'L' : 'gal';
+  const batchDisplay = sync.units === 'metric'
+    ? (sync.defaultBatchSize * 3.785).toFixed(0)
+    : sync.defaultBatchSize;
+  document.getElementById('batchVal').textContent = `${batchDisplay} ${batchUnit}`;
 
   if (sync.isPro) {
     document.getElementById('proBar').style.display = 'none';
-  }
-
-  if (!fire) {
-    document.getElementById('fiRatioVal').textContent = 'Setup needed';
-    document.getElementById('statusVal').textContent = 'Setup needed';
-    document.getElementById('statusVal').style.color = '#e67e22';
   }
 }
 
