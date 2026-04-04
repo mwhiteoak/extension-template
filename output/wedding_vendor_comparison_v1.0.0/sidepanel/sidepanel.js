@@ -159,16 +159,6 @@ function openDetail(vendorId) {
 }
 
 function renderProSection(v) {
-  if (!isPro) {
-    return `
-      <div class="sp-pro-section">
-        <div class="sp-pro-section-header">&#9733; Pro Features</div>
-        <div class="sp-pro-lock-msg">Unlock price quotes, contact log, availability notes, and email shortcuts.</div>
-        <button class="sp-pro-btn" style="margin-top:8px;font-size:11px;padding:6px 14px" id="sp-detail-upgrade-btn">Upgrade to Pro — $7/mo</button>
-      </div>
-    `;
-  }
-
   const log = (v.contactLog || []);
   const logRows = log.map((entry, i) => `
     <tr>
@@ -247,8 +237,6 @@ function bindProDetailEvents(v) {
     });
   });
 
-  // Detail upgrade btn (not pro — shouldn't appear but safeguard)
-  document.getElementById('sp-detail-upgrade-btn')?.addEventListener('click', showProModal);
 }
 
 function showAddLogForm(v) {
@@ -303,15 +291,7 @@ async function saveDetailField(field, value) {
 // ── Compare view ──────────────────────────────────────────────────────────────
 
 function renderCompareView() {
-  const upsell = document.getElementById('sp-compare-upsell');
   const tableWrap = document.getElementById('sp-compare-table-wrap');
-
-  if (!isPro) {
-    upsell.style.display = '';
-    tableWrap.innerHTML = '';
-    return;
-  }
-  upsell.style.display = 'none';
 
   const cat = document.getElementById('sp-compare-category').value;
   if (!cat) {
@@ -414,10 +394,6 @@ function bindEvents() {
   document.querySelectorAll('.sp-tab').forEach(tab => {
     tab.addEventListener('click', () => {
       const tabId = tab.dataset.tab;
-      if (tabId === 'compare' && !isPro) {
-        showProModal();
-        return;
-      }
       currentView = tabId;
       document.querySelectorAll('.sp-tab').forEach(t => t.classList.remove('sp-tab--active'));
       tab.classList.add('sp-tab--active');
@@ -461,14 +437,6 @@ function bindEvents() {
     await loadVendors();
     renderCategoryFilters();
   });
-
-  // Pro modal close / upgrade
-  document.getElementById('sp-modal-close').addEventListener('click', hideProModal);
-  document.getElementById('sp-modal-upgrade-btn').addEventListener('click', () => {
-    chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
-    hideProModal();
-  });
-  document.getElementById('sp-upgrade-compare-btn')?.addEventListener('click', showProModal);
 
   // Listen for vendor updates from service worker
   chrome.runtime.onMessage.addListener((msg) => {

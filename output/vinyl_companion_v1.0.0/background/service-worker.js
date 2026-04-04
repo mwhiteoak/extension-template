@@ -85,19 +85,6 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
         break;
       }
 
-      case 'OPEN_STRIPE_CHECKOUT': {
-        // Stripe stub — replace with real Stripe Payment Link before launch
-        chrome.tabs.create({ url: 'https://buy.stripe.com/vinyl_companion_pro_placeholder' });
-        sendResponse({ ok: true });
-        break;
-      }
-
-      case 'SET_PRO': {
-        await chrome.storage.sync.set({ isPro: msg.isPro });
-        sendResponse({ ok: true });
-        break;
-      }
-
       case 'OPEN_OPTIONS': {
         chrome.runtime.openOptionsPage();
         sendResponse({ ok: true });
@@ -121,7 +108,7 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
 
 async function getOptions() {
   return chrome.storage.sync.get({
-    isPro: false,
+    isPro: true,
     currency: 'USD',
     activeSites: ['spotify', 'youtube', 'pitchfork', 'allmusic'],
     discogsToken: null,

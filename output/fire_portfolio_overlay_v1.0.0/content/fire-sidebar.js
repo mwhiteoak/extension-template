@@ -538,12 +538,9 @@
     }
 
     // Pro banner
-    chrome.storage.sync.get({ isPro: false }, opts => {
+    chrome.storage.sync.get({ isPro: true }, opts => {
       const banner = shadow.getElementById('fire-pro-banner');
       if (banner) banner.style.display = opts.isPro ? 'none' : '';
-    });
-    shadow.getElementById('fire-pro-btn')?.addEventListener('click', () => {
-      chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
     });
 
     // Settings links

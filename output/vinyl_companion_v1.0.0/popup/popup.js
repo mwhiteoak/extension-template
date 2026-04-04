@@ -32,7 +32,6 @@
 
     // Pro section
     document.getElementById('vc-pro-section').style.display = opts.isPro ? '' : 'none';
-    document.getElementById('vc-upgrade-banner').style.display = opts.isPro ? 'none' : '';
 
     if (opts.isPro) {
       // Discogs connection status
@@ -69,10 +68,6 @@
   });
 
   document.getElementById('vc-currency')?.addEventListener('change', save);
-
-  document.getElementById('vc-upgrade-btn')?.addEventListener('click', () => {
-    chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
-  });
 
   document.getElementById('vc-options-btn')?.addEventListener('click', () => {
     chrome.runtime.sendMessage({ type: 'OPEN_OPTIONS' });

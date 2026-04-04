@@ -1,7 +1,7 @@
 // FIRE Portfolio Overlay — Options Page
 
 const SYNC_DEFAULTS = {
-  isPro: false,
+  isPro: true,
   enabledBrokerages: ['fidelity', 'vanguard', 'schwab'],
 };
 
@@ -54,15 +54,6 @@ document.getElementById('save-sites').addEventListener('click', async () => {
   if (document.getElementById('enable-schwab').checked) brokerages.push('schwab');
   await chrome.storage.sync.set({ enabledBrokerages: brokerages });
   showMsg('sites-saved');
-});
-
-document.getElementById('upgrade-btn').addEventListener('click', () => {
-  chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
-});
-
-document.getElementById('disable-pro-btn')?.addEventListener('click', async () => {
-  await chrome.storage.sync.set({ isPro: false });
-  updateProUI(false);
 });
 
 document.getElementById('clear-data').addEventListener('click', async () => {

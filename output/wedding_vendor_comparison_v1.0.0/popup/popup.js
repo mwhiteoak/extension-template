@@ -13,7 +13,6 @@ async function init() {
 
   document.getElementById('pu-vendor-count').textContent = vendors.length;
   document.getElementById('pu-plan').textContent = isPro ? 'Pro ★' : 'Free';
-  document.getElementById('pu-pro-bar').style.display = isPro ? 'none' : '';
 
   document.getElementById('pu-open-panel-btn').addEventListener('click', async () => {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -25,11 +24,6 @@ async function init() {
 
   document.getElementById('pu-settings-btn').addEventListener('click', () => {
     chrome.runtime.openOptionsPage();
-    window.close();
-  });
-
-  document.getElementById('pu-upgrade-btn')?.addEventListener('click', () => {
-    chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
     window.close();
   });
 }

@@ -6,7 +6,7 @@
 const VENDOR_STATUS = ['Contacted', 'Quoted', 'Booked', 'Rejected'];
 
 const DEFAULT_OPTIONS = {
-  isPro: false,
+  isPro: true,
   categoryBudgets: {},
 };
 
@@ -167,21 +167,6 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
       // ── SAVE_OPTIONS ──────────────────────────────────────────────────────
       case 'SAVE_OPTIONS': {
         await chrome.storage.sync.set(msg.options);
-        sendResponse({ ok: true });
-        break;
-      }
-
-      // ── OPEN_STRIPE_CHECKOUT ──────────────────────────────────────────────
-      case 'OPEN_STRIPE_CHECKOUT': {
-        // Stripe stub — replace with real Stripe Payment Link before launch
-        chrome.tabs.create({ url: 'https://buy.stripe.com/wedding_vendor_tracker_pro_placeholder' });
-        sendResponse({ ok: true });
-        break;
-      }
-
-      // ── SET_PRO ───────────────────────────────────────────────────────────
-      case 'SET_PRO': {
-        await chrome.storage.sync.set({ isPro: msg.isPro });
         sendResponse({ ok: true });
         break;
       }

@@ -5,9 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const planVal = document.getElementById('planVal');
   const alertCount = document.getElementById('alertCount');
   const settingsBtn = document.getElementById('settingsBtn');
-  const proBar = document.getElementById('proBar');
-  const proBtn = document.getElementById('proBtn');
-
   // Load options and update display
   chrome.runtime.sendMessage({ type: 'GET_OPTIONS' }, (opts) => {
     const isConnected = !!(opts?.consumerKey && opts?.accessToken);
@@ -17,9 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     if (planVal) {
       planVal.textContent = opts?.isPro ? 'Pro' : 'Free';
-    }
-    if (proBar && opts?.isPro) {
-      proBar.classList.add('hidden');
     }
   });
 
@@ -37,9 +31,4 @@ document.addEventListener('DOMContentLoaded', () => {
     window.close();
   });
 
-  // Pro upgrade button
-  proBtn?.addEventListener('click', () => {
-    chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
-    window.close();
-  });
 });

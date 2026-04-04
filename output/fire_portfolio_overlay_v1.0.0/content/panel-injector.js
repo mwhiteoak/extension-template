@@ -58,13 +58,6 @@
           <div class="eci-upgrade-text" id="eci-upgrade-text"></div>
         </div>
 
-        <!-- Pro upgrade banner -->
-        <div class="eci-pro-banner" id="eci-pro-banner" style="display:none">
-          <div class="eci-pro-title">Upgrade to Pro — $6/mo</div>
-          <div class="eci-pro-desc">Saved comparisons, price alerts, and personalized upgrade recommendations.</div>
-          <button class="eci-pro-btn" id="eci-pro-btn">Upgrade to Pro</button>
-        </div>
-
         <!-- No data state -->
         <div class="eci-no-data" id="eci-no-data" style="display:none">
           <p>No community data found for this product.</p>
@@ -75,9 +68,6 @@
   `;
 
   document.getElementById('eci-close-btn').addEventListener('click', closePanel);
-  document.getElementById('eci-pro-btn')?.addEventListener('click', () => {
-    chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
-  });
 
   toggleBtn.addEventListener('click', () => {
     if (panelOpen) {

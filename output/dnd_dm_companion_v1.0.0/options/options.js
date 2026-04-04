@@ -2,7 +2,7 @@
 
 async function load() {
   const opts = await chrome.storage.sync.get({
-    isPro: false,
+    isPro: true,
     dmcPartySize: 4,
     dmcPartyLevel: 5,
     hotkey: 'D',
@@ -26,10 +26,6 @@ document.getElementById('save-btn').addEventListener('click', async () => {
   const msg = document.getElementById('status-msg');
   msg.classList.add('visible');
   setTimeout(() => msg.classList.remove('visible'), 2000);
-});
-
-document.getElementById('upgrade-btn').addEventListener('click', () => {
-  chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
 });
 
 document.getElementById('revoke-pro-btn').addEventListener('click', async () => {

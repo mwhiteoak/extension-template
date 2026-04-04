@@ -14,7 +14,7 @@
   // ── State ──────────────────────────────────────────────────────────────────
 
   let state = {
-    isPro: false,
+    isPro: true,
     sidebarVisible: false,
     activeTab: 'initiative',
     combat: {
@@ -816,10 +816,8 @@
       inner.innerHTML = `
         <div class="dmc-pro-gate">
           <p>🔒 Encounter Difficulty Estimator is a <strong>Pro</strong> feature</p>
-          <button class="dmc-upgrade-btn dmc-stripe-btn">Upgrade to Pro — $6/mo</button>
         </div>
       `;
-      inner.querySelector('.dmc-stripe-btn').addEventListener('click', openStripeCheckout);
       return;
     }
 
@@ -1014,10 +1012,8 @@
       inner.innerHTML = `
         <div class="dmc-pro-gate">
           <p>🔒 Monster Quick-Reference is a <strong>Pro</strong> feature</p>
-          <button class="dmc-upgrade-btn dmc-stripe-btn">Upgrade to Pro — $6/mo</button>
         </div>
       `;
-      inner.querySelector('.dmc-stripe-btn').addEventListener('click', openStripeCheckout);
       return;
     }
 
@@ -1117,18 +1113,12 @@
     return results.slice(0, limit).map(r => r.m);
   }
 
-  // ── Stripe ─────────────────────────────────────────────────────────────────
-
-  function openStripeCheckout() {
-    chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
-  }
-
   // ── Init ───────────────────────────────────────────────────────────────────
 
   async function init() {
     // Load Pro status and saved state
     const stored = await new Promise(res => {
-      chrome.storage.sync.get({ isPro: false, dmcNotes: '', dmcPartySize: 4, dmcPartyLevel: 5 }, res);
+      chrome.storage.sync.get({ isPro: true, dmcNotes: '', dmcPartySize: 4, dmcPartyLevel: 5 }, res);
     });
     state.isPro = stored.isPro;
     state.partySize = stored.dmcPartySize;

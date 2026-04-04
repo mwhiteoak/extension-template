@@ -9,7 +9,7 @@ function formatCurrency(n) {
 async function init() {
   const [local, sync] = await Promise.all([
     chrome.storage.local.get(['fire_settings']),
-    chrome.storage.sync.get({ isPro: false, enabledBrokerages: ['fidelity', 'vanguard', 'schwab'] }),
+    chrome.storage.sync.get({ isPro: true, enabledBrokerages: ['fidelity', 'vanguard', 'schwab'] }),
   ]);
 
   const fire = local.fire_settings;
@@ -20,10 +20,6 @@ async function init() {
 
   document.getElementById('planVal').textContent = sync.isPro ? 'Pro ✓' : 'Free';
 
-  if (sync.isPro) {
-    document.getElementById('proBar').style.display = 'none';
-  }
-
   if (!fire) {
     document.getElementById('fiRatioVal').textContent = 'Setup needed';
     document.getElementById('statusVal').textContent = 'Setup needed';
@@ -33,10 +29,6 @@ async function init() {
 
 document.getElementById('settingsBtn').addEventListener('click', () => {
   chrome.runtime.openOptionsPage();
-});
-
-document.getElementById('proBtn').addEventListener('click', () => {
-  chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
 });
 
 init();

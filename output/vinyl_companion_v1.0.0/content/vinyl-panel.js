@@ -68,11 +68,6 @@
           </button>
         </div>
         <div class="vc-feedback" id="vc-feedback" style="display:none"></div>
-        <div class="vc-pro-banner" id="vc-pro-banner" style="display:none">
-          <div class="vc-pro-banner-title">Pro — $5/mo</div>
-          <div class="vc-pro-banner-desc">Wantlist sync, price alerts &amp; collection tracker</div>
-          <button class="vc-btn vc-btn-pro" id="vc-upgrade-btn" style="width:100%">Upgrade to Pro</button>
-        </div>
         <div class="vc-footer">
           <a href="https://www.discogs.com" target="_blank" rel="noopener noreferrer">Powered by Discogs</a>
         </div>
@@ -96,9 +91,6 @@
   });
 
   document.getElementById('vc-wantlist-btn').addEventListener('click', onWantlist);
-  document.getElementById('vc-upgrade-btn')?.addEventListener('click', () => {
-    chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
-  });
 
   // ── Panel open/close ─────────────────────────────────────────────────────────
 
@@ -218,11 +210,6 @@
     panel.dataset.releaseId = lookup.releaseId;
     panel.dataset.releaseTitle = lookup.title || albumData.album;
 
-    // Show pro banner for non-pro users
-    const opts = await new Promise(resolve => {
-      chrome.runtime.sendMessage({ type: 'GET_OPTIONS' }, resolve);
-    });
-    document.getElementById('vc-pro-banner').style.display = opts?.isPro ? 'none' : '';
     document.getElementById('vc-wantlist-btn').disabled = false;
   }
 

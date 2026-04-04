@@ -4,8 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const fields = ['consumerKey', 'consumerSecret', 'accessToken', 'accessTokenSecret'];
   const toggles = ['showSparkline', 'showCoverage', 'showSellerStats', 'showColorAvailability'];
 
-  const proBanner = document.getElementById('proBanner');
-  const upgradeBtn = document.getElementById('upgradeBtn');
   const saveBtn = document.getElementById('saveBtn');
   const successMsg = document.getElementById('successMsg');
   const alertsContent = document.getElementById('alertsContent');
@@ -19,9 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
     for (const t of toggles) {
       const el = document.getElementById(t);
       if (el) el.checked = opts[t] !== false;
-    }
-    if (opts?.isPro && proBanner) {
-      proBanner.classList.add('hidden');
     }
     if (opts?.isPro) {
       loadAlerts();
@@ -45,11 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => successMsg.classList.remove('show'), 2500);
       }
     });
-  });
-
-  // ── Upgrade button ───────────────────────────────────────────────────────
-  upgradeBtn?.addEventListener('click', () => {
-    chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
   });
 
   // ── Price Alerts (Pro) ───────────────────────────────────────────────────

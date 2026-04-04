@@ -13,7 +13,7 @@ let categoryBudgets = {};
 
 async function init() {
   const opts = await new Promise(resolve =>
-    chrome.storage.sync.get({ isPro: false, categoryBudgets: {} }, resolve)
+    chrome.storage.sync.get({ isPro: true, categoryBudgets: {} }, resolve)
   );
   isPro = opts.isPro;
   categoryBudgets = opts.categoryBudgets || {};
@@ -23,15 +23,8 @@ async function init() {
   badge.textContent = isPro ? 'Pro ★' : 'Free';
   badge.className = isPro ? 'plan-badge plan-badge--pro' : 'plan-badge plan-badge--free';
 
-  // Pro banner
-  document.getElementById('pro-banner').style.display = isPro ? 'none' : '';
-
   // Budget fields (always shown; disabled for Free users)
   renderBudgetFields();
-
-  document.getElementById('upgrade-btn')?.addEventListener('click', () => {
-    chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
-  });
 
   document.getElementById('save-btn').addEventListener('click', saveSettings);
 }

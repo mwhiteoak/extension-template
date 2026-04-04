@@ -14,7 +14,7 @@ const RACE_DISTANCES = {
 let currentRace = null;      // { type, distances }
 let currentResults = null;   // Calculated split data
 let bikeMode = 'speed';      // 'speed' | 'watts'
-let isPro = false;
+let isPro = true;
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -399,19 +399,7 @@ document.getElementById('raceSelect').addEventListener('change', (e) => {
 });
 
 document.getElementById('printBtn').addEventListener('click', () => {
-  if (!isPro) {
-    chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
-    return;
-  }
   window.print();
-});
-
-document.getElementById('upgradeBtn').addEventListener('click', () => {
-  chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
-});
-
-document.getElementById('nutritionUpgradeBtn').addEventListener('click', () => {
-  chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
 });
 
 // ── Receive race data from injector ──────────────────────────────────────────

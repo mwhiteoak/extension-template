@@ -8,7 +8,7 @@ async function init() {
   statusEl.textContent = onDnDB ? '● Active on D&D Beyond' : '● Open D&D Beyond to use sidebar';
   if (onDnDB) statusEl.classList.add('on-site');
 
-  const { isPro } = await chrome.storage.sync.get({ isPro: false });
+  const { isPro } = await chrome.storage.sync.get({ isPro: true });
   document.getElementById('free-row').style.display = isPro ? 'none' : 'block';
   document.getElementById('pro-active-row').style.display = isPro ? 'block' : 'none';
 
@@ -45,10 +45,6 @@ async function init() {
     window.close();
   });
 
-  document.getElementById('btn-upgrade')?.addEventListener('click', () => {
-    chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
-    window.close();
-  });
 }
 
 init();

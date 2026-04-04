@@ -8,7 +8,7 @@
 
   let templates = [];
   let proposals = [];
-  let settings = { reminderEnabled: true, reminderHours: 48, isPro: false };
+  let settings = { reminderEnabled: true, reminderHours: 48, isPro: true };
   let currentVars = {};
   let selectedTemplateId = null;
   let hasCopied = false;
@@ -19,7 +19,7 @@
     chrome.storage.local.get(['ptm_templates', 'ptm_proposals', 'ptm_settings'], (result) => {
       templates = result.ptm_templates || [];
       proposals = result.ptm_proposals || [];
-      settings = Object.assign({ reminderEnabled: true, reminderHours: 48, isPro: false }, result.ptm_settings || {});
+      settings = Object.assign({ reminderEnabled: true, reminderHours: 48, isPro: true }, result.ptm_settings || {});
       cb && cb();
     });
   }
@@ -219,12 +219,6 @@
   function escHtml(str) {
     return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   }
-
-  // ── Upgrade button ───────────────────────────────────────────────────────────
-
-  document.getElementById('ptm-upgrade-btn').addEventListener('click', () => {
-    chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
-  });
 
   // ── Request variables from parent page ──────────────────────────────────────
 

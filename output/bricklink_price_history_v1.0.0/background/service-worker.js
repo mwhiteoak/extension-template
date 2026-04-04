@@ -101,7 +101,7 @@ async function cacheSet(key, value) {
 // ── Options ───────────────────────────────────────────────────────────────────
 
 const DEFAULT_OPTIONS = {
-  isPro: false,
+  isPro: true,
   consumerKey: '',
   consumerSecret: '',
   accessToken: '',
@@ -528,21 +528,6 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
         let alerts = await getPriceAlerts();
         alerts = alerts.filter(a => a.id !== msg.id);
         await savePriceAlerts(alerts);
-        sendResponse({ ok: true });
-        break;
-      }
-
-      // ── OPEN_STRIPE_CHECKOUT ───────────────────────────────────────────
-      case 'OPEN_STRIPE_CHECKOUT': {
-        // Stripe stub — replace with real Stripe Payment Link before launch
-        chrome.tabs.create({ url: 'https://buy.stripe.com/bricklink_price_history_pro_placeholder' });
-        sendResponse({ ok: true });
-        break;
-      }
-
-      // ── SET_PRO ────────────────────────────────────────────────────────
-      case 'SET_PRO': {
-        await chrome.storage.sync.set({ isPro: msg.isPro });
         sendResponse({ ok: true });
         break;
       }

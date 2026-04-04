@@ -12,26 +12,13 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
     switch (msg.type) {
 
       case 'GET_OPTIONS': {
-        const opts = await chrome.storage.sync.get({ isPro: false, enabledBrokerages: ['fidelity', 'vanguard', 'schwab'] });
+        const opts = await chrome.storage.sync.get({ isPro: true, enabledBrokerages: ['fidelity', 'vanguard', 'schwab'] });
         sendResponse(opts);
         break;
       }
 
       case 'SAVE_OPTIONS': {
         await chrome.storage.sync.set(msg.options);
-        sendResponse({ ok: true });
-        break;
-      }
-
-      case 'OPEN_STRIPE_CHECKOUT': {
-        // Stripe stub — replace billingCode link with real Stripe Payment Link before launch
-        chrome.tabs.create({ url: 'https://buy.stripe.com/fire_portfolio_overlay_pro_placeholder' });
-        sendResponse({ ok: true });
-        break;
-      }
-
-      case 'SET_PRO': {
-        await chrome.storage.sync.set({ isPro: msg.isPro });
         sendResponse({ ok: true });
         break;
       }
@@ -56,7 +43,7 @@ chrome.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
 
       case 'GET_AGGREGATE_BALANCE': {
         // Pro: sum balances from all registered brokerages
-        const opts = await chrome.storage.sync.get({ isPro: false });
+        const opts = await chrome.storage.sync.get({ isPro: true });
         if (!opts.isPro) { sendResponse({ aggregate: null }); break; }
         const keys = ['balance_fidelity', 'balance_vanguard', 'balance_schwab'];
         const stored = await chrome.storage.local.get(keys);

@@ -40,7 +40,6 @@
     // Pro sections
     document.getElementById('vc-alerts-section').style.display = opts.isPro ? '' : 'none';
     document.getElementById('vc-collection-section').style.display = opts.isPro ? '' : 'none';
-    document.getElementById('vc-upgrade-block').style.display = opts.isPro ? 'none' : '';
 
     if (opts.isPro) {
       loadAlerts();
@@ -162,10 +161,6 @@
     // Save current token/username, then open Discogs developer settings
     await save();
     chrome.runtime.sendMessage({ type: 'DISCOGS_OAUTH_START' });
-  });
-
-  document.getElementById('vc-upgrade-btn')?.addEventListener('click', () => {
-    chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
   });
 
   // ── Helpers ──────────────────────────────────────────────────────────────────
