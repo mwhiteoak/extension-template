@@ -7,9 +7,14 @@
     "storage"
   ],
   "host_permissions": [
-    "https://www.ironman.com/*",
-    "https://www.challenge-family.com/*",
-    "https://www.trisignup.com/*"
+    "https://www.seattlecoffeegear.com/*",
+    "https://seattlecoffeegear.com/*",
+    "https://www.prima-coffee.com/*",
+    "https://prima-coffee.com/*",
+    "https://www.clivecoffee.com/*",
+    "https://clivecoffee.com/*",
+    "https://www.reddit.com/*",
+    "https://oauth.reddit.com/*"
   ],
   "action": {
     "default_popup": "popup/popup.html",
@@ -25,12 +30,15 @@
   "content_scripts": [
     {
       "matches": [
-        "https://www.ironman.com/*",
-        "https://www.challenge-family.com/*",
-        "https://www.trisignup.com/*"
+        "https://www.seattlecoffeegear.com/*",
+        "https://seattlecoffeegear.com/*",
+        "https://www.prima-coffee.com/*",
+        "https://prima-coffee.com/*",
+        "https://www.clivecoffee.com/*",
+        "https://clivecoffee.com/*"
       ],
-      "js": ["content/race-detector.js", "content/overlay-injector.js"],
-      "css": ["content/overlay.css"],
+      "js": ["content/product-detector.js", "content/panel-injector.js"],
+      "css": ["content/panel.css"],
       "run_at": "document_idle"
     }
   ],
@@ -42,14 +50,5 @@
     "128": "assets/icons/icon128.png"
   },
   "default_locale": "en",
-  "web_accessible_resources": [
-    {
-      "resources": ["content/overlay.html", "content/overlay.js", "content/print.css"],
-      "matches": [
-        "https://www.ironman.com/*",
-        "https://www.challenge-family.com/*",
-        "https://www.trisignup.com/*"
-      ]
-    }
-  ]
+  "web_accessible_resources": []
 }

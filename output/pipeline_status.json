@@ -25,6 +25,13 @@
       "builtAt": "2026-04-04",
       "billingCode": "EXT-003-PRO",
       "targetSites": ["ironman.com", "challenge-family.com", "trisignup.com"]
+    },
+    {
+      "id": "EXT-27",
+      "name": "Espresso Equipment Community Intelligence Overlay",
+      "status": "built",
+      "builtAt": "2026-04-05",
+      "targetSites": ["seattlecoffeegear.com", "prima-coffee.com", "clivecoffee.com"]
     }
   ]
 }

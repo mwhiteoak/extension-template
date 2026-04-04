@@ -1,10 +1,10 @@
 {
   "extensionName": {
-    "message": "Triathlon Race Day Pacing Planner",
+    "message": "Espresso Community Intelligence",
     "description": "The name of the extension as displayed in the Chrome Web Store and browser UI"
   },
   "extensionDescription": {
-    "message": "Race day pacing overlay for triathletes. Auto-detects race distance and calculates target splits, finish time, and nutrition timing on ironman.com, challenge-family.com, and trisignup.com.",
+    "message": "See r/espresso community tier ratings and sentiment while shopping for espresso equipment on seattlecoffeegear.com, prima-coffee.com, and clivecoffee.com.",
     "description": "Short description shown under the extension name"
   }
 }

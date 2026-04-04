@@ -3,37 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Triathlon Pacing Planner — Settings</title>
+  <title>Espresso Community Intelligence — Settings</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-      background: #f5f5f5;
-      color: #1a1a2e;
+      background: #f5ede4;
+      color: #2a1a0e;
       min-height: 100vh;
     }
 
     .header {
-      background: #1a1a2e;
+      background: #4a2c17;
       color: #fff;
       padding: 16px 24px;
     }
     .header h1 { font-size: 18px; font-weight: 700; }
-    .header p { font-size: 12px; opacity: 0.6; margin-top: 3px; }
+    .header p { font-size: 12px; opacity: 0.65; margin-top: 3px; }
 
     .container {
-      max-width: 640px;
-      margin: 32px auto;
+      max-width: 600px;
+      margin: 28px auto;
       padding: 0 20px;
     }
 
     .card {
       background: #fff;
       border-radius: 10px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-      padding: 22px 24px;
-      margin-bottom: 18px;
+      box-shadow: 0 1px 4px rgba(74,44,23,0.1);
+      padding: 20px 22px;
+      margin-bottom: 16px;
     }
 
     .card-title {
@@ -41,71 +41,67 @@
       font-weight: 700;
       margin-bottom: 14px;
       padding-bottom: 10px;
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid #f0e8de;
+      color: #4a2c17;
     }
 
-    .form-row {
+    .toggle-row {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-    .form-label {
+      justify-content: space-between;
+      padding: 9px 0;
+      border-bottom: 1px solid #f5ede4;
       font-size: 13px;
-      color: #555;
-      min-width: 160px;
+      color: #3a2010;
     }
-    .form-input {
-      flex: 1;
-      padding: 7px 10px;
-      font-size: 13px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      outline: none;
-    }
-    .form-input:focus { border-color: #e84d2b; }
-    .form-hint { font-size: 11px; color: #aaa; min-width: 50px; }
+    .toggle-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .toggle-row span { line-height: 1.4; }
 
-    .unit-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 4px;
+    /* Toggle switch */
+    .toggle-switch {
+      position: relative;
+      width: 40px;
+      height: 22px;
+      flex-shrink: 0;
     }
-    .unit-opt {
-      flex: 1;
-      text-align: center;
-      padding: 10px;
-      border: 2px solid #ddd;
-      border-radius: 7px;
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider {
+      position: absolute;
+      inset: 0;
+      background: #d0c4b8;
+      border-radius: 22px;
       cursor: pointer;
-      font-size: 13px;
-      font-weight: 600;
-      transition: all 0.15s;
+      transition: background 0.2s;
     }
-    .unit-opt.selected { border-color: #e84d2b; background: #fff0ed; color: #e84d2b; }
-
-    .bike-mode-row {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 12px;
-    }
-    .bike-mode-btn {
-      flex: 1;
-      padding: 6px;
-      font-size: 12px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
       background: #fff;
-      cursor: pointer;
-      font-weight: 600;
-      color: #555;
+      border-radius: 50%;
+      top: 3px;
+      left: 3px;
+      transition: transform 0.2s;
     }
-    .bike-mode-btn.active { background: #1a1a2e; color: #fff; border-color: #1a1a2e; }
+    .toggle-switch input:checked + .toggle-slider { background: #4a2c17; }
+    .toggle-switch input:checked + .toggle-slider::before { transform: translateX(18px); }
 
-    .hidden { display: none !important; }
+    /* Site checkboxes */
+    .site-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid #f5ede4;
+      font-size: 13px;
+      color: #3a2010;
+    }
+    .site-row:last-child { border-bottom: none; }
+    .site-row input[type="checkbox"] { width: 16px; height: 16px; accent-color: #4a2c17; cursor: pointer; }
 
     .save-btn {
-      background: #e84d2b;
+      background: #4a2c17;
       color: #fff;
       border: none;
       border-radius: 7px;
@@ -114,8 +110,9 @@
       font-weight: 700;
       cursor: pointer;
       width: 100%;
+      transition: background 0.15s;
     }
-    .save-btn:hover { background: #c73d1e; }
+    .save-btn:hover { background: #6b3f22; }
 
     .success-msg {
       background: #d1fae5;
@@ -130,18 +127,18 @@
     .success-msg.show { display: block; }
 
     .pro-banner {
-      background: linear-gradient(135deg, #1a1a2e 60%, #e84d2b);
+      background: linear-gradient(135deg, #4a2c17 60%, #a05a28);
       color: #fff;
       border-radius: 10px;
       padding: 18px 22px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 14px;
     }
     .pro-banner h2 { font-size: 14px; margin-bottom: 3px; }
-    .pro-banner p { font-size: 11px; opacity: 0.8; }
+    .pro-banner p { font-size: 11px; opacity: 0.82; }
     .upgrade-btn {
       background: #f59e0b;
       color: #fff;
@@ -160,8 +157,8 @@
 <body>
 
 <div class="header">
-  <h1>🏊 🚴 🏃 Triathlon Race Day Pacing Planner</h1>
-  <p>Settings — Save your benchmark paces for instant race planning</p>
+  <h1>&#9749; Espresso Community Intelligence</h1>
+  <p>Settings — Configure which sites and features are active</p>
 </div>
 
 <div class="container">
@@ -169,75 +166,54 @@
   <div class="pro-banner" id="proBanner">
     <div>
       <h2>Unlock Pro Features</h2>
-      <p>Nutrition timing · Printable cheat sheet · Strava connect · Custom race distances</p>
+      <p>Saved comparisons · Price alerts · Personalized upgrade recommendations</p>
     </div>
-    <button class="upgrade-btn" id="upgradeBtn">Upgrade — $8/mo</button>
+    <button class="upgrade-btn" id="upgradeBtn">Upgrade — $6/mo</button>
   </div>
 
   <div class="card">
-    <div class="card-title">⚙️ Units</div>
-    <div class="unit-row">
-      <div class="unit-opt selected" id="unitMetric" data-val="metric">
-        Metric<br><small style="font-weight:400;font-size:11px">km · kph · m per 100m</small>
-      </div>
-      <div class="unit-opt" id="unitImperial" data-val="imperial">
-        Imperial<br><small style="font-weight:400;font-size:11px">miles · mph · yd per 100yd</small>
-      </div>
+    <div class="card-title">Active Sites</div>
+    <div class="site-row">
+      <input type="checkbox" id="site-scg" value="seattlecoffeegear.com">
+      <label for="site-scg">seattlecoffeegear.com</label>
     </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title">🏊 Swim Benchmark Pace</div>
-    <div class="form-row">
-      <span class="form-label" id="swimLabel">Pace per 100m</span>
-      <input class="form-input" type="text" id="swimPace" placeholder="1:45" maxlength="8">
-      <span class="form-hint">mm:ss</span>
+    <div class="site-row">
+      <input type="checkbox" id="site-prima" value="prima-coffee.com">
+      <label for="site-prima">prima-coffee.com</label>
+    </div>
+    <div class="site-row">
+      <input type="checkbox" id="site-clive" value="clivecoffee.com">
+      <label for="site-clive">clivecoffee.com</label>
     </div>
   </div>
 
   <div class="card">
-    <div class="card-title">🚴 Bike Benchmark</div>
-    <div class="bike-mode-row">
-      <button class="bike-mode-btn active" id="bikeModeSpeed">Average Speed</button>
-      <button class="bike-mode-btn" id="bikeModeWatts">FTP (Power)</button>
+    <div class="card-title">Panel Features</div>
+    <div class="toggle-row">
+      <span>Community tier badge</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggleTier">
+        <span class="toggle-slider"></span>
+      </label>
     </div>
-    <div class="form-row" id="bikeSpeedRow">
-      <span class="form-label" id="bikeSpeedLabel">Average Race Speed</span>
-      <input class="form-input" type="number" id="bikeSpeed" placeholder="30" min="10" max="60">
-      <span class="form-hint" id="bikeSpeedUnit">kph</span>
+    <div class="toggle-row">
+      <span>Top Reddit threads</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggleSentiment">
+        <span class="toggle-slider"></span>
+      </label>
     </div>
-    <div class="form-row hidden" id="bikeWattsRow">
-      <span class="form-label">FTP (Functional Threshold)</span>
-      <input class="form-input" type="number" id="bikeWatts" placeholder="220" min="50" max="500">
-      <span class="form-hint">watts</span>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title">🏃 Run Benchmark Pace</div>
-    <div class="form-row">
-      <span class="form-label" id="runLabel">Pace per km</span>
-      <input class="form-input" type="text" id="runPace" placeholder="5:30" maxlength="8">
-      <span class="form-hint">mm:ss</span>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title">⏱ Default Transition Times</div>
-    <div class="form-row">
-      <span class="form-label">T1 (Swim → Bike)</span>
-      <input class="form-input" type="number" id="t1Min" placeholder="3" min="0" max="30">
-      <span class="form-hint">minutes</span>
-    </div>
-    <div class="form-row">
-      <span class="form-label">T2 (Bike → Run)</span>
-      <input class="form-input" type="number" id="t2Min" placeholder="2" min="0" max="30">
-      <span class="form-hint">minutes</span>
+    <div class="toggle-row">
+      <span>Upgrade path recommendations</span>
+      <label class="toggle-switch">
+        <input type="checkbox" id="toggleUpgrade">
+        <span class="toggle-slider"></span>
+      </label>
     </div>
   </div>
 
   <button class="save-btn" id="saveBtn">Save Settings</button>
-  <div class="success-msg" id="successMsg">✓ Settings saved! Your paces will auto-load in the overlay planner.</div>
+  <div class="success-msg" id="successMsg">&#10003; Settings saved!</div>
 
 </div>
 

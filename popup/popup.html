@@ -3,51 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Triathlon Pacing Planner</title>
+  <title>Espresso Community Intelligence</title>
   <link rel="stylesheet" href="popup.css">
 </head>
 <body>
   <div class="header">
-    <div class="header-icon">🏊 🚴 🏃</div>
+    <div class="header-icon">&#9749;</div>
     <div>
-      <div class="header-title">Race Day Planner</div>
-      <div class="header-sub">Triathlon Pacing Planner</div>
+      <div class="header-title">Espresso Community Intel</div>
+      <div class="header-sub">r/espresso tier ratings while you shop</div>
     </div>
   </div>
 
   <div class="body">
-    <div class="status-section" id="statusSection">
+    <div class="status-section">
       <div class="status-row">
-        <span class="status-label">Paces saved</span>
-        <span class="status-val" id="pacesSaved">No</span>
+        <span class="status-label">Status</span>
+        <span class="status-val" id="statusVal">Active</span>
       </div>
       <div class="status-row">
-        <span class="status-label">Units</span>
-        <span class="status-val" id="unitsVal">Metric</span>
+        <span class="status-label">Active sites</span>
+        <span class="status-val" id="sitesVal">3</span>
       </div>
-      <div class="status-row" id="swimRow" style="display:none">
-        <span class="status-label">🏊 Swim pace</span>
-        <span class="status-val" id="swimVal">—</span>
-      </div>
-      <div class="status-row" id="bikeRow" style="display:none">
-        <span class="status-label">🚴 Bike</span>
-        <span class="status-val" id="bikeVal">—</span>
-      </div>
-      <div class="status-row" id="runRow" style="display:none">
-        <span class="status-label">🏃 Run pace</span>
-        <span class="status-val" id="runVal">—</span>
+      <div class="status-row">
+        <span class="status-label">Plan</span>
+        <span class="status-val" id="planVal">Free</span>
       </div>
     </div>
 
     <div class="sites-note">
-      <strong>Open on:</strong> ironman.com, challenge-family.com, or trisignup.com to use the overlay planner.
+      <strong>Supported:</strong> seattlecoffeegear.com, prima-coffee.com, clivecoffee.com
     </div>
 
-    <button class="settings-btn" id="settingsBtn">⚙️ Settings &amp; Saved Paces</button>
+    <button class="settings-btn" id="settingsBtn">&#9881;&#65039; Settings</button>
 
     <div class="pro-bar" id="proBar">
-      <span>Upgrade to Pro for nutrition timing &amp; cheat sheets</span>
-      <button class="pro-btn" id="proBtn">$8/mo</button>
+      <span>Pro: saved comparisons &amp; price alerts</span>
+      <button class="pro-btn" id="proBtn">$6/mo</button>
     </div>
   </div>
 

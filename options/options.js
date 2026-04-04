@@ -1,102 +1,53 @@
-// Triathlon Race Day Pacing Planner — Options Page
+// Espresso Community Intelligence — Options Page
 
-let bikeMode = 'speed';
+const DEFAULTS = {
+  enabledSites: ['seattlecoffeegear.com', 'prima-coffee.com', 'clivecoffee.com'],
+  showTier: true,
+  showSentiment: true,
+  showRedditLink: true,
+  showUpgrade: true,
+  isPro: false,
+};
 
-// ── Load settings ─────────────────────────────────────────────────────────────
+async function loadOptions() {
+  const opts = await chrome.storage.sync.get(DEFAULTS);
 
-async function loadSettings() {
-  const result = await chrome.storage.sync.get('tri_settings');
-  const s = result.tri_settings || {};
+  document.getElementById('site-scg').checked = opts.enabledSites.includes('seattlecoffeegear.com');
+  document.getElementById('site-prima').checked = opts.enabledSites.includes('prima-coffee.com');
+  document.getElementById('site-clive').checked = opts.enabledSites.includes('clivecoffee.com');
 
-  if (s.units === 'imperial') {
-    document.getElementById('unitMetric').classList.remove('selected');
-    document.getElementById('unitImperial').classList.add('selected');
-  }
-  if (s.swimPacePer100) document.getElementById('swimPace').value = s.swimPacePer100;
-  if (s.bikeInputMode === 'watts') switchBikeMode('watts');
-  if (s.bikePace) {
-    if (s.bikeInputMode === 'watts') document.getElementById('bikeWatts').value = s.bikePace;
-    else document.getElementById('bikeSpeed').value = s.bikePace;
-  }
-  if (s.runPacePer1k) document.getElementById('runPace').value = s.runPacePer1k;
-  if (s.t1Minutes) document.getElementById('t1Min').value = s.t1Minutes;
-  if (s.t2Minutes) document.getElementById('t2Min').value = s.t2Minutes;
+  document.getElementById('toggleTier').checked = opts.showTier;
+  document.getElementById('toggleSentiment').checked = opts.showSentiment;
+  document.getElementById('toggleUpgrade').checked = opts.showUpgrade;
 
-  if (s.isPro) {
+  if (opts.isPro) {
     document.getElementById('proBanner').style.display = 'none';
   }
-
-  updateUnitLabels();
 }
 
-// ── Save settings ─────────────────────────────────────────────────────────────
+async function saveOptions() {
+  const enabledSites = [];
+  if (document.getElementById('site-scg').checked) enabledSites.push('seattlecoffeegear.com');
+  if (document.getElementById('site-prima').checked) enabledSites.push('prima-coffee.com');
+  if (document.getElementById('site-clive').checked) enabledSites.push('clivecoffee.com');
 
-async function saveSettings() {
-  const units = document.querySelector('.unit-opt.selected')?.dataset.val || 'metric';
-  const bikeVal = bikeMode === 'watts'
-    ? document.getElementById('bikeWatts').value
-    : document.getElementById('bikeSpeed').value;
-
-  const current = await chrome.storage.sync.get('tri_settings');
-  const merged = Object.assign({}, current.tri_settings || {}, {
-    units,
-    swimPacePer100: document.getElementById('swimPace').value,
-    bikeInputMode: bikeMode,
-    bikePace: bikeVal,
-    runPacePer1k: document.getElementById('runPace').value,
-    t1Minutes: document.getElementById('t1Min').value,
-    t2Minutes: document.getElementById('t2Min').value,
+  await chrome.storage.sync.set({
+    enabledSites,
+    showTier: document.getElementById('toggleTier').checked,
+    showSentiment: document.getElementById('toggleSentiment').checked,
+    showRedditLink: true,
+    showUpgrade: document.getElementById('toggleUpgrade').checked,
   });
-
-  await chrome.storage.sync.set({ tri_settings: merged });
 
   const msg = document.getElementById('successMsg');
   msg.classList.add('show');
   setTimeout(() => msg.classList.remove('show'), 3000);
 }
 
-// ── Unit labels ───────────────────────────────────────────────────────────────
-
-function updateUnitLabels() {
-  const isImperial = document.getElementById('unitImperial').classList.contains('selected');
-  document.getElementById('swimLabel').textContent = isImperial ? 'Pace per 100yd' : 'Pace per 100m';
-  document.getElementById('bikeSpeedLabel').textContent = isImperial ? 'Average Race Speed' : 'Average Race Speed';
-  document.getElementById('bikeSpeedUnit').textContent = isImperial ? 'mph' : 'kph';
-  document.getElementById('runLabel').textContent = isImperial ? 'Pace per mile' : 'Pace per km';
-}
-
-// ── Bike mode ─────────────────────────────────────────────────────────────────
-
-function switchBikeMode(mode) {
-  bikeMode = mode;
-  document.getElementById('bikeSpeedRow').classList.toggle('hidden', mode === 'watts');
-  document.getElementById('bikeWattsRow').classList.toggle('hidden', mode !== 'watts');
-  document.getElementById('bikeModeSpeed').classList.toggle('active', mode === 'speed');
-  document.getElementById('bikeModeWatts').classList.toggle('active', mode === 'watts');
-}
-
-// ── Event listeners ───────────────────────────────────────────────────────────
-
-document.getElementById('unitMetric').addEventListener('click', () => {
-  document.getElementById('unitMetric').classList.add('selected');
-  document.getElementById('unitImperial').classList.remove('selected');
-  updateUnitLabels();
-});
-
-document.getElementById('unitImperial').addEventListener('click', () => {
-  document.getElementById('unitImperial').classList.add('selected');
-  document.getElementById('unitMetric').classList.remove('selected');
-  updateUnitLabels();
-});
-
-document.getElementById('bikeModeSpeed').addEventListener('click', () => switchBikeMode('speed'));
-document.getElementById('bikeModeWatts').addEventListener('click', () => switchBikeMode('watts'));
-document.getElementById('saveBtn').addEventListener('click', saveSettings);
+document.getElementById('saveBtn').addEventListener('click', saveOptions);
 
 document.getElementById('upgradeBtn').addEventListener('click', () => {
   chrome.runtime.sendMessage({ type: 'OPEN_STRIPE_CHECKOUT' });
 });
 
-// ── Init ──────────────────────────────────────────────────────────────────────
-
-loadSettings();
+loadOptions();

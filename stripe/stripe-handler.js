@@ -1,16 +1,16 @@
-// stripe-handler.js — Stripe Checkout stub for Triathlon Race Day Pacing Planner Pro
+// stripe-handler.js — Stripe Checkout stub for Espresso Community Intelligence Pro
 //
 // MVP: clicking "Upgrade" opens the Stripe Payment Link in a new tab.
 // For production, replace CHECKOUT_URL with your actual Stripe Payment Link.
-// A server-side webhook should POST back to set isPro: true in the user's storage.
+// A server-side webhook should POST back to set isPro: true in chrome.storage.sync.
 //
-// Billing code: EXT-003-PRO
+// Billing code: EXT-004-PRO
 
-const CHECKOUT_URL = 'https://buy.stripe.com/tri_pacing_pro_placeholder';
+const CHECKOUT_URL = 'https://buy.stripe.com/espresso_community_pro_placeholder';
 
 /**
  * Opens the Stripe Checkout page in a new tab.
- * Called by background service worker on OPEN_STRIPE_CHECKOUT message.
+ * Called by the background service worker on OPEN_STRIPE_CHECKOUT message.
  */
 function openCheckout() {
   chrome.tabs.create({ url: CHECKOUT_URL });
@@ -21,18 +21,16 @@ function openCheckout() {
  * @returns {Promise<boolean>}
  */
 async function isEntitled() {
-  const result = await chrome.storage.sync.get('tri_settings');
-  return !!(result.tri_settings?.isPro);
+  const result = await chrome.storage.sync.get({ isPro: false });
+  return !!result.isPro;
 }
 
 /**
- * Grants Pro entitlement (call this after a successful Stripe webhook).
+ * Grants Pro entitlement (call this after a successful Stripe webhook confirmation).
  * @returns {Promise<void>}
  */
 async function grantEntitlement() {
-  const result = await chrome.storage.sync.get('tri_settings');
-  const settings = Object.assign({}, result.tri_settings || {}, { isPro: true });
-  await chrome.storage.sync.set({ tri_settings: settings });
+  await chrome.storage.sync.set({ isPro: true });
 }
 
 /**
@@ -40,9 +38,7 @@ async function grantEntitlement() {
  * @returns {Promise<void>}
  */
 async function revokeEntitlement() {
-  const result = await chrome.storage.sync.get('tri_settings');
-  const settings = Object.assign({}, result.tri_settings || {}, { isPro: false });
-  await chrome.storage.sync.set({ tri_settings: settings });
+  await chrome.storage.sync.set({ isPro: false });
 }
 
 // Export for use in service worker (if bundled) or testing

@@ -1,32 +1,15 @@
-// Triathlon Race Day Pacing Planner — Popup JS
+// Espresso Community Intelligence — Popup JS
 
 async function init() {
-  const result = await chrome.storage.sync.get('tri_settings');
-  const s = result.tri_settings || {};
+  const opts = await chrome.storage.sync.get({
+    enabledSites: ['seattlecoffeegear.com', 'prima-coffee.com', 'clivecoffee.com'],
+    isPro: false,
+  });
 
-  const hasPaces = !!(s.swimPacePer100 || s.bikePace || s.runPacePer1k);
-  document.getElementById('pacesSaved').textContent = hasPaces ? 'Yes ✓' : 'No';
-  document.getElementById('unitsVal').textContent = s.units === 'imperial' ? 'Imperial' : 'Metric';
+  document.getElementById('sitesVal').textContent = opts.enabledSites.length;
+  document.getElementById('planVal').textContent = opts.isPro ? 'Pro ✓' : 'Free';
 
-  const unitSuffix = s.units === 'imperial';
-
-  if (s.swimPacePer100) {
-    document.getElementById('swimRow').style.display = 'flex';
-    document.getElementById('swimVal').textContent = s.swimPacePer100 + (unitSuffix ? ' /100yd' : ' /100m');
-  }
-
-  if (s.bikePace) {
-    document.getElementById('bikeRow').style.display = 'flex';
-    const suffix = s.bikeInputMode === 'watts' ? 'W FTP' : (unitSuffix ? 'mph' : 'kph');
-    document.getElementById('bikeVal').textContent = s.bikePace + ' ' + suffix;
-  }
-
-  if (s.runPacePer1k) {
-    document.getElementById('runRow').style.display = 'flex';
-    document.getElementById('runVal').textContent = s.runPacePer1k + (unitSuffix ? ' /mi' : ' /km');
-  }
-
-  if (s.isPro) {
+  if (opts.isPro) {
     document.getElementById('proBar').style.display = 'none';
   }
 }
