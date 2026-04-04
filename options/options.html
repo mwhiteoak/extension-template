@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Homebrew Recipe Sidekick — Settings</title>
+  <title>Seed Catalog Companion — Settings</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-size: 14px; color: #222; background: #f7f3ee; margin: 0; padding: 0;
+      font-size: 14px; color: #222; background: #f4f9f4; margin: 0; padding: 0;
     }
     .header {
-      background: #e8620d; color: #fff; padding: 18px 28px;
+      background: #2d6a2d; color: #fff; padding: 18px 28px;
     }
     .header h1 { margin: 0; font-size: 18px; font-weight: 700; }
     .header p { margin: 3px 0 0; font-size: 12px; opacity: .85; }
@@ -21,34 +21,46 @@
       background: #fff; border-radius: 10px; padding: 22px;
       box-shadow: 0 1px 6px rgba(0,0,0,.09); margin-bottom: 18px;
     }
-    .card-title { font-size: 14px; font-weight: 700; color: #e8620d; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid #f0ebe4; }
+    .card-title { font-size: 14px; font-weight: 700; color: #2d6a2d; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid #d8ecd8; }
 
     .field { margin-bottom: 14px; }
     .field label { display: block; font-size: 11px; font-weight: 700; color: #555; margin-bottom: 5px; text-transform: uppercase; letter-spacing: .4px; }
-    .field select,
-    .field input[type="number"],
-    .field input[type="text"] {
+    .field input[type="text"],
+    .field input[type="number"] {
       width: 100%; padding: 9px 12px; border: 1px solid #ccc; border-radius: 6px;
       font-size: 14px; outline: none; transition: border-color .2s; font-family: inherit;
     }
-    .field select:focus,
-    .field input:focus { border-color: #e8620d; }
+    .field input:focus { border-color: #2d6a2d; }
     .field .hint { font-size: 11px; color: #888; margin-top: 3px; }
 
     .field-row { display: flex; gap: 14px; }
     .field-row .field { flex: 1; }
 
+    .zone-result {
+      margin-top: 10px; padding: 12px 14px; background: #e8f5e9;
+      border: 1px solid #c3e6c3; border-radius: 8px; font-size: 13px; display: none;
+    }
+    .zone-result strong { color: #2d6a2d; font-size: 15px; }
+    .zone-detail { font-size: 12px; color: #555; margin-top: 4px; }
+    .zone-error { background: #ffebee; border-color: #ef9a9a; color: #c0392b; display: none; }
+
     .save-btn {
-      background: #e8620d; color: #fff; border: none; border-radius: 6px;
+      background: #2d6a2d; color: #fff; border: none; border-radius: 6px;
       padding: 10px 22px; font-size: 14px; font-weight: 700; cursor: pointer;
       font-family: inherit;
     }
-    .save-btn:hover { background: #c7510b; }
-    .success-msg { font-size: 12px; color: #e8620d; font-weight: 600; margin-left: 10px; opacity: 0; transition: opacity .3s; }
+    .save-btn:hover { background: #1a5c1a; }
+    .lookup-btn {
+      background: #5a9a5a; color: #fff; border: none; border-radius: 6px;
+      padding: 10px 18px; font-size: 13px; font-weight: 700; cursor: pointer;
+      font-family: inherit; margin-right: 8px;
+    }
+    .lookup-btn:hover { background: #4a8a4a; }
+    .success-msg { font-size: 12px; color: #2d6a2d; font-weight: 600; margin-left: 10px; opacity: 0; transition: opacity .3s; }
     .success-msg.show { opacity: 1; }
 
     .pro-card {
-      background: linear-gradient(135deg, #e8620d 0%, #a84409 100%);
+      background: linear-gradient(135deg, #2d6a2d 0%, #1a4a1a 100%);
       color: #fff; border-radius: 10px; padding: 22px;
       box-shadow: 0 2px 12px rgba(0,0,0,.15); margin-bottom: 18px;
     }
@@ -57,14 +69,14 @@
     .pro-price span { font-size: 14px; font-weight: 400; opacity: .7; }
     .pro-card ul { margin: 0 0 16px; padding: 0 0 0 18px; font-size: 12px; opacity: .9; line-height: 1.8; }
     .pro-btn {
-      background: #fff; color: #e8620d; border: none; border-radius: 6px;
+      background: #fff; color: #2d6a2d; border: none; border-radius: 6px;
       padding: 10px 22px; font-size: 13px; font-weight: 700; cursor: pointer;
       font-family: inherit;
     }
-    .pro-btn:hover { background: #fff3ee; }
-    .pro-badge { display: inline-block; background: #fff; color: #e8620d; font-size: 10px; font-weight: 700; border-radius: 20px; padding: 2px 9px; margin-left: 8px; vertical-align: middle; }
+    .pro-btn:hover { background: #e8f5e9; }
+    .pro-badge { display: inline-block; background: #fff; color: #2d6a2d; font-size: 10px; font-weight: 700; border-radius: 20px; padding: 2px 9px; margin-left: 8px; vertical-align: middle; }
 
-    .privacy-note { background: #fff3ee; border-left: 3px solid #e8620d; padding: 12px 14px; border-radius: 0 6px 6px 0; font-size: 12px; color: #333; line-height: 1.5; margin-top: 8px; }
+    .privacy-note { background: #e8f5e9; border-left: 3px solid #2d6a2d; padding: 12px 14px; border-radius: 0 6px 6px 0; font-size: 12px; color: #333; line-height: 1.5; margin-top: 8px; }
     .btn-danger {
       background: #fff; color: #c0392b; border: 1.5px solid #c0392b;
       border-radius: 6px; padding: 9px 18px; font-size: 13px; font-weight: 600; cursor: pointer;
@@ -77,46 +89,45 @@
 </head>
 <body>
   <div class="header">
-    <h1>🍺 Homebrew Recipe Sidekick</h1>
-    <p>Settings &amp; Preferences</p>
+    <h1>🌱 Seed Catalog Companion Planner</h1>
+    <p>Settings &amp; Zone Setup</p>
   </div>
   <div class="container">
 
     <div class="card">
-      <div class="card-title">Measurement Units</div>
-      <div class="field-row">
-        <div class="field">
-          <label>Unit System</label>
-          <select id="units">
-            <option value="imperial">Imperial (oz, lbs, gallons, °F)</option>
-            <option value="metric">Metric (g, kg, liters, °C)</option>
-          </select>
-          <div class="hint">Controls default units in all calculators</div>
-        </div>
-        <div class="field">
-          <label>Default Batch Size (gal)</label>
-          <input type="number" id="defaultBatchSize" min="0.1" step="0.5" placeholder="5" />
-          <div class="hint">Pre-fills batch size in IBU and SRM calculators</div>
-        </div>
+      <div class="card-title">Your Growing Zone</div>
+      <div class="field">
+        <label>ZIP Code</label>
+        <input type="text" id="zip" maxlength="5" placeholder="e.g. 02118" autocomplete="postal-code" />
+        <div class="hint">Used to determine your USDA hardiness zone and frost dates — never transmitted</div>
       </div>
-      <button class="save-btn" id="save-units">Save Settings</button>
-      <span class="success-msg" id="units-saved">Saved!</span>
+
+      <button class="lookup-btn" id="lookup-btn">Look Up Zone &amp; Frost Dates</button>
+      <span class="success-msg" id="zip-saved">Saved!</span>
+
+      <div class="zone-result" id="zone-result">
+        <strong>Zone <span id="zone-display">—</span></strong>
+        <div class="zone-detail" id="zone-detail">—</div>
+      </div>
+      <div class="zone-result zone-error" id="zone-error">
+        ZIP code not found. Try a 5-digit US ZIP code.
+      </div>
     </div>
 
     <div class="pro-card">
       <h2>Pro Tier <span class="pro-badge" id="pro-badge" style="display:none">ACTIVE</span></h2>
       <div class="pro-price">$5<span>/month</span></div>
       <ul>
-        <li>Water chemistry calculator — mineral additions to hit target profiles</li>
-        <li>Yeast attenuation estimator — FG range &amp; ABV spread from 30+ strains</li>
-        <li>Recipe saving — save up to 20 recipes to sync storage</li>
-        <li>BrewersFriend recipe import — auto-fill all calculator inputs from recipe page</li>
+        <li>Frost date countdown — days until first fall frost vs. days to maturity</li>
+        <li>Succession planting calculator — optimal re-sow intervals for continuous harvest</li>
+        <li>Multi-zone support — save 3 zones (primary + secondary gardens)</li>
+        <li>Seed shopping list with zone validation</li>
       </ul>
       <div id="pro-upgrade-section">
         <button class="pro-btn" id="upgrade-btn">Upgrade to Pro — $5/mo</button>
       </div>
       <div id="pro-active-section" style="display:none">
-        <p style="font-size:12px;opacity:.85;margin-bottom:10px">Pro is active. Water chemistry and yeast tools are unlocked in the sidebar.</p>
+        <p style="font-size:12px;opacity:.85;margin-bottom:10px">Pro is active. Frost countdown and succession planner are unlocked on product pages.</p>
         <button class="pro-btn" id="disable-pro-btn" style="background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.4)">Disable Pro (testing)</button>
       </div>
     </div>
@@ -124,7 +135,7 @@
     <div class="card">
       <div class="card-title">Privacy &amp; Data</div>
       <div class="privacy-note">
-        <strong>Zero data transmitted.</strong> All calculations run locally in your browser. No recipe data, gravity readings, or personal information ever leaves your device.
+        <strong>Zero data transmitted.</strong> Your ZIP code and all planting calculations run entirely in your browser. No personal information, location, or browsing history ever leaves your device.
       </div>
       <br />
       <button class="btn-danger" id="clear-data">Clear All Saved Data</button>

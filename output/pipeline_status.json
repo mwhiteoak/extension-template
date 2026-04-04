@@ -64,6 +64,14 @@
       "builtAt": "2026-04-05",
       "billingCode": "EXT-010-PRO",
       "targetSites": ["www.homebrewtalk.com", "www.brewersfriend.com"]
+    },
+    {
+      "id": "EXT-57",
+      "name": "Seed Catalog Companion Planner",
+      "status": "built",
+      "builtAt": "2026-04-05",
+      "billingCode": "EXT-011-PRO",
+      "targetSites": ["www.burpee.com", "www.johnnyseeds.com", "www.rareseeds.com", "www.seedsavers.org", "www.parkseed.com", "www.territorialseed.com", "www.westcoastseeds.com", "www.migardener.com"]
     }
   ]
 }

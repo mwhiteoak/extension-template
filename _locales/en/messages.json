@@ -1,10 +1,10 @@
 {
   "extensionName": {
-    "message": "Homebrew Recipe Sidekick",
+    "message": "Seed Catalog Companion Planner",
     "description": "The name of the extension as displayed in the Chrome Web Store and browser UI"
   },
   "extensionDescription": {
-    "message": "Hop substitution lookup, IBU/ABV/SRM calculators, water chemistry, and yeast attenuation tools — inline on homebrewtalk.com and brewersfriend.com. No tab switching required.",
+    "message": "Personalized planting dates, season suitability, and companion plant suggestions — inline on Burpee, Johnny's Seeds, Baker Creek, and more. Enter your ZIP once, grow smarter.",
     "description": "Short description shown under the extension name"
   }
 }

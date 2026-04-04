@@ -1,12 +1,12 @@
-// stripe-handler.js — Stripe Checkout stub for Homebrew Recipe Sidekick Pro
+// stripe-handler.js — Stripe Checkout stub for Seed Catalog Companion Pro
 //
 // MVP: clicking "Upgrade" opens the Stripe Payment Link in a new tab.
 // For production, replace CHECKOUT_URL with your actual Stripe Payment Link.
 // A server-side webhook should POST back to set isPro: true in chrome.storage.sync.
 //
-// Billing code: EXT-010-PRO
+// Billing code: EXT-011-PRO
 
-const CHECKOUT_URL = 'https://buy.stripe.com/homebrew_recipe_sidekick_pro_placeholder';
+const CHECKOUT_URL = 'https://buy.stripe.com/seed_catalog_companion_pro_placeholder';
 
 function openCheckout() {
   chrome.tabs.create({ url: CHECKOUT_URL });

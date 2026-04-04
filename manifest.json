@@ -4,14 +4,25 @@
   "version": "1.0.0",
   "description": "__MSG_extensionDescription__",
   "permissions": [
-    "storage",
-    "tabs"
+    "storage"
   ],
   "host_permissions": [
-    "https://www.homebrewtalk.com/*",
-    "https://homebrewtalk.com/*",
-    "https://www.brewersfriend.com/*",
-    "https://brewersfriend.com/*"
+    "https://www.burpee.com/*",
+    "https://burpee.com/*",
+    "https://www.rareseeds.com/*",
+    "https://rareseeds.com/*",
+    "https://www.johnnyseeds.com/*",
+    "https://johnnyseeds.com/*",
+    "https://www.parkseed.com/*",
+    "https://parkseed.com/*",
+    "https://www.territorialseed.com/*",
+    "https://territorialseed.com/*",
+    "https://www.westcoastseeds.com/*",
+    "https://westcoastseeds.com/*",
+    "https://www.migardener.com/*",
+    "https://migardener.com/*",
+    "https://www.seedsavers.org/*",
+    "https://seedsavers.org/*"
   ],
   "action": {
     "default_popup": "popup/popup.html",
@@ -27,13 +38,24 @@
   "content_scripts": [
     {
       "matches": [
-        "https://www.homebrewtalk.com/*",
-        "https://homebrewtalk.com/*",
-        "https://www.brewersfriend.com/*",
-        "https://brewersfriend.com/*"
+        "https://www.burpee.com/*",
+        "https://burpee.com/*",
+        "https://www.rareseeds.com/*",
+        "https://rareseeds.com/*",
+        "https://www.johnnyseeds.com/*",
+        "https://johnnyseeds.com/*",
+        "https://www.parkseed.com/*",
+        "https://parkseed.com/*",
+        "https://www.territorialseed.com/*",
+        "https://territorialseed.com/*",
+        "https://www.westcoastseeds.com/*",
+        "https://westcoastseeds.com/*",
+        "https://www.migardener.com/*",
+        "https://migardener.com/*",
+        "https://www.seedsavers.org/*",
+        "https://seedsavers.org/*"
       ],
-      "js": ["content/recipe-detector.js", "content/brew-sidebar.js"],
-      "css": ["content/brew-sidebar.css"],
+      "js": ["content/seed-detector.js", "content/planting-badge.js"],
       "run_at": "document_idle"
     }
   ],
@@ -47,12 +69,29 @@
   "default_locale": "en",
   "web_accessible_resources": [
     {
-      "resources": ["data/hops.json"],
+      "resources": [
+        "data/zip-zones.json",
+        "data/crop-keywords.json",
+        "data/planting-guide.json",
+        "data/companions.json"
+      ],
       "matches": [
-        "https://www.homebrewtalk.com/*",
-        "https://homebrewtalk.com/*",
-        "https://www.brewersfriend.com/*",
-        "https://brewersfriend.com/*"
+        "https://www.burpee.com/*",
+        "https://burpee.com/*",
+        "https://www.rareseeds.com/*",
+        "https://rareseeds.com/*",
+        "https://www.johnnyseeds.com/*",
+        "https://johnnyseeds.com/*",
+        "https://www.parkseed.com/*",
+        "https://parkseed.com/*",
+        "https://www.territorialseed.com/*",
+        "https://territorialseed.com/*",
+        "https://www.westcoastseeds.com/*",
+        "https://westcoastseeds.com/*",
+        "https://www.migardener.com/*",
+        "https://migardener.com/*",
+        "https://www.seedsavers.org/*",
+        "https://seedsavers.org/*"
       ]
     }
   ]

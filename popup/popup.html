@@ -3,31 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Homebrew Recipe Sidekick</title>
+  <title>Seed Catalog Companion Planner</title>
   <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
   <div class="header">
-    <div class="header-icon">🍺</div>
+    <div class="header-icon">🌱</div>
     <div>
-      <div class="header-title">Homebrew Recipe Sidekick</div>
-      <div class="header-sub">Brewing Tools — Inline &amp; Instant</div>
+      <div class="header-title">Seed Catalog Companion</div>
+      <div class="header-sub">Personalized Planting Dates — Inline</div>
     </div>
   </div>
 
   <div class="body">
     <div class="status-section">
       <div class="status-row">
-        <span class="status-label">Status</span>
-        <span class="status-val" id="statusVal">Active</span>
+        <span class="status-label">ZIP Code</span>
+        <span class="status-val" id="zipVal">Not set</span>
       </div>
       <div class="status-row">
-        <span class="status-label">Units</span>
-        <span class="status-val" id="unitsVal">Imperial</span>
+        <span class="status-label">USDA Zone</span>
+        <span class="status-val" id="zoneVal">—</span>
       </div>
       <div class="status-row">
-        <span class="status-label">Default Batch</span>
-        <span class="status-val" id="batchVal">5 gal</span>
+        <span class="status-label">Last Spring Frost</span>
+        <span class="status-val" id="lsfVal">—</span>
+      </div>
+      <div class="status-row">
+        <span class="status-label">First Fall Frost</span>
+        <span class="status-val" id="fffVal">—</span>
       </div>
       <div class="status-row">
         <span class="status-label">Plan</span>
@@ -36,13 +40,13 @@
     </div>
 
     <div class="sites-note">
-      <strong>Active on:</strong> homebrewtalk.com &bull; brewersfriend.com
+      <strong>Active on:</strong> burpee.com &bull; johnnyseeds.com &bull; rareseeds.com &bull; seedsavers.org &bull; parkseed.com &bull; +3 more
     </div>
 
-    <button class="settings-btn" id="settingsBtn">⚙️ Settings &amp; Preferences</button>
+    <button class="settings-btn" id="settingsBtn">⚙️ Settings &amp; ZIP Code</button>
 
     <div class="pro-bar" id="proBar">
-      <span>Pro: water chemistry, yeast tools, recipe saving</span>
+      <span>Pro: frost countdown, succession planner, multi-zone</span>
       <button class="pro-btn" id="proBtn">$5/mo</button>
     </div>
   </div>

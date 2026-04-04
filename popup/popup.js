@@ -1,21 +1,25 @@
-// Homebrew Recipe Sidekick — Popup JS
+// Seed Catalog Companion Planner — Popup JS
+
+function formatFrostDate(mmdd) {
+  if (!mmdd) return '—';
+  const [m, d] = mmdd.split('-').map(Number);
+  return new Date(2000, m - 1, d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+}
 
 async function init() {
   const sync = await chrome.storage.sync.get({
     isPro: false,
-    units: 'imperial',
-    defaultBatchSize: 5,
+    zip: '',
+    zone: '',
+    lastSpringFrost: '',
+    firstFallFrost: '',
   });
 
+  document.getElementById('zipVal').textContent = sync.zip || 'Not set';
+  document.getElementById('zoneVal').textContent = sync.zone || '—';
+  document.getElementById('lsfVal').textContent = formatFrostDate(sync.lastSpringFrost);
+  document.getElementById('fffVal').textContent = formatFrostDate(sync.firstFallFrost);
   document.getElementById('planVal').textContent = sync.isPro ? 'Pro ✓' : 'Free';
-  document.getElementById('unitsVal').textContent =
-    sync.units === 'metric' ? 'Metric' : 'Imperial';
-
-  const batchUnit = sync.units === 'metric' ? 'L' : 'gal';
-  const batchDisplay = sync.units === 'metric'
-    ? (sync.defaultBatchSize * 3.785).toFixed(0)
-    : sync.defaultBatchSize;
-  document.getElementById('batchVal').textContent = `${batchDisplay} ${batchUnit}`;
 
   if (sync.isPro) {
     document.getElementById('proBar').style.display = 'none';
