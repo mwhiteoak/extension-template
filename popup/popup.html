@@ -3,35 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Seed Catalog Companion Planner</title>
+  <title>Specialty Coffee Cross-Site Companion</title>
   <link rel="stylesheet" href="popup.css" />
 </head>
 <body>
   <div class="header">
-    <div class="header-icon">🌱</div>
+    <div class="header-icon">☕</div>
     <div>
-      <div class="header-title">Seed Catalog Companion</div>
-      <div class="header-sub">Personalized Planting Dates — Inline</div>
+      <div class="header-title">Coffee Companion</div>
+      <div class="header-sub">Price &amp; Freshness Intelligence</div>
     </div>
   </div>
 
   <div class="body">
-    <div class="status-section">
+    <div class="status-section" id="pageInfo">
       <div class="status-row">
-        <span class="status-label">ZIP Code</span>
-        <span class="status-val" id="zipVal">Not set</span>
+        <span class="status-label">Current Page</span>
+        <span class="status-val" id="currentSite">Not a supported roastery</span>
       </div>
-      <div class="status-row">
-        <span class="status-label">USDA Zone</span>
-        <span class="status-val" id="zoneVal">—</span>
+      <div class="status-row" id="priceRow" style="display:none">
+        <span class="status-label">$/gram</span>
+        <span class="status-val highlight" id="cpgVal">—</span>
       </div>
-      <div class="status-row">
-        <span class="status-label">Last Spring Frost</span>
-        <span class="status-val" id="lsfVal">—</span>
-      </div>
-      <div class="status-row">
-        <span class="status-label">First Fall Frost</span>
-        <span class="status-val" id="fffVal">—</span>
+      <div class="status-row" id="compRow" style="display:none">
+        <span class="status-label">vs. avg</span>
+        <span class="status-val" id="compVal">—</span>
       </div>
       <div class="status-row">
         <span class="status-label">Plan</span>
@@ -39,15 +35,22 @@
       </div>
     </div>
 
-    <div class="sites-note">
-      <strong>Active on:</strong> burpee.com &bull; johnnyseeds.com &bull; rareseeds.com &bull; seedsavers.org &bull; parkseed.com &bull; +3 more
+    <div class="comparison-section" id="comparisonSection">
+      <div class="comp-title">Roastery Price Averages ($/gram)</div>
+      <div id="comparisonList" class="comp-list">
+        <div class="comp-loading">Loading comparison data…</div>
+      </div>
     </div>
 
-    <button class="settings-btn" id="settingsBtn">⚙️ Settings &amp; ZIP Code</button>
+    <div class="sites-note">
+      <strong>Active on:</strong> Trade, Blue Bottle, Onyx, Counter Culture, Intelligentsia, Stumptown +4 more
+    </div>
+
+    <button class="settings-btn" id="settingsBtn">⚙️ Settings</button>
 
     <div class="pro-bar" id="proBar">
-      <span>Pro: frost countdown, succession planner, multi-zone</span>
-      <button class="pro-btn" id="proBtn">$5/mo</button>
+      <span>Pro: Coffee Review scores, personal memory, ROI calc</span>
+      <button class="pro-btn" id="proBtn">$6/mo</button>
     </div>
   </div>
 

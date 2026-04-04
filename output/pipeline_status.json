@@ -72,6 +72,14 @@
       "builtAt": "2026-04-05",
       "billingCode": "EXT-011-PRO",
       "targetSites": ["www.burpee.com", "www.johnnyseeds.com", "www.rareseeds.com", "www.seedsavers.org", "www.parkseed.com", "www.territorialseed.com", "www.westcoastseeds.com", "www.migardener.com"]
+    },
+    {
+      "id": "EXT-61",
+      "name": "Specialty Coffee Cross-Site Companion",
+      "status": "built",
+      "builtAt": "2026-04-05",
+      "billingCode": "EXT-012-PRO",
+      "targetSites": ["www.tradecoffeeco.com", "www.bluebottlecoffee.com", "www.onyxcoffeelab.com", "www.counterculturecoffee.com", "www.intelligentsiacoffee.com", "www.stumptowncoffee.com", "www.atlascoffeeclub.com", "www.beanbox.com", "www.vervecoffee.com", "www.chromecoffee.com"]
     }
   ]
 }

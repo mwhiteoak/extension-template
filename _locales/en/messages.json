@@ -1,10 +1,10 @@
 {
   "extensionName": {
-    "message": "Seed Catalog Companion Planner",
+    "message": "Specialty Coffee Cross-Site Companion",
     "description": "The name of the extension as displayed in the Chrome Web Store and browser UI"
   },
   "extensionDescription": {
-    "message": "Personalized planting dates, season suitability, and companion plant suggestions — inline on Burpee, Johnny's Seeds, Baker Creek, and more. Enter your ZIP once, grow smarter.",
+    "message": "Instant $/gram price normalization, roastery freshness tiers, and delivery window estimates — inline on Trade Coffee, Blue Bottle, Onyx, Counter Culture, Intelligentsia, Stumptown, and more.",
     "description": "Short description shown under the extension name"
   }
 }

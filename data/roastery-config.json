@@ -1,0 +1,150 @@
+{
+  "roasteries": [
+    {
+      "key": "tradecoffee",
+      "name": "Trade Coffee",
+      "hostname": "tradecoffeeco.com",
+      "freshnessModel": "roasts-to-order",
+      "shipSLADays": 3,
+      "avgPricePerGram": 0.30,
+      "productPagePatterns": ["/products/", "/coffee/"],
+      "priceSelector": ".price, [class*='price'], [data-price]",
+      "weightSelector": "[class*='weight'], [class*='size'], select option",
+      "nameSelector": "h1"
+    },
+    {
+      "key": "bluebottle",
+      "name": "Blue Bottle Coffee",
+      "hostname": "bluebottlecoffee.com",
+      "freshnessModel": "roasts-to-order",
+      "shipSLADays": 4,
+      "avgPricePerGram": 0.32,
+      "productPagePatterns": ["/products/", "/collections/"],
+      "priceSelector": ".price, [class*='price'], [data-price]",
+      "weightSelector": "[class*='weight'], [class*='size'], select option",
+      "nameSelector": "h1"
+    },
+    {
+      "key": "onyx",
+      "name": "Onyx Coffee Lab",
+      "hostname": "onyxcoffeelab.com",
+      "freshnessModel": "roasts-to-order",
+      "shipSLADays": 3,
+      "avgPricePerGram": 0.29,
+      "productPagePatterns": ["/products/"],
+      "priceSelector": ".price, [class*='price'], [data-price]",
+      "weightSelector": "select option, [class*='variant']",
+      "nameSelector": "h1"
+    },
+    {
+      "key": "counterculture",
+      "name": "Counter Culture Coffee",
+      "hostname": "counterculturecoffee.com",
+      "freshnessModel": "roasts-weekly",
+      "shipSLADays": 5,
+      "avgPricePerGram": 0.28,
+      "productPagePatterns": ["/products/", "/coffee/"],
+      "priceSelector": ".price, [class*='price'], [data-price]",
+      "weightSelector": "select option, [class*='variant'], [class*='weight']",
+      "nameSelector": "h1"
+    },
+    {
+      "key": "intelligentsia",
+      "name": "Intelligentsia Coffee",
+      "hostname": "intelligentsiacoffee.com",
+      "freshnessModel": "roasts-weekly",
+      "shipSLADays": 4,
+      "avgPricePerGram": 0.30,
+      "productPagePatterns": ["/products/", "/coffees/"],
+      "priceSelector": ".price, [class*='price'], [data-price]",
+      "weightSelector": "select option, [class*='variant']",
+      "nameSelector": "h1"
+    },
+    {
+      "key": "stumptown",
+      "name": "Stumptown Coffee",
+      "hostname": "stumptowncoffee.com",
+      "freshnessModel": "pre-stocks",
+      "shipSLADays": 6,
+      "avgPricePerGram": 0.26,
+      "productPagePatterns": ["/products/", "/coffee/"],
+      "priceSelector": ".price, [class*='price'], [data-price]",
+      "weightSelector": "select option, [class*='variant'], [class*='weight']",
+      "nameSelector": "h1"
+    },
+    {
+      "key": "atlas",
+      "name": "Atlas Coffee Club",
+      "hostname": "atlascoffeeclub.com",
+      "freshnessModel": "pre-stocks",
+      "shipSLADays": 7,
+      "avgPricePerGram": 0.22,
+      "productPagePatterns": ["/products/", "/coffees/"],
+      "priceSelector": ".price, [class*='price'], [data-price]",
+      "weightSelector": "select option, [class*='variant']",
+      "nameSelector": "h1"
+    },
+    {
+      "key": "beanbox",
+      "name": "Bean Box",
+      "hostname": "beanbox.com",
+      "freshnessModel": "pre-stocks",
+      "shipSLADays": 5,
+      "avgPricePerGram": 0.27,
+      "productPagePatterns": ["/coffees/", "/products/"],
+      "priceSelector": ".price, [class*='price'], [data-price]",
+      "weightSelector": "select option, [class*='variant'], [class*='weight']",
+      "nameSelector": "h1"
+    },
+    {
+      "key": "verve",
+      "name": "Verve Coffee Roasters",
+      "hostname": "vervecoffee.com",
+      "freshnessModel": "roasts-to-order",
+      "shipSLADays": 4,
+      "avgPricePerGram": 0.29,
+      "productPagePatterns": ["/products/"],
+      "priceSelector": ".price, [class*='price'], [data-price]",
+      "weightSelector": "select option, [class*='variant']",
+      "nameSelector": "h1"
+    },
+    {
+      "key": "chrome",
+      "name": "Chrome Coffee",
+      "hostname": "chromecoffee.com",
+      "freshnessModel": "roasts-to-order",
+      "shipSLADays": 3,
+      "avgPricePerGram": 0.31,
+      "productPagePatterns": ["/products/", "/collections/"],
+      "priceSelector": ".price, [class*='price'], [data-price]",
+      "weightSelector": "select option, [class*='variant']",
+      "nameSelector": "h1"
+    }
+  ],
+  "weightPatterns": [
+    { "pattern": "(\\d+(?:\\.\\d+)?)\\s*lb", "toGrams": 453.592 },
+    { "pattern": "(\\d+(?:\\.\\d+)?)\\s*oz", "toGrams": 28.3495 },
+    { "pattern": "(\\d+(?:\\.\\d+)?)\\s*kg", "toGrams": 1000 },
+    { "pattern": "(\\d+(?:\\.\\d+)?)\\s*g(?:ram)?s?\\b", "toGrams": 1 }
+  ],
+  "freshnessTiers": {
+    "roasts-to-order": {
+      "label": "Roasts to Order",
+      "icon": "✓",
+      "color": "#2d6a4f",
+      "description": "Roasts fresh after you order"
+    },
+    "roasts-weekly": {
+      "label": "Roasts Weekly",
+      "icon": "~",
+      "color": "#f4a261",
+      "description": "Roasts in weekly batches"
+    },
+    "pre-stocks": {
+      "label": "Pre-Stocks Inventory",
+      "icon": "⚠",
+      "color": "#e63946",
+      "description": "May ship from existing stock"
+    }
+  }
+}

@@ -1,12 +1,12 @@
-// stripe-handler.js — Stripe Checkout stub for Seed Catalog Companion Pro
+// stripe-handler.js — Stripe Checkout stub for Coffee Companion Pro
 //
 // MVP: clicking "Upgrade" opens the Stripe Payment Link in a new tab.
 // For production, replace CHECKOUT_URL with your actual Stripe Payment Link.
 // A server-side webhook should POST back to set isPro: true in chrome.storage.sync.
 //
-// Billing code: EXT-011-PRO
+// Billing code: EXT-012-PRO
 
-const CHECKOUT_URL = 'https://buy.stripe.com/seed_catalog_companion_pro_placeholder';
+const CHECKOUT_URL = 'https://buy.stripe.com/coffee_companion_pro_placeholder';
 
 function openCheckout() {
   chrome.tabs.create({ url: CHECKOUT_URL });
