@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GB Watch</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div id="app">
+    <!-- Header -->
+    <header>
+      <div class="header-left">
+        <span class="logo">⌨️</span>
+        <h1>GB Watch</h1>
+      </div>
+      <button id="btn-refresh" class="icon-btn" title="Check all now">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 4 23 10 17 10"></polyline>
+          <polyline points="1 20 1 14 7 14"></polyline>
+          <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+        </svg>
+      </button>
+    </header>
+
+    <!-- Add item bar -->
+    <div class="add-bar">
+      <input
+        type="url"
+        id="input-url"
+        placeholder="Paste a GeekHack, Drop, NovelKeys, or CannonKeys URL…"
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button id="btn-add">Watch</button>
+    </div>
+    <div id="add-error" class="add-error" hidden></div>
+
+    <!-- Watch list -->
+    <div id="watch-list" class="watch-list">
+      <!-- items rendered by JS -->
+    </div>
+
+    <!-- Empty state -->
+    <div id="empty-state" class="empty-state" hidden>
+      <p>No items watched yet.</p>
+      <p class="muted">Paste a GeekHack, Drop, NovelKeys, or CannonKeys URL above.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <span>Checks every 30 min</span>
+      <span id="item-count">0 items watched</span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
