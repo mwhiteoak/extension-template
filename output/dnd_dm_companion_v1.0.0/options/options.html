@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>D&D Beyond DM Companion — Settings</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: #1a1a2e;
+      color: #e0e0e0;
+      min-height: 100vh;
+      padding: 32px 24px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    header h1 {
+      font-size: 22px;
+      color: #e74c3c;
+    }
+    header span { font-size: 28px; }
+
+    .card {
+      background: #0d0d1a;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      max-width: 560px;
+    }
+
+    .card h2 {
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #e74c3c;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #333;
+    }
+
+    .field {
+      margin-bottom: 16px;
+    }
+    .field label {
+      display: block;
+      font-size: 12px;
+      color: #999;
+      margin-bottom: 5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .field input[type=number],
+    .field select {
+      background: #0f3460;
+      border: 1px solid #1e5080;
+      color: #e0e0e0;
+      border-radius: 4px;
+      padding: 7px 10px;
+      font-size: 14px;
+      width: 100%;
+      outline: none;
+    }
+    .field input[type=number]:focus,
+    .field select:focus { border-color: #e74c3c; }
+
+    .field-row {
+      display: flex;
+      gap: 16px;
+    }
+    .field-row .field { flex: 1; }
+
+    .hint { font-size: 11px; color: #666; margin-top: 4px; }
+
+    .pro-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #f39c12, #e67e22);
+      color: white;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+
+    .pro-locked {
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .upgrade-box {
+      background: linear-gradient(135deg, #1a1000, #2a1a00);
+      border: 1px solid #f39c12;
+      border-radius: 6px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+      max-width: 560px;
+    }
+    .upgrade-box p {
+      font-size: 13px;
+      color: #f39c12;
+      font-weight: 600;
+    }
+    .upgrade-box small { font-size: 11px; color: #aaa; display: block; margin-top: 2px; }
+
+    .btn {
+      background: #c0392b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn:hover { background: #e74c3c; }
+    .btn.gold {
+      background: linear-gradient(135deg, #f39c12, #e67e22);
+    }
+    .btn.gold:hover { background: linear-gradient(135deg, #f1c40f, #e67e22); }
+    .btn.secondary { background: #2c3e50; }
+    .btn.secondary:hover { background: #34495e; }
+
+    #save-btn { margin-top: 4px; }
+    #status-msg {
+      display: inline-block;
+      margin-left: 12px;
+      font-size: 12px;
+      color: #2ecc71;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    #status-msg.visible { opacity: 1; }
+  </style>
+</head>
+<body>
+  <header>
+    <span>⚔</span>
+    <h1>D&D Beyond DM Companion Settings</h1>
+  </header>
+
+  <div id="upgrade-box" class="upgrade-box" style="display:none">
+    <div>
+      <p>Upgrade to Pro</p>
+      <small>Unlock Encounter Estimator, Monster Quick-Reference &amp; Encounter Builder</small>
+    </div>
+    <button class="btn gold" id="upgrade-btn">$6/mo →</button>
+  </div>
+
+  <div id="pro-status-box" class="upgrade-box" style="display:none;border-color:#2ecc71;background:linear-gradient(135deg,#001a00,#002a00)">
+    <div>
+      <p style="color:#2ecc71">✓ Pro Active</p>
+      <small>All features unlocked</small>
+    </div>
+    <button class="btn secondary" id="revoke-pro-btn">Revoke (testing)</button>
+  </div>
+
+  <div class="card">
+    <h2>Party Defaults</h2>
+    <div class="field-row">
+      <div class="field">
+        <label>Default Party Size</label>
+        <input type="number" id="party-size" min="1" max="10" value="4">
+        <div class="hint">Used in Encounter Estimator calculations</div>
+      </div>
+      <div class="field">
+        <label>Default Average Level</label>
+        <input type="number" id="party-level" min="1" max="20" value="5">
+        <div class="hint">D&amp;D 5e character level (1–20)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Hotkey</h2>
+    <div class="field">
+      <label>Sidebar Toggle Key (hold Shift +)</label>
+      <select id="hotkey-select">
+        <option value="D">D (Shift+D)</option>
+        <option value="M">M (Shift+M)</option>
+        <option value="C">C (Shift+C)</option>
+        <option value="X">X (Shift+X)</option>
+      </select>
+      <div class="hint">Press this key while holding Shift on any D&amp;D Beyond page to show/hide the sidebar.</div>
+    </div>
+  </div>
+
+  <div>
+    <button class="btn" id="save-btn">Save Settings</button>
+    <span id="status-msg">Saved ✓</span>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

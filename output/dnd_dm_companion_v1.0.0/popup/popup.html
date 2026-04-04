@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DM Companion</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <span class="icon">⚔</span>
+    <h1>DM Companion</h1>
+  </header>
+
+  <div id="status-row">
+    <span id="site-status"></span>
+  </div>
+
+  <div class="action-list">
+    <button id="btn-open-sidebar" class="action-btn primary">
+      <span>⚔</span> Open Sidebar
+      <small>Shift+D on D&amp;D Beyond</small>
+    </button>
+    <button id="btn-options" class="action-btn secondary">
+      <span>⚙</span> Settings
+    </button>
+  </div>
+
+  <div id="pro-row">
+    <div id="free-row" style="display:none">
+      <p>Free tier active &mdash; <strong>Initiative &amp; Notes</strong></p>
+      <button id="btn-upgrade" class="upgrade-btn">Upgrade to Pro — $6/mo</button>
+    </div>
+    <div id="pro-active-row" style="display:none">
+      <p class="pro-badge">★ Pro Active</p>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

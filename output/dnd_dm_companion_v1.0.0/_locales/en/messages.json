@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "D&D Beyond DM Prep Companion",
+    "description": "Extension name shown in Chrome"
+  },
+  "extensionDescription": {
+    "message": "Live session companion for D&D Beyond: initiative tracker, session notes, encounter difficulty estimator, and monster quick-reference for the Dungeon Master.",
+    "description": "Extension description shown in Chrome Web Store"
+  }
+}

@@ -1,0 +1,1 @@
+Live session companion for D&D Beyond: initiative tracker, session notes, encounter estimator, and monster quick-reference for Dungeon Masters.

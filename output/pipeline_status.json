@@ -32,6 +32,14 @@
       "status": "built",
       "builtAt": "2026-04-05",
       "targetSites": ["seattlecoffeegear.com", "prima-coffee.com", "clivecoffee.com"]
+    },
+    {
+      "id": "EXT-42",
+      "name": "D&D Beyond DM Prep Companion",
+      "status": "built",
+      "builtAt": "2026-04-05",
+      "billingCode": "EXT-007-PRO",
+      "targetSites": ["dndbeyond.com"]
     }
   ]
 }
