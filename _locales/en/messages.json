@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "Extension Name",
+    "description": "The name of the extension as displayed in the Chrome Web Store and browser UI"
+  },
+  "extensionDescription": {
+    "message": "Extension description",
+    "description": "Short description shown under the extension name"
+  }
+}
