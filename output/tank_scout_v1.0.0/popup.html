@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tank Scout</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="popup-root">
+
+    <header class="popup-header">
+      <span class="popup-logo">🐟</span>
+      <div>
+        <div class="popup-title">Tank Scout</div>
+        <div class="popup-subtitle">Fish Compatibility Checker</div>
+      </div>
+    </header>
+
+    <!-- Tab bar -->
+    <div class="tab-bar">
+      <button class="tab active" data-tab="profile">My Tank</button>
+      <button class="tab" data-tab="fish">Fish</button>
+    </div>
+
+    <!-- My Tank tab -->
+    <div id="tab-profile" class="tab-panel active">
+      <div class="section-label">Tank Parameters</div>
+
+      <div class="form-row">
+        <label for="gallonsInput">Tank Size</label>
+        <div class="input-group">
+          <input type="number" id="gallonsInput" placeholder="e.g. 55" min="1" max="10000" />
+          <span class="input-unit">gal</span>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="phInput">pH</label>
+        <div class="input-group">
+          <input type="number" id="phInput" placeholder="e.g. 7.2" min="4" max="10" step="0.1" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <label for="tempInput">Temperature</label>
+        <div class="input-group">
+          <input type="number" id="tempInput" placeholder="e.g. 76" min="32" max="110" />
+          <span class="input-unit">°F</span>
+        </div>
+      </div>
+
+      <button id="saveProfileBtn" class="btn btn-primary">Save Profile</button>
+      <div id="profileFeedback" class="feedback"></div>
+
+      <!-- Summary card -->
+      <div id="profileSummary" class="profile-summary" style="display:none">
+        <div class="summary-row"><span class="summary-label">Tank Size</span><span id="sumGallons" class="summary-val">—</span></div>
+        <div class="summary-row"><span class="summary-label">pH</span><span id="sumPh" class="summary-val">—</span></div>
+        <div class="summary-row"><span class="summary-label">Temperature</span><span id="sumTemp" class="summary-val">—</span></div>
+        <div class="summary-row"><span class="summary-label">Fish in tank</span><span id="sumFishCount" class="summary-val">0</span></div>
+      </div>
+    </div>
+
+    <!-- Fish tab -->
+    <div id="tab-fish" class="tab-panel">
+      <div class="section-label">Fish in Your Tank</div>
+
+      <div class="add-fish-row">
+        <input type="text" id="fishSearch" placeholder="Search species..." autocomplete="off" />
+      </div>
+      <div id="fishSuggestions" class="suggestions"></div>
+
+      <div id="fishList" class="fish-list"></div>
+      <div id="fishEmpty" class="empty-state">No fish added yet. Search above to add species.</div>
+    </div>
+
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

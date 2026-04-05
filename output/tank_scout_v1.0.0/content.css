@@ -1,0 +1,150 @@
+/* Tank Scout — Injected Panel Styles */
+
+#ts-tank-scout-panel,
+#ts-tank-scout-panel * {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+#ts-tank-scout-panel {
+  background: #ffffff;
+  border: 1.5px solid #3b82f6;
+  border-radius: 10px;
+  padding: 14px 16px 12px;
+  margin: 14px 0;
+  max-width: 540px;
+  box-shadow: 0 2px 12px rgba(59, 130, 246, 0.12);
+  position: relative;
+  z-index: 9999;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────── */
+
+.tsc-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.tsc-logo {
+  font-size: 22px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.tsc-title {
+  flex: 1;
+  min-width: 0;
+}
+
+.tsc-title strong {
+  display: block;
+  font-size: 15px;
+  color: #1e3a5f;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tsc-title em {
+  display: block;
+  font-size: 12px;
+  color: #64748b;
+  font-style: italic;
+  margin-top: 1px;
+}
+
+.tsc-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #94a3b8;
+  padding: 0;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.tsc-close:hover { color: #475569; }
+
+/* ── Compatibility banner ────────────────────────────────────────────────── */
+
+.tsc-compat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.tsc-compat-ok      { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+.tsc-compat-caution { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+.tsc-compat-conflict{ background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+
+.tsc-compat-icon { font-size: 15px; }
+
+.tsc-compat-reasons {
+  margin: 0 0 8px;
+  padding: 0 0 0 18px;
+  font-size: 12px;
+  color: #475569;
+}
+.tsc-compat-reasons li { margin-bottom: 3px; }
+
+.tsc-no-profile {
+  font-size: 12px;
+  color: #64748b;
+  margin-bottom: 8px;
+}
+.tsc-open-popup {
+  color: #3b82f6;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* ── Stats grid ──────────────────────────────────────────────────────────── */
+
+.tsc-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.tsc-stat {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 8px 10px;
+  text-align: center;
+}
+
+.tsc-stat-label {
+  font-size: 10px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+
+.tsc-stat-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* Care difficulty colors */
+.tsc-diff-easy     .tsc-stat-value { color: #15803d; }
+.tsc-diff-moderate .tsc-stat-value { color: #d97706; }
+.tsc-diff-difficult .tsc-stat-value { color: #dc2626; }
+.tsc-diff-expert   .tsc-stat-value { color: #7c3aed; }
+
+/* ── Responsive: narrow viewports ───────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  .tsc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
